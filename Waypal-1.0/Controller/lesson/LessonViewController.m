@@ -64,7 +64,7 @@
     [self ConfigUserInfo];
     [self loadGuideView];
     lViewBorderRadius(self.student_advatarImageView, 28, 2,[UIColor whiteColor]);
-    DDLog(@"123435ceshi");
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
