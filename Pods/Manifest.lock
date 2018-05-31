@@ -1,0 +1,30 @@
+PODS:
+  - Bugly (2.5.0)
+  - IQKeyboardManager (6.0.3)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
+  - SVProgressHUD (2.2.5)
+
+DEPENDENCIES:
+  - Bugly (~> 2.5.0)
+  - IQKeyboardManager (~> 6.0.3)
+  - SDWebImage (~> 4.3.3)
+  - SVProgressHUD (~> 2.2.5)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Bugly
+    - IQKeyboardManager
+    - SDWebImage
+    - SVProgressHUD
+
+SPEC CHECKSUMS:
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
+  IQKeyboardManager: c390e612f4b98c8fd748016470138537dc163ead
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+
+PODFILE CHECKSUM: 580fb18b94b3c841b38ac93d0be7b311b2fb8d5d
+
+COCOAPODS: 1.5.2

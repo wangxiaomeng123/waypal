@@ -1,0 +1,19 @@
+{
+  "code" : 200,
+  "output" : {
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MjcwODY3MDIsImlzcyI6Imp4anN0dWRlbnQiLCJ1c2VyIjp7InBvcnRyYWl0IjoiaHR0cHM6Ly9wYWwtdGVzdC53YXlwYWwuY29tL2ltYWdlcy8wP3M9bSIsImlkIjo0MjIsIm1vYmlsZSI6IjE1NTAxMTU3OTI3IiwibmFtZSI6Imp4anN0dWRlbnQiLCJuaWNrIjoienhjMTIzZ2hoaG5ubm5ubm5uIiwidXNlcm5hbWUiOiJqeGpzdHVkZW50IiwicGFzc3dvcmRfZGlnZXN0IjoiIiwicm9sZSI6InN0dWRlbnQiLCJpbWFnZV9pZCI6MH19.-tRDhdDzI-A2g3u_ni7zboeqMKOsD_3_tk0Zz22QJWE",
+    "user" : {
+      "mobile" : "15501157927",
+      "portrait" : "https:\/\/pal-test.waypal.com\/images\/0?s=m",
+      "nick" : "zxc123ghhhnnnnnnnn",
+      "id" : 422,
+      "role" : "student",
+      "image_id" : 0,
+      "username" : "jxjstudent",
+      "password_digest" : "",
+      "name" : "jxjstudent"
+    }
+  },
+  "tip" : "success",
+  "server_time" : "2018-05-22 22:45:02"
+}

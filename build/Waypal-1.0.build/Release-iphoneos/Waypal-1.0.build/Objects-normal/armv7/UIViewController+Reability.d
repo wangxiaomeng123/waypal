@@ -1,0 +1,24 @@
+dependencies: \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Category/UIViewController+Reability.m \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Category/UIViewController+Reability.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Tool/NetworkTool/NetworkingTool.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Modules/module.modulemap \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/UIWebView+AFNetworking.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/UIRefreshControl+AFNetworking.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/AFNetworkActivityIndicatorManager.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/UIProgressView+AFNetworking.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/UIImageView+AFNetworking.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/UIImage+AFNetworking.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/UIButton+AFNetworking.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/UIActivityIndicatorView+AFNetworking.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/AFImageDownloader.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/AFAutoPurgingImageCache.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/AFHTTPSessionManager.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/AFCompatibilityMacros.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/AFURLSessionManager.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/AFNetworkReachabilityManager.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/AFSecurityPolicy.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/AFURLResponseSerialization.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/AFURLRequestSerialization.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Lib/LiveRoom/AFNetworking.framework/Headers/AFNetworking.h \
+  /Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Category/UIView+Extension.h
