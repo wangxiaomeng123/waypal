@@ -34,7 +34,8 @@
     NSString  *to_time=[lessonInfoModel.to_time substringWithRange:NSMakeRange(10,lessonInfoModel.to_time.length- 13)];
     self.teach_timeLabel.text =[NSString stringWithFormat:@"%@ %@-%@",teach_date,from_time,to_time];
     self.teacher_nameLabel.text =[NSString stringWithFormat:@"%@",lessonInfoModel.teacher_name];
-    [self.teacher_avatarImgView sd_setImageWithURL:[NSURL URLWithString:lessonInfoModel.teacher_portrait] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"]];
+//    [self.teacher_avatarImgView sd_setImageWithURL:[NSURL URLWithString:lessonInfoModel.teacher_portrait] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"]];
+    [self.teacher_avatarImgView sd_setImageWithURL:[NSURL URLWithString:lessonInfoModel.teacher_portrait] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"] options:SDWebImageAllowInvalidSSLCertificates];
     self.course_name.text =[NSString stringWithFormat:@"%@",lessonInfoModel.lesson_name];
     DDLog(@"上课状态:%d",lessonInfoModel.status);
     if (lessonInfoModel.status ==6) {

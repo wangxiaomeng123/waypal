@@ -27,9 +27,6 @@
 		E720B45120BBADFD0003F268 /* lesson_playbackBgView@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E720B44F20BBADFC0003F268 /* lesson_playbackBgView@3x.png */; };
 		E720B45220BBADFD0003F268 /* lesson_playbackBgView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E720B45020BBADFC0003F268 /* lesson_playbackBgView@2x.png */; };
 		E720B45620BD31880003F268 /* TempClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E720B45520BD31880003F268 /* TempClassModel.m */; };
-		E720B45920BE442A0003F268 /* WeClassRoomSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E720B45720BD48F80003F268 /* WeClassRoomSDK.framework */; };
-		E720B45A20BE442A0003F268 /* WeClassRoomSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E720B45720BD48F80003F268 /* WeClassRoomSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E720B4C020BE94FB0003F268 /* UIButton+CS_FixMultiClick.m in Sources */ = {isa = PBXBuildFile; fileRef = E720B4BF20BE94FB0003F268 /* UIButton+CS_FixMultiClick.m */; };
 		E720B4C120BEACA40003F268 /* Assets .xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7895CE820B3C8F600F19491 /* Assets .xcassets */; };
 		E765470D20B54A1200AA850B /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E765470720B54A1200AA850B /* ZipArchive.framework */; };
 		E765470F20B54A1200AA850B /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E765470920B54A1200AA850B /* AFNetworking.framework */; };
@@ -137,6 +134,8 @@
 		E7895CF820B471D500F19491 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7895CF720B471D500F19491 /* LoadingView.m */; };
 		E7895CFC20B547C300F19491 /* ZegoAVKit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7895CFB20B547C300F19491 /* ZegoAVKit2.framework */; };
 		E7895CFE20B547F400F19491 /* ZegoAVKit2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7895CFB20B547C300F19491 /* ZegoAVKit2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7CC561820C03DB900C4EE4D /* WeClassRoomSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7CC561620C03DAE00C4EE4D /* WeClassRoomSDK.framework */; };
+		E7CC561920C03DB900C4EE4D /* WeClassRoomSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7CC561620C03DAE00C4EE4D /* WeClassRoomSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,7 +167,7 @@
 				E765471620B54A4600AA850B /* MBProgressHUD.framework in Embed Frameworks */,
 				E765471A20B54A4600AA850B /* Starscream.framework in Embed Frameworks */,
 				E765471820B54A4600AA850B /* SocketIO.framework in Embed Frameworks */,
-				E720B45A20BE442A0003F268 /* WeClassRoomSDK.framework in Embed Frameworks */,
+				E7CC561920C03DB900C4EE4D /* WeClassRoomSDK.framework in Embed Frameworks */,
 				E765471E20B54A4600AA850B /* ZipArchive.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -205,9 +204,6 @@
 		E720B45020BBADFC0003F268 /* lesson_playbackBgView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lesson_playbackBgView@2x.png"; sourceTree = "<group>"; };
 		E720B45420BD31880003F268 /* TempClassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TempClassModel.h; sourceTree = "<group>"; };
 		E720B45520BD31880003F268 /* TempClassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TempClassModel.m; sourceTree = "<group>"; };
-		E720B45720BD48F80003F268 /* WeClassRoomSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WeClassRoomSDK.framework; sourceTree = "<group>"; };
-		E720B4BE20BE94FB0003F268 /* UIButton+CS_FixMultiClick.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+CS_FixMultiClick.h"; sourceTree = "<group>"; };
-		E720B4BF20BE94FB0003F268 /* UIButton+CS_FixMultiClick.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CS_FixMultiClick.m"; sourceTree = "<group>"; };
 		E765470720B54A1200AA850B /* ZipArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZipArchive.framework; sourceTree = "<group>"; };
 		E765470820B54A1200AA850B /* SocketIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SocketIO.framework; sourceTree = "<group>"; };
 		E765470920B54A1200AA850B /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = "<group>"; };
@@ -344,6 +340,7 @@
 		E7895CF620B471D500F19491 /* LoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		E7895CF720B471D500F19491 /* LoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		E7895CFB20B547C300F19491 /* ZegoAVKit2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoAVKit2.framework; sourceTree = "<group>"; };
+		E7CC561620C03DAE00C4EE4D /* WeClassRoomSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WeClassRoomSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,7 +350,7 @@
 			files = (
 				E765471120B54A1200AA850B /* MBProgressHUD.framework in Frameworks */,
 				E7895CFC20B547C300F19491 /* ZegoAVKit2.framework in Frameworks */,
-				E720B45920BE442A0003F268 /* WeClassRoomSDK.framework in Frameworks */,
+				E7CC561820C03DB900C4EE4D /* WeClassRoomSDK.framework in Frameworks */,
 				E765471720B54A4600AA850B /* SocketIO.framework in Frameworks */,
 				E765471020B54A1200AA850B /* Starscream.framework in Frameworks */,
 				E765470F20B54A1200AA850B /* AFNetworking.framework in Frameworks */,
@@ -513,7 +510,7 @@
 		E7895B3920AFBF5900F19491 /* LiveRoom */ = {
 			isa = PBXGroup;
 			children = (
-				E720B45720BD48F80003F268 /* WeClassRoomSDK.framework */,
+				E7CC561620C03DAE00C4EE4D /* WeClassRoomSDK.framework */,
 				E765470920B54A1200AA850B /* AFNetworking.framework */,
 				E765470B20B54A1200AA850B /* MBProgressHUD.framework */,
 				E765470820B54A1200AA850B /* SocketIO.framework */,
@@ -893,8 +890,6 @@
 				E765474320B70A4B00AA850B /* UINavigationBar+Awesome.m */,
 				E720B44C20B952620003F268 /* UIViewController+Reability.h */,
 				E720B44D20B952620003F268 /* UIViewController+Reability.m */,
-				E720B4BE20BE94FB0003F268 /* UIButton+CS_FixMultiClick.h */,
-				E720B4BF20BE94FB0003F268 /* UIButton+CS_FixMultiClick.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1231,7 +1226,6 @@
 				E765474420B70A4B00AA850B /* UINavigationBar+Awesome.m in Sources */,
 				E7895BD920AFC64B00F19491 /* RapidStorageClass.m in Sources */,
 				E7895BD220AFC62200F19491 /* PersonViewModel.m in Sources */,
-				E720B4C020BE94FB0003F268 /* UIButton+CS_FixMultiClick.m in Sources */,
 				E7895C0320AFC80300F19491 /* LessonInfoModel.m in Sources */,
 				E7895CD420B27B9900F19491 /* CustomAlterView.m in Sources */,
 				E706954620BFEF9400D27167 /* PersonViewController.m in Sources */,
@@ -1402,8 +1396,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 利娟 何 (NZC29DWCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 利娟 何 (NZC29DWCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lijuan he (Q68LZHD3Y6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: lijuan he (Q68LZHD3Y6)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Q68LZHD3Y6;
 				ENABLE_BITCODE = NO;
@@ -1416,10 +1410,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACH_O_TYPE = mh_execute;
-				PRODUCT_BUNDLE_IDENTIFIER = com.waypal.;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waypal.waypalProuduct;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fe59f886-8fcd-4077-98d3-bac46f21790e";
-				PROVISIONING_PROFILE_SPECIFIER = dev;
+				PROVISIONING_PROFILE = "bb7fe233-c5e1-4b9b-a86b-c9d4b994cd9d";
+				PROVISIONING_PROFILE_SPECIFIER = waypalProduct;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1431,8 +1425,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 利娟 何 (NZC29DWCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 利娟 何 (NZC29DWCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: lijuan he (Q68LZHD3Y6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: lijuan he (Q68LZHD3Y6)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Q68LZHD3Y6;
 				ENABLE_BITCODE = NO;
@@ -1446,10 +1440,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACH_O_TYPE = mh_execute;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.waypal.;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waypal.waypalProuduct;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fe59f886-8fcd-4077-98d3-bac46f21790e";
-				PROVISIONING_PROFILE_SPECIFIER = dev;
+				PROVISIONING_PROFILE = "bb7fe233-c5e1-4b9b-a86b-c9d4b994cd9d";
+				PROVISIONING_PROFILE_SPECIFIER = waypalProduct;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

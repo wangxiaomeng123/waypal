@@ -69,6 +69,11 @@
     self.person_nameTF.text =[NSString stringWithFormat:@"%@",userInfo[@"nick"]];
     self.person_nameLabel.text =[NSString stringWithFormat:@"%@",userInfo[@"nick"]];
     self.person_UserNameTF.text =[NSString stringWithFormat:@"%@",userInfo[@"username"]];
+      NSString * advatar_url=userInfo[@"avatar"];
+    self.person_avatarImgView.layer.cornerRadius=65;
+    self.person_avatarImgView.layer.masksToBounds=YES;
+    [self.person_avatarImgView sd_setImageWithURL:[NSURL URLWithString:advatar_url] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"]options:SDWebImageAllowInvalidSSLCertificates];
+
 }
 - (IBAction)sourceAndSettingChangeAction:(UIButton *)sender
 {

@@ -55,12 +55,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentPage =0;//默认是1
-    self.guideNum=1;
+    self.guideNum=2;
     self.lessonListArrary=[NSMutableArray array];
     self.lessonVM =[[LessonViewModel alloc] init];
 //    self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"lesson_nothing_background"]];
-    self.prevButton.cs_acceptEventInterval=0.5;
-    self.nextButton.cs_acceptEventInterval=0.5;
+//    self.prevButton.cs_acceptEventInterval=0.5;
+//    self.nextButton.cs_acceptEventInterval=0.5;
     [self ConfigUserInfo];
     [self loadGuideView];
     lViewBorderRadius(self.student_advatarImageView, 28, 2,[UIColor whiteColor]);
@@ -95,7 +95,7 @@
 {
     if (![lUSER_DEFAULT objectForKey:key_FirsrtEnter])
     {
-      [self.guide_playbackButton setImage:[UIImage imageNamed:@"guide_guide1"]forState:UIControlStateNormal];
+      [self.guide_playbackButton setImage:[UIImage imageNamed:@"guide_guide3"]forState:UIControlStateNormal];
         [self.guide_playbackButton addTarget:self action:@selector(nextActionWithButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.guide_playbackButton];
     }
@@ -168,9 +168,11 @@
 -(void)ConfigUserInfo{
     NSDictionary *userInfoDict=[RapidStorageClass readDictionaryDataArchiverWithKey:@"userInfo"];
     NSDictionary *userInfo=userInfoDict[@"output"][@"user"];
-    NSString * advatar_url=userInfo[@"portrait"];
+    NSString * advatar_url=userInfo[@"avatar"];
     self.studentNameLabel.text=userInfo[@"nick"];
-    [self.student_advatarImageView sd_setImageWithURL:[NSURL URLWithString:advatar_url] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"]];
+    [self.student_advatarImageView sd_setImageWithURL:[NSURL URLWithString:advatar_url] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"]options:SDWebImageAllowInvalidSSLCertificates];
+    
+    
 }
 
 
