@@ -24,7 +24,7 @@
 #import "UIColor+Extension.h"
 #import "UIViewController+Reability.h"
 #import "LoadingView.h"
-//#import "UIButton+CS_FixMultiClick.h"
+#import "animationTool.h"
 #import <WeClassRoomSDK/WeClassRoomSDK.h>
 
 //获取屏幕 宽度、高度、

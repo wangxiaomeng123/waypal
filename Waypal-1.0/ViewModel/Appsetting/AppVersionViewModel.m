@@ -33,9 +33,10 @@
     NSString * device_UUID =[[[UIDevice currentDevice]identifierForVendor] UUIDString];
     NSDictionary *infoDic=[[NSBundle mainBundle] infoDictionary];
     __block NSString *currentVersion=infoDic[@"CFBundleShortVersionString"];
+    
     NSDictionary * appsettingParamDict =@{@"client_id":@"1",
                                           @"terminal_id":@"1",
-                                          @"version_code":@"100PO",
+                                          @"version_code":@"100",
                                           @"version_name":currentVersion,
                                           @"uuid":device_UUID,
                                           @"device_name":device_name,

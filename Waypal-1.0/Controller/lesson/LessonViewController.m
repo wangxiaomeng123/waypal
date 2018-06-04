@@ -46,6 +46,7 @@
 
 @property(nonatomic,assign)BOOL isReshHistory;
 @property (nonatomic,assign)int guideNum;
+@property(nonatomic,assign) CGFloat lastContentOffset;//用判断左滑还是右
 
 @end
 
@@ -55,16 +56,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentPage =0;//默认是1
-    self.guideNum=2;
+    self.guideNum=1;
     self.lessonListArrary=[NSMutableArray array];
     self.lessonVM =[[LessonViewModel alloc] init];
-//    self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"lesson_nothing_background"]];
-//    self.prevButton.cs_acceptEventInterval=0.5;
-//    self.nextButton.cs_acceptEventInterval=0.5;
     [self ConfigUserInfo];
     [self loadGuideView];
     lViewBorderRadius(self.student_advatarImageView, 28, 2,[UIColor whiteColor]);
-    
+    [[animationTool shareInstance] animationWithSubView:self.lesson_bgImageView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -95,7 +93,7 @@
 {
     if (![lUSER_DEFAULT objectForKey:key_FirsrtEnter])
     {
-      [self.guide_playbackButton setImage:[UIImage imageNamed:@"guide_guide3"]forState:UIControlStateNormal];
+      [self.guide_playbackButton setImage:[UIImage imageNamed:@"guide_guide1"]forState:UIControlStateNormal];
         [self.guide_playbackButton addTarget:self action:@selector(nextActionWithButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.guide_playbackButton];
     }
@@ -266,7 +264,7 @@
 #pragma mark 离开教室
 - (void)roomWillLeave:(WCRLeaveRoomReason)statusCode
 {
-    [self hanlerLeaveLiveRoomWithStatusCode:statusCode];
+        [self hanlerLeaveLiveRoomWithStatusCode:statusCode];
 }
 
 -(void)hanlerLeaveLiveRoomWithStatusCode:(WCRLeaveRoomReason)statusCode
@@ -361,6 +359,12 @@
     self.prevButton.hidden =[self hiddenPrevButton];
     self.nextButton .hidden =[self hiddenNextButton];
 }
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+   self. lastContentOffset = scrollView.contentOffset.x;//判断上下滑动时
+
+}
+
 
 #pragma mark 拖动的时候
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -368,13 +372,21 @@
     CGFloat pageWidth=scrollView.frame.size.width;
     NSInteger index = fabs(scrollView.contentOffset.x) /pageWidth;
     self.currentPage=index;
-    if (self.currentPage==0)
-    {
-        if (!self.isNotHistory)
+    //判断左右滑动时
+    if (scrollView.contentOffset.x < self.lastContentOffset ){
+
+    } else if (scrollView. contentOffset.x >self. lastContentOffset ){
+        //向左
+        if (self.currentPage==0)
         {
-             [self requestHistoryLesson];
+            if (!self.isNotHistory)
+            {
+                [self requestHistoryLesson];
+            }
         }
+        DDLog(@"右滑");
     }
+
         self.prevButton.hidden =[self hiddenPrevButton];
         self.nextButton .hidden =[self hiddenNextButton];
     
@@ -560,5 +572,9 @@
         
         return  YES;
 }
+
+
+
+
 
 @end
