@@ -39,17 +39,16 @@
     [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
     joinInfo.schedualStartTime = [dateFormatter dateFromString:self.liveroomModel.startTime];
     joinInfo.schedualEndTime = [dateFormatter dateFromString:self.liveroomModel.endTime];
-    
     //实际开始和结束时间
     joinInfo.actualStartTime=[dateFormatter dateFromString:self.liveroomModel.startTime];
     joinInfo.actualEndTime =  [dateFormatter dateFromString:self.liveroomModel.endTime];
     joinInfo.skinConfig = [WCRClassroomSkin defaultConfig];
-//    if (kFORPRODUCTION) {
-//        joinInfo.env =WCREnvironmentOnline;
-//    }else
-//    {
+    if (kFORPRODUCTION) {
+        joinInfo.env =WCREnvironmentOnline;
+    }else
+    {
         joinInfo.env = WCREnvironmentTest;
-//    }
+    }
 //    //状态: 0 已预约 1 即将开始 2 旷课 3 取消 4 正在上课 5 其它 6 已完成
     switch (self.selectInfoModel.status )
     {

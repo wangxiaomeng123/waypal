@@ -39,8 +39,13 @@
     self.person_nameLabel.transform = CGAffineTransformMakeRotation(-M_PI*1/6);
     self.person_UserNameTF.delegate=self;
     self.person_nameTF.delegate =self;
-    
+    self.person_avatarImgView.layer.cornerRadius=60;
+    self.person_avatarImgView.layer.masksToBounds=YES;
     self.person_avatarImgView.layer.borderColor =[UIColor whiteColor].CGColor;
+    self.person_avatarImgView.layer.borderWidth=2;
+    self.person_avatarImgView.layer.opacity=1.0;
+    
+    
     [self userInfo];
     self.settingV =[[[NSBundle mainBundle]loadNibNamed:@"SettingView" owner:self options:0] lastObject];
      self.settingV.frame=CGRectMake(0, 0, self.person_infoBgView.frame.size.width, self.person_infoBgView.frame.size.height);
@@ -70,10 +75,9 @@
     self.person_nameLabel.text =[NSString stringWithFormat:@"%@",userInfo[@"nick"]];
     self.person_UserNameTF.text =[NSString stringWithFormat:@"%@",userInfo[@"username"]];
       NSString * advatar_url=userInfo[@"avatar"];
-    self.person_avatarImgView.layer.cornerRadius=65;
-    self.person_avatarImgView.layer.masksToBounds=YES;
-    [self.person_avatarImgView sd_setImageWithURL:[NSURL URLWithString:advatar_url] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"]options:SDWebImageAllowInvalidSSLCertificates];
 
+    [self.person_avatarImgView sd_setImageWithURL:[NSURL URLWithString:advatar_url] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"]options:SDWebImageAllowInvalidSSLCertificates];
+    
 }
 - (IBAction)sourceAndSettingChangeAction:(UIButton *)sender
 {
@@ -162,6 +166,7 @@
             self.person_settingBtn.transform = CGAffineTransformMakeScale(0.5, 0.5);
         }];
     }
+  
 }
 //退出登录
 -(void)loginOut
@@ -191,6 +196,9 @@
 - (void)checkUpdateVersion
 {
     NSDictionary *versionDict=[[AppVersionModel shareInstance]VersionInfoDict] ;
+    NSDictionary *infoDic=[[NSBundle mainBundle] infoDictionary];
+    __block NSString *currentVersion=infoDic[@"CFBundleShortVersionString"];
+    
         if (!versionDict)
     {
         return;
@@ -209,7 +217,7 @@
         } leftButtonTapORDismissDoing:nil];
     }
     else{
-        [[LAlertViewCustom sharedInstance] alertViewTitle:@"版本信息" content:@"当前为最新版本" leftButtonTitle:nil rightButtonTitle:@"好" autoDismiss:NO rightButtonTapDoing:nil  leftButtonTapORDismissDoing:nil];
+        [[LAlertViewCustom sharedInstance] alertViewTitle:@"版本信息" content:[NSString stringWithFormat:@"当前为%@版本",currentVersion] leftButtonTitle:nil rightButtonTitle:@"好" autoDismiss:NO rightButtonTapDoing:nil  leftButtonTapORDismissDoing:nil];
     }
 }
 

@@ -39,20 +39,16 @@
 @property (weak, nonatomic) IBOutlet UIImageView *lesson_bgImageView;
 @property (nonatomic,assign)BOOL isNotHistory;//是否还有历史课堂
 @property (weak, nonatomic) IBOutlet UIButton *loadMoreHistoryButton;
-
 @property (nonatomic,strong) NSMutableArray * lessonListArrary;//课程列表
 @property (nonatomic,strong) NSArray * currentLesson;//当前可以上课的
 @property(nonatomic,strong)  NSArray * historyLessson;//历史的数据
-
-@property(nonatomic,assign)BOOL isReshHistory;
-@property (nonatomic,assign)int guideNum;
+@property(nonatomic,assign)BOOL isReshHistory;//是否刷新历史记录
+@property (nonatomic,assign)int guideNum;//引导页的的总个数
 @property(nonatomic,assign) CGFloat lastContentOffset;//用判断左滑还是右
 
 @end
 
 @implementation LessonViewController
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentPage =0;//默认是1
@@ -62,7 +58,7 @@
     [self ConfigUserInfo];
     [self loadGuideView];
     lViewBorderRadius(self.student_advatarImageView, 28, 2,[UIColor whiteColor]);
-    [[animationTool shareInstance] animationWithSubView:self.lesson_bgImageView];
+//    [[animationTool shareInstance] animationWithSubView:self.lesson_bgImageView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -76,7 +72,6 @@
         self.lesson_nothingImgView.hidden=YES;
         self.loadMoreHistoryButton.hidden=YES;
     }
-    
     [self requestAction];
 
 }
@@ -97,13 +92,11 @@
         [self.guide_playbackButton addTarget:self action:@selector(nextActionWithButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.guide_playbackButton];
     }
-    
-    
 }
 -(void)nextActionWithButton:(UIButton *)button
 {
     self.guideNum++;
-    if ( self.guideNum==5)
+    if ( self.guideNum==4)
     {
         [self.guide_playbackButton removeFromSuperview];
         [lUSER_DEFAULT setObject:@"firstEnterApp" forKey:key_FirsrtEnter];
@@ -123,7 +116,7 @@
     TempClassViewController *vc=   [s instantiateViewControllerWithIdentifier:@"tempClass"];
     vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [vc.view setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f]];
-    
+
     vc.enterTempClassBlockDoing = ^(TempClassModel *tempModel) {
         [self enterTempClassWithTempClass:tempModel];
     };
@@ -138,7 +131,6 @@
     }
     LiveRoom *tempRoom =[[LiveRoom alloc] init];
     tempRoom.selectInfoModel=self.selectInfoModel;
-    
     tempRoom.liveroomModel=self.liveroomModel;
     tempRoom.tempModel =tempModel;
     WCRClassJoinInfo *joinInfo= [tempRoom configTempLiveRoomInfo];
@@ -271,7 +263,11 @@
 {
     self.prevButton.hidden =YES;
     WeakSelf(self);
+    if (self.selectInfoModel==nil) {
+        self.selectInfoModel=self.lessonListArrary[0];
+    }
     [self.lessonVM quitLivewroomSuccessCallBackWithSchedule_id:self.selectInfoModel.schedule_id];
+    
     if (statusCode==WCRLeaveRoomReasonAfterClass)
     {
     //         如果课程已经结束 则需要刷新历史记录
@@ -469,7 +465,8 @@
     [self.lessonListArrary insertObjects: self.currentLesson atIndexes:[NSIndexSet indexSetWithIndexesInRange:range]];
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.lessonListArrary.count==0) {
-                   self.loadMoreHistoryButton.hidden=NO;
+//             self.loadMoreHistoryButton.hidden=NO;
+            [self lessonListRequestWithType:3];
         }
         else
         {
@@ -498,8 +495,6 @@
     [self configScrollView];
     self.prevButton.hidden=[self hiddenPrevButton];
     self.nextButton .hidden =[self hiddenNextButton];
-    
- 
 }
 #pragma mark  加载更多
 -(void)handlerNotCurrentLessonAndLoadMoreHistoryLesson:(NSArray *)historyArr
@@ -519,7 +514,6 @@
         self.loadMoreHistoryButton.hidden =YES;
         self.prevButton.hidden =[self hiddenPrevButton];
         self.nextButton .hidden =[self hiddenNextButton];
-
     }
 }
 
@@ -569,7 +563,6 @@
                 return YES;
             }
     }
-        
         return  YES;
 }
 
