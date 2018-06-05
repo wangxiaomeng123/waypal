@@ -30,7 +30,7 @@
     NSInteger requestCode =[respData[@"code"] integerValue];
     if (requestCode  ==REQUESTSUCCESS) {
         NSDictionary *login_userInfo=respData[@"output"];
-        
+        [lUSER_DEFAULT setObject:login_userInfo[@"user"][@"name"] forKey:@"remberUserName"];
         [RapidStorageClass saveDictionaryDataArchiver:respData key:@"userInfo"];
         NSString *token =respData[@"output"][ACCESSTOKEN];
         [lUSER_DEFAULT setObject:token forKey:ACCESSTOKEN];

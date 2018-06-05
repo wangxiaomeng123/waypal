@@ -35,20 +35,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    WeakSelf(self);
     self.person_nameLabel.transform = CGAffineTransformMakeRotation(-M_PI*1/6);
     self.person_UserNameTF.delegate=self;
     self.person_nameTF.delegate =self;
-    self.person_avatarImgView.layer.cornerRadius=60;
-    self.person_avatarImgView.layer.masksToBounds=YES;
-    self.person_avatarImgView.layer.borderColor =[UIColor whiteColor].CGColor;
-    self.person_avatarImgView.layer.borderWidth=2;
-    self.person_avatarImgView.layer.opacity=1.0;
-    
-    
+    lViewBorderRadius(self.person_avatarImgView, 60, 2,[UIColor whiteColor]);
     [self userInfo];
+    [self showSettingView];
+    [self defaultShowResource];
+    [self addTapGestureInAvatarImgView];
+}
+
+#pragma mark 初始化settingview
+-(void)showSettingView{
+    WeakSelf(self);
     self.settingV =[[[NSBundle mainBundle]loadNibNamed:@"SettingView" owner:self options:0] lastObject];
-     self.settingV.frame=CGRectMake(0, 0, self.person_infoBgView.frame.size.width, self.person_infoBgView.frame.size.height);
+    self.settingV.frame=CGRectMake(0, 0, self.person_infoBgView.frame.size.width, self.person_infoBgView.frame.size.height);
     [self.person_infoBgView addSubview: self.settingV];
     self.settingV.upVersionBlock = ^(NSString *currentVersion) {
         [weakself updateAppVersion];
@@ -56,11 +57,8 @@
     self.settingV.loginOutBlock = ^{
         [weakself loginOut];
     };
-    [self defaultShowResource];
-    
-    
-    
 }
+
 #pragma mark 默认选择的我的资料
 -(void)defaultShowResource
 {
@@ -99,7 +97,6 @@
         self.settingV.hidden=NO;
     }
     [self changeViewButtonWithButton];
-    
  
 }
 
@@ -178,21 +175,13 @@
         LLTClearCustomViewController *nav=[[LLTClearCustomViewController alloc]initWithRootViewController:loginVC];
        [[UIApplication sharedApplication]keyWindow].rootViewController =nav;
     } leftBtnBlock:nil presentViewController:self];
- 
+    
 }
 -(void)updateAppVersion{
     [self checkUpdateVersion];
    
 }
 
-
-
-/**
- output =     {
- "download_url" = "";
- "is_upgrade" = 1;
- };
- */
 - (void)checkUpdateVersion
 {
     NSDictionary *versionDict=[[AppVersionModel shareInstance]VersionInfoDict] ;
@@ -207,7 +196,6 @@
     {
         NSString *contentString = versionDict[@"message"];
         [[LAlertViewCustom sharedInstance] alertViewTitle:@"有新版本喽" content:contentString leftButtonTitle:@"取消" rightButtonTitle:@"前往更新" autoDismiss:NO rightButtonTapDoing:^{
-   
             if (@available(iOS 10.0, *)) {
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:versionDict[@"download_url"]] options:@{} completionHandler:nil];
             } else {
@@ -221,8 +209,44 @@
     }
 }
 
+-(void)addTapGestureInAvatarImgView
+{
+    UITapGestureRecognizer * tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeAvatarImgView:)];
+    tap.numberOfTapsRequired=1;
+    self.person_avatarImgView.userInteractionEnabled=YES;
+    [self.person_avatarImgView addGestureRecognizer:tap];
+}
+-(void)changeAvatarImgView:(UITapGestureRecognizer*)tap
+{
+    
+        
+        //调起actionsheet 选择上传方式
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"选择照片" message:nil preferredStyle: UIAlertControllerStyleActionSheet];
+    
+        UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
+        }];
+        UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+  
+            
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        }];
+    
+    UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+    if (popover) {
+        
+        popover.sourceView = self.person_avatarImgView;
+        popover.sourceRect = self.person_avatarImgView.bounds;
+        popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    }
 
+        [alertController addAction:deleteAction];
+        [alertController addAction:saveAction];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    
+}
 
 - (IBAction)changeNicknameAction:(id)sender {
     if (self.person_nameTF.text.length>8) {

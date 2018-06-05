@@ -59,7 +59,7 @@
                                                     <constraint firstAttribute="height" constant="16" id="sqL-O0-0kY"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W0K-jY-MXY">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入用户名" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="W0K-jY-MXY">
                                                 <rect key="frame" x="28" y="4" width="184" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="Zd1-09-Gwt"/>
@@ -100,7 +100,7 @@
                                                     <constraint firstAttribute="width" constant="16" id="cnm-qz-9JP"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dMX-ZJ-a8K">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dMX-ZJ-a8K">
                                                 <rect key="frame" x="28" y="4" width="182" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="QcP-Zv-5Ol"/>
@@ -313,20 +313,7 @@
                                     <action selector="nextPage:" destination="GEW-LB-PHM" eventType="touchUpInside" id="utM-9q-f9X"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cA9-Zw-IPW">
-                                <rect key="frame" x="375" y="510" width="274" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="HNl-T0-BwP"/>
-                                    <constraint firstAttribute="width" constant="274" id="deV-Ff-Vqi"/>
-                                </constraints>
-                                <state key="normal" title="回看历史记录" backgroundImage="person_loginOutBG.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="loadMoreHistoryLesson:" destination="GEW-LB-PHM" eventType="touchUpInside" id="ieH-t9-Zdi"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2x3-2g-qgs">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2x3-2g-qgs">
                                 <rect key="frame" x="921" y="52" width="75" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="OvU-iB-bhK"/>
@@ -348,8 +335,6 @@
                             <constraint firstItem="3iy-0k-mY5" firstAttribute="leading" secondItem="EjO-h0-5sU" secondAttribute="leading" id="IXF-ob-En2"/>
                             <constraint firstItem="EjO-h0-5sU" firstAttribute="bottom" secondItem="H4E-oj-nxH" secondAttribute="bottom" constant="87" id="PFS-2a-6xB"/>
                             <constraint firstItem="EjO-h0-5sU" firstAttribute="trailing" secondItem="2x3-2g-qgs" secondAttribute="trailing" constant="28" id="PuU-M2-MNE"/>
-                            <constraint firstItem="cA9-Zw-IPW" firstAttribute="centerX" secondItem="tw6-ne-2HI" secondAttribute="centerX" id="glw-cE-k7I"/>
-                            <constraint firstItem="EjO-h0-5sU" firstAttribute="bottom" secondItem="cA9-Zw-IPW" secondAttribute="bottom" constant="220" id="hAp-DQ-F4e"/>
                             <constraint firstItem="yef-HF-gDG" firstAttribute="leading" secondItem="EjO-h0-5sU" secondAttribute="leading" constant="29" id="iDk-d3-qLR"/>
                             <constraint firstItem="5ji-lC-oNg" firstAttribute="centerY" secondItem="tw6-ne-2HI" secondAttribute="centerY" id="jIB-C8-tCj"/>
                             <constraint firstItem="H4E-oj-nxH" firstAttribute="top" secondItem="yef-HF-gDG" secondAttribute="bottom" constant="45" id="lbe-P9-7q3"/>
@@ -367,7 +352,6 @@
                         <outlet property="lesson_bgImageView" destination="3iy-0k-mY5" id="9LL-H7-zDJ"/>
                         <outlet property="lesson_nothingImgView" destination="B1K-De-Hrt" id="NnV-mK-47u"/>
                         <outlet property="lesson_scrollView" destination="H4E-oj-nxH" id="Hrc-LE-Jd3"/>
-                        <outlet property="loadMoreHistoryButton" destination="cA9-Zw-IPW" id="MWw-0t-Ydy"/>
                         <outlet property="nextButton" destination="4IQ-7E-xJB" id="BiI-pH-gqC"/>
                         <outlet property="prevButton" destination="5ji-lC-oNg" id="cLW-hn-abY"/>
                         <outlet property="studentNameLabel" destination="67s-xQ-0Ww" id="LUP-VX-7Ef"/>
@@ -1982,12 +1966,11 @@ AAAAAAAAWQAAAAAAAAAAAAAAAAABBRM
         <image name="lesson_tempclass.png" width="120" height="93"/>
         <image name="login_btn.png" width="231" height="36"/>
         <image name="logo.png" width="199" height="55"/>
-        <image name="password.png" width="6" height="6"/>
+        <image name="password.png" width="18" height="19"/>
         <image name="person_back.png" width="15" height="22"/>
         <image name="person_background.png" width="540" height="325"/>
         <image name="person_btn_back.png" width="104" height="42"/>
         <image name="person_flag.png" width="106" height="125"/>
-        <image name="person_loginOutBG.png" width="310" height="37"/>
         <image name="person_mine_background.png" width="414" height="277"/>
         <image name="person_resourceNormal.png" width="215" height="170"/>
         <image name="person_resourceSelected.png" width="215" height="170"/>

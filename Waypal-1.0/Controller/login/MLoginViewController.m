@@ -45,8 +45,8 @@
     self.login_user.delegate=self;
     self.login_password.delegate =self;
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"background@2x"]];
-//    self.login_user.text=@"ios_student";
-//    self.login_password.text =@"123456";
+
+    self.login_user.text=[lUSER_DEFAULT objectForKey:@"remberUserName"]?[lUSER_DEFAULT objectForKey:@"remberUserName"]:@"";
 }
 
 - (IBAction)loginAction:(id)sender {
@@ -68,6 +68,7 @@
     [loginVM setBlockWithReturnBlock:^(id returnValue) {
         DDLog(@"returnValue:%@",returnValue);
         [self enterLessonListViewController];
+        
     } WithErrorBlock:^(id errorCode) {
         self.errorTipLabel.text=[NSString stringWithFormat:@"%@",errorCode];
     } WithFailureBlock:^{

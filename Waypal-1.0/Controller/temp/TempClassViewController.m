@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIView *iuptCodeBgView;
 @property(nonatomic,strong)NSString * tempCodeStr;
 @property (nonatomic,strong)LessonViewModel *lessViewModel;
+@property (nonatomic,strong) TempClassModel * tempModel;//临时教室的配置model
 
 @end
 
@@ -25,7 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.lessViewModel=[[LessonViewModel alloc] init];
-    
+    [self configPasswordUI];
+}
+
+-(void)configPasswordUI{
     //每位 验证码／密码 位置信息
     CGFloat codeBgWH = 52;
     CGFloat codeBgPadding = (self.iuptCodeBgView.frame.size.width-codeBgWH*4)/3;
@@ -44,29 +48,33 @@
     inputView.secureTextEntry = NO;
     [self.iuptCodeBgView addSubview:inputView];
 }
-- (IBAction)sureAction:(id)sender {
-    WeakSelf(self);
-    [self dismissViewControllerAnimated:YES completion:^{
 
-    }];
+
+
+#pragma mark 请求进入临时直播间的数据
+-(void)requestEnterTempClassData{
+        WeakSelf(self);
     TempClassModel * model=[[TempClassModel alloc] init];
-        [self.lessViewModel enterTempClassRoomWithRoomPassword:self.tempCodeStr];
+    [self.lessViewModel enterTempClassRoomWithRoomPassword:self.tempCodeStr];
     [self.lessViewModel setBlockWithReturnBlock:^(id returnValue) {
-        if (weakself.enterTempClassBlockDoing) {
             NSDictionary * infoDict =(NSDictionary*)returnValue;
             [model setValuesForKeysWithDictionary:infoDict];
-            
-            weakself.enterTempClassBlockDoing(model);
+            weakself.tempModel =model;
+        if (weakself.enterTempClassBlockDoing)
+        {
+            weakself.enterTempClassBlockDoing(weakself.tempModel);
         }
-        
+        [weakself dismissViewControllerAnimated:YES completion:nil];
         
     } WithErrorBlock:^(id errorCode) {
         [LoadingView tipViewWithTipString:errorCode];
-
+        
     } WithFailureBlock:^{
         [LoadingView tipViewWithTipString:@"网络请求失败"];
     }];
-    
+}
+- (IBAction)sureAction:(id)sender {
+    [self requestEnterTempClassData];
 }
 - (IBAction)colseAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -81,14 +89,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

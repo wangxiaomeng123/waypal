@@ -20,4 +20,8 @@
 @property (nonatomic,strong)NSString *status;
 @property (nonatomic,strong)NSString *title;
 
+@property (nonatomic,strong)NSString *teacher_avatar;
+@property (nonatomic,strong)NSString *teacher_id;
+@property (nonatomic,strong)NSString *teacher_name;
+
 @end

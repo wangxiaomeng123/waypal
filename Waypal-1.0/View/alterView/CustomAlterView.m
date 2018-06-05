@@ -29,8 +29,9 @@
     [prensentVC presentViewController:alert animated:YES completion:nil];
 }
 
-
-
+//-(void)showActionView{
+//    UIActionSheetStyle   * actionsheet=[UIActionSheet ]
+//}
 
 
 /*

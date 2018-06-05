@@ -38,7 +38,7 @@
 @property (nonatomic,strong)UIButton * guide_inClassButton;//上课
 @property (weak, nonatomic) IBOutlet UIImageView *lesson_bgImageView;
 @property (nonatomic,assign)BOOL isNotHistory;//是否还有历史课堂
-@property (weak, nonatomic) IBOutlet UIButton *loadMoreHistoryButton;
+
 @property (nonatomic,strong) NSMutableArray * lessonListArrary;//课程列表
 @property (nonatomic,strong) NSArray * currentLesson;//当前可以上课的
 @property(nonatomic,strong)  NSArray * historyLessson;//历史的数据
@@ -58,7 +58,6 @@
     [self ConfigUserInfo];
     [self loadGuideView];
     lViewBorderRadius(self.student_advatarImageView, 28, 2,[UIColor whiteColor]);
-//    [[animationTool shareInstance] animationWithSubView:self.lesson_bgImageView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -66,11 +65,11 @@
     if (self.lessonListArrary.count==0)
     {
         self.lesson_nothingImgView.hidden=NO;
-        self.loadMoreHistoryButton.hidden=NO;
+        
     }
     else{
         self.lesson_nothingImgView.hidden=YES;
-        self.loadMoreHistoryButton.hidden=YES;
+        
     }
     [self requestAction];
 
@@ -116,24 +115,24 @@
     TempClassViewController *vc=   [s instantiateViewControllerWithIdentifier:@"tempClass"];
     vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [vc.view setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f]];
-
     vc.enterTempClassBlockDoing = ^(TempClassModel *tempModel) {
         [self enterTempClassWithTempClass:tempModel];
     };
     [self presentViewController:vc animated:YES completion:nil];
+
 }
 
 
 -(void)enterTempClassWithTempClass:(TempClassModel *)tempModel{
     if (self.isJoining) {
         return;
-        
     }
     LiveRoom *tempRoom =[[LiveRoom alloc] init];
     tempRoom.selectInfoModel=self.selectInfoModel;
     tempRoom.liveroomModel=self.liveroomModel;
     tempRoom.tempModel =tempModel;
     WCRClassJoinInfo *joinInfo= [tempRoom configTempLiveRoomInfo];
+    DDLog(@"临时教室：%@",joinInfo);
     self.classRoom = [[WCRClassRoom alloc] init];
     self.classRoom.delegate = self;
     [self.classRoom joinRoom: joinInfo];
@@ -203,7 +202,6 @@
         [self.lesson_scrollView addSubview:itemView];
     }
      [self.lesson_scrollView setContentOffset:CGPointMake(self.lesson_scrollView.frame.size.width*self.currentPage,0) animated:YES];
-
     
 }
 #pragma mark 选择的select 调用的接口
@@ -261,6 +259,7 @@
 
 -(void)hanlerLeaveLiveRoomWithStatusCode:(WCRLeaveRoomReason)statusCode
 {
+    
     self.prevButton.hidden =YES;
     WeakSelf(self);
     if (self.selectInfoModel==nil) {
@@ -271,7 +270,8 @@
     if (statusCode==WCRLeaveRoomReasonAfterClass)
     {
     //         如果课程已经结束 则需要刷新历史记录
-        self.isReshHistory=YES;
+         self.isReshHistory=YES;
+        self.prevButton.hidden =NO;
         [[LAlertViewCustom sharedInstance] alertViewTitle:@"提示" content:@"课程已经结束，请离开教室？" leftButtonTitle:@"取消" rightButtonTitle:@"确定" autoDismiss:NO rightButtonTapDoing:^{
             [weakself dismissViewControllerAnimated:YES completion:^{
                 weakself.classRoom = nil;
@@ -318,7 +318,7 @@
 
 #pragma mark 获取历史数据
 -(void)requestHistoryLesson{
-    self.prevButton.hidden=YES;
+//    self.prevButton.hidden=YES;
     [self lessonListRequestWithType:2];
 }
 
@@ -463,19 +463,20 @@
     NSUInteger  location=  self.lessonListArrary.count;
     NSRange range=NSMakeRange(location, self.currentLesson.count);
     [self.lessonListArrary insertObjects: self.currentLesson atIndexes:[NSIndexSet indexSetWithIndexesInRange:range]];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.lessonListArrary.count==0) {
-//             self.loadMoreHistoryButton.hidden=NO;
-            [self lessonListRequestWithType:3];
-        }
-        else
+        
+        if (self.lessonListArrary.count==0)
         {
-               self.loadMoreHistoryButton.hidden=YES;
+            [self lessonListRequestWithType:3];
+            
+        }else{
+            self.prevButton.hidden =NO;
         }
-        [self configScrollView];
-        self.prevButton.hidden=[self hiddenPrevButton];
-        self.nextButton.hidden =[self hiddenNextButton];
-    });
+  
+    
+    
+    [self configScrollView];
+    self.prevButton.hidden=[self hiddenPrevButton];
+    self.nextButton.hidden =[self hiddenNextButton];
     
 }
 #pragma mark 获取历史数据
@@ -511,7 +512,6 @@
             [self configScrollView];
             self.prevButton.hidden =NO;
         }
-        self.loadMoreHistoryButton.hidden =YES;
         self.prevButton.hidden =[self hiddenPrevButton];
         self.nextButton .hidden =[self hiddenNextButton];
     }
@@ -565,9 +565,6 @@
     }
         return  YES;
 }
-
-
-
 
 
 @end

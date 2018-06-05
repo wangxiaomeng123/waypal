@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8BD65CE4331813880D2351FD /* libPods-Waypal-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00AA4E009D2F399BA13CE55D /* libPods-Waypal-1.0.a */; };
+		E70621C720C66A32002AE7A6 /* password@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70621C520C66A2F002AE7A6 /* password@3x.png */; };
+		E70621C820C66A32002AE7A6 /* password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70621C620C66A31002AE7A6 /* password@2x.png */; };
+		E70621CD20C69AEB002AE7A6 /* CLUpLoadHeadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E70621CC20C69AEB002AE7A6 /* CLUpLoadHeadManager.m */; };
 		E706953720BFA4B300D27167 /* LessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E706953620BFA4B300D27167 /* LessonViewController.m */; };
 		E706953A20BFE0A000D27167 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E706953820BFE09E00D27167 /* logo@2x.png */; };
 		E706953B20BFE0A000D27167 /* logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E706953920BFE0A000D27167 /* logo@3x.png */; };
@@ -73,12 +76,10 @@
 		E7895B9A20AFC35600F19491 /* user@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7895B8E20AFC35500F19491 /* user@3x.png */; };
 		E7895B9B20AFC35600F19491 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7895B8F20AFC35500F19491 /* background@2x.png */; };
 		E7895B9C20AFC35600F19491 /* Login box@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7895B9020AFC35500F19491 /* Login box@3x.png */; };
-		E7895B9D20AFC35600F19491 /* password@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7895B9120AFC35600F19491 /* password@3x.png */; };
 		E7895B9E20AFC35600F19491 /* Login box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7895B9220AFC35600F19491 /* Login box@2x.png */; };
 		E7895B9F20AFC35600F19491 /* background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7895B9320AFC35600F19491 /* background@3x.png */; };
 		E7895BA020AFC35600F19491 /* login_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7895B9420AFC35600F19491 /* login_btn@3x.png */; };
 		E7895BA220AFC35600F19491 /* login_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7895B9620AFC35600F19491 /* login_btn@2x.png */; };
-		E7895BA320AFC35600F19491 /* password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7895B9720AFC35600F19491 /* password@2x.png */; };
 		E7895BA420AFC35600F19491 /* user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7895B9820AFC35600F19491 /* user@2x.png */; };
 		E7895BCF20AFC61100F19491 /* LessonViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7895BCD20AFC61100F19491 /* LessonViewModel.m */; };
 		E7895BD220AFC62200F19491 /* PersonViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7895BD120AFC62200F19491 /* PersonViewModel.m */; };
@@ -180,6 +181,10 @@
 		00AA4E009D2F399BA13CE55D /* libPods-Waypal-1.0.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Waypal-1.0.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32B90234703E867CFD7046E3 /* Pods-Waypal-1.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waypal-1.0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Waypal-1.0/Pods-Waypal-1.0.debug.xcconfig"; sourceTree = "<group>"; };
 		75BE067A1B01A7D268D4B102 /* Pods-Waypal-1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Waypal-1.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-Waypal-1.0/Pods-Waypal-1.0.release.xcconfig"; sourceTree = "<group>"; };
+		E70621C520C66A2F002AE7A6 /* password@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password@3x.png"; sourceTree = "<group>"; };
+		E70621C620C66A31002AE7A6 /* password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password@2x.png"; sourceTree = "<group>"; };
+		E70621CB20C69AEB002AE7A6 /* CLUpLoadHeadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLUpLoadHeadManager.h; sourceTree = "<group>"; };
+		E70621CC20C69AEB002AE7A6 /* CLUpLoadHeadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLUpLoadHeadManager.m; sourceTree = "<group>"; };
 		E706953520BFA4B300D27167 /* LessonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonViewController.h; sourceTree = "<group>"; };
 		E706953620BFA4B300D27167 /* LessonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonViewController.m; sourceTree = "<group>"; };
 		E706953820BFE09E00D27167 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
@@ -259,12 +264,10 @@
 		E7895B8E20AFC35500F19491 /* user@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user@3x.png"; sourceTree = "<group>"; };
 		E7895B8F20AFC35500F19491 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		E7895B9020AFC35500F19491 /* Login box@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login box@3x.png"; sourceTree = "<group>"; };
-		E7895B9120AFC35600F19491 /* password@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password@3x.png"; sourceTree = "<group>"; };
 		E7895B9220AFC35600F19491 /* Login box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login box@2x.png"; sourceTree = "<group>"; };
 		E7895B9320AFC35600F19491 /* background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@3x.png"; sourceTree = "<group>"; };
 		E7895B9420AFC35600F19491 /* login_btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn@3x.png"; sourceTree = "<group>"; };
 		E7895B9620AFC35600F19491 /* login_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn@2x.png"; sourceTree = "<group>"; };
-		E7895B9720AFC35600F19491 /* password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password@2x.png"; sourceTree = "<group>"; };
 		E7895B9820AFC35600F19491 /* user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user@2x.png"; sourceTree = "<group>"; };
 		E7895BC820AFC5B200F19491 /* UserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		E7895BC920AFC5B200F19491 /* UserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
@@ -385,6 +388,26 @@
 				00AA4E009D2F399BA13CE55D /* libPods-Waypal-1.0.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E70621C920C69AAE002AE7A6 /* liveRoom */ = {
+			isa = PBXGroup;
+			children = (
+				E7895CF020B3F8A300F19491 /* LiveRoom.h */,
+				E7895CF120B3F8A300F19491 /* LiveRoom.m */,
+				E7895BEF20AFC6D900F19491 /* WCRClassroomSkin.h */,
+				E7895BF020AFC6DA00F19491 /* WCRClassroomSkin.m */,
+			);
+			path = liveRoom;
+			sourceTree = "<group>";
+		};
+		E70621CA20C69ABE002AE7A6 /* upload */ = {
+			isa = PBXGroup;
+			children = (
+				E70621CB20C69AEB002AE7A6 /* CLUpLoadHeadManager.h */,
+				E70621CC20C69AEB002AE7A6 /* CLUpLoadHeadManager.m */,
+			);
+			path = upload;
 			sourceTree = "<group>";
 		};
 		E7141F9820C15751001E6AA4 /* Animation */ = {
@@ -625,12 +648,12 @@
 				E706953920BFE0A000D27167 /* logo@3x.png */,
 				E7895B8F20AFC35500F19491 /* background@2x.png */,
 				E7895B9320AFC35600F19491 /* background@3x.png */,
+				E70621C620C66A31002AE7A6 /* password@2x.png */,
+				E70621C520C66A2F002AE7A6 /* password@3x.png */,
 				E7895B9220AFC35600F19491 /* Login box@2x.png */,
 				E7895B9020AFC35500F19491 /* Login box@3x.png */,
 				E7895B9620AFC35600F19491 /* login_btn@2x.png */,
 				E7895B9420AFC35600F19491 /* login_btn@3x.png */,
-				E7895B9720AFC35600F19491 /* password@2x.png */,
-				E7895B9120AFC35600F19491 /* password@3x.png */,
 				E7895B9820AFC35600F19491 /* user@2x.png */,
 				E7895B8E20AFC35500F19491 /* user@3x.png */,
 			);
@@ -935,10 +958,8 @@
 		E7895CEF20B3F87300F19491 /* logic */ = {
 			isa = PBXGroup;
 			children = (
-				E7895CF020B3F8A300F19491 /* LiveRoom.h */,
-				E7895CF120B3F8A300F19491 /* LiveRoom.m */,
-				E7895BEF20AFC6D900F19491 /* WCRClassroomSkin.h */,
-				E7895BF020AFC6DA00F19491 /* WCRClassroomSkin.m */,
+				E70621CA20C69ABE002AE7A6 /* upload */,
+				E70621C920C69AAE002AE7A6 /* liveRoom */,
 			);
 			path = logic;
 			sourceTree = "<group>";
@@ -1078,7 +1099,6 @@
 				E7895C1820AFCC1A00F19491 /* lesson_adavtar@3x.png in Resources */,
 				E7895C9720B0025B00F19491 /* person_btn_back@2x.png in Resources */,
 				E7895C9520B0025B00F19491 /* person_back@3x.png in Resources */,
-				E7895BA320AFC35600F19491 /* password@2x.png in Resources */,
 				E706953A20BFE0A000D27167 /* logo@2x.png in Resources */,
 				E765476C20B7FD2C00AA850B /* lesson_nothing_background@3x.png in Resources */,
 				E75C847F20C0F02D00E81025 /* guide_guide1@2x.png in Resources */,
@@ -1087,6 +1107,7 @@
 				E7895CC320B266A900F19491 /* person_settingNormal@3x.png in Resources */,
 				E765476620B7FA1C00AA850B /* lesson_nothing@3x.png in Resources */,
 				E765473920B6B02500AA850B /* lesson_attclass@3x.png in Resources */,
+				E70621C720C66A32002AE7A6 /* password@3x.png in Resources */,
 				E7895B8920AFC34C00F19491 /* lesson_rectangle@3x.png in Resources */,
 				E7895CC920B266A900F19491 /* person_resourceNormal@2x.png in Resources */,
 				E7895BA020AFC35600F19491 /* login_btn@3x.png in Resources */,
@@ -1120,7 +1141,6 @@
 				E7895B8B20AFC34C00F19491 /* lesson_btn_right@3x.png in Resources */,
 				E7895CE020B3134A00F19491 /* gloal_loading@2x.png in Resources */,
 				E7895CCD20B26BBA00F19491 /* person_updateBG@3x.png in Resources */,
-				E7895B9D20AFC35600F19491 /* password@3x.png in Resources */,
 				E765473820B6B02500AA850B /* lesson_attclass@2x.png in Resources */,
 				E7895B8D20AFC34C00F19491 /* lesson_rectangle@2x.png in Resources */,
 				E765473A20B6B02500AA850B /* lesson_playback@2x.png in Resources */,
@@ -1129,6 +1149,7 @@
 				E7895B8C20AFC34C00F19491 /* lesson_tempclass@2x.png in Resources */,
 				E7895C9220B0025B00F19491 /* person_mine_background@2x.png in Resources */,
 				E7895C8520B0025B00F19491 /* person_flag@3x.png in Resources */,
+				E70621C820C66A32002AE7A6 /* password@2x.png in Resources */,
 				E75C847E20C0F02D00E81025 /* guide_guide1@3x.png in Resources */,
 				E7895B8320AFC34C00F19491 /* lesson_btn_left@2x.png in Resources */,
 				E720B45120BBADFD0003F268 /* lesson_playbackBgView@3x.png in Resources */,
@@ -1247,6 +1268,7 @@
 				E720B45620BD31880003F268 /* TempClassModel.m in Sources */,
 				E765474720B70B6C00AA850B /* MLoginViewController.m in Sources */,
 				E720B44E20B952620003F268 /* UIViewController+Reability.m in Sources */,
+				E70621CD20C69AEB002AE7A6 /* CLUpLoadHeadManager.m in Sources */,
 				E7895CB720B1CC0300F19491 /* UIView+Extension.m in Sources */,
 				E7895B1620AFBF3C00F19491 /* main.m in Sources */,
 				E765475C20B7C22E00AA850B /* AppVersionViewModel.m in Sources */,
@@ -1410,8 +1432,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: lijuan he (Q68LZHD3Y6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: lijuan he (Q68LZHD3Y6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 利娟 何 (NZC29DWCYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 利娟 何 (NZC29DWCYT)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Q68LZHD3Y6;
 				ENABLE_BITCODE = NO;
@@ -1424,10 +1446,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACH_O_TYPE = mh_execute;
-				PRODUCT_BUNDLE_IDENTIFIER = com.waypal.waypalProuduct;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waypal.;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "98e57d04-9f55-44b5-a2d2-e9256c6af36c";
-				PROVISIONING_PROFILE_SPECIFIER = dis;
+				PROVISIONING_PROFILE = "fe59f886-8fcd-4077-98d3-bac46f21790e";
+				PROVISIONING_PROFILE_SPECIFIER = dev;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1439,8 +1461,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: lijuan he (Q68LZHD3Y6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: lijuan he (Q68LZHD3Y6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 利娟 何 (NZC29DWCYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 利娟 何 (NZC29DWCYT)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Q68LZHD3Y6;
 				ENABLE_BITCODE = NO;
@@ -1454,10 +1476,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACH_O_TYPE = mh_execute;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.waypal.waypalProuduct;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waypal.;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "98e57d04-9f55-44b5-a2d2-e9256c6af36c";
-				PROVISIONING_PROFILE_SPECIFIER = dis;
+				PROVISIONING_PROFILE = "fe59f886-8fcd-4077-98d3-bac46f21790e";
+				PROVISIONING_PROFILE_SPECIFIER = dev;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

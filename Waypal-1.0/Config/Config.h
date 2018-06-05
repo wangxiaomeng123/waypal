@@ -78,9 +78,9 @@ static const double kAlertViewAutoDismissSecond = 3.0;
 
 //请求网络接口
 #warning 测试的环境
-//#define REQUESTPUBLICURL @"https://t.api.waypal.com/api/"
+#define REQUESTPUBLICURL @"https://t.api.waypal.com/api/"
 #warning 正式的环境
-#define REQUESTPUBLICURL @"https://api.waypal.com/api/"
+//#define REQUESTPUBLICURL @"https://api.waypal.com/api/"
 
 //客户端初始化信息
 #define CLIENTAPPSETTINGOPERATION @"client/init"
