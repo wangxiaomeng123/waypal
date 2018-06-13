@@ -9,7 +9,7 @@
 //
 
 #import "AppVersionViewModel.h"
-
+#import "uploadSingureModel.h"
 #import "AppVersionModel.h"
 @implementation AppVersionViewModel
 
@@ -95,4 +95,26 @@
     }
     return  netWorkString;
 }
+
+-(void)initUploadSingureRequest{
+    [NetworkingTool getWithUrl:UPLOADSIGN params:nil isReadCache:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code= [responseObject[@"code"] intValue];
+        if (code ==REQUESTSUCCESS) {
+            NSDictionary * dict=  responseObject[@"output"] ;
+            [RapidStorageClass saveDictionaryDataArchiver:dict key:@"upLoadConfig"];
+     
+        }
+        else
+        {
+        }
+    } failed:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
+        
+    }];
+    
+    
+    
+}
+
+
+
 @end

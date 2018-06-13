@@ -7,9 +7,16 @@
 //
 
 #import "NetworkingTool.h"
-#import "Config.h"
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import "LoadingView.h"
+
+@interface NetworkingTool()
+@property (strong, nonatomic) OSSClient *client;
+@end
+
+
+
+
 @implementation NetworkingTool
 
 #pragma 监测网络的可链接性
@@ -73,28 +80,28 @@
     
     LoadingView *loadView= [[LoadingView alloc] init];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadView];
-    DDLog(@"TIMEZONEOFFSET:%ld",TIMEZONEOFFSET);
 
-    NSString * head_token =[lUSER_DEFAULT objectForKey:ACCESSTOKEN];
+    NSString * head_token =[RapidStorageClass readToken];
     NSString * token=[NSString stringWithFormat:@"Bearer %@",head_token];
     if (head_token.length>0) {
         [[NetworkingTool sharedManager].requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
     }
       NSString * requestURL =[NSString stringWithFormat:@"%@%@?offset=%ld",REQUESTPUBLICURL,url,TIMEZONEOFFSET];
-    DDLog(@"requestURL:%@",requestURL);
     [[NetworkingTool sharedManager] GET:requestURL parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DDLog(@"responseObject:%@",responseObject );
+        DDLog(@"接口名称:[%@]-[%@",url,responseObject);
+
         [loadView hiddenLoadingView];
         if (success) {
             success(task,responseObject);
         }
-       [RapidStorageClass saveDictionaryDataArchiver:responseObject key:requestURL];
+        [RapidStorageClass saveDictionaryDataArchiver:responseObject key:requestURL];
 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
          [loadView hiddenLoadingView];
         id cacheData= nil;
         if (isReadCache) {
-            cacheData = [RapidStorageClass readDictionaryDataArchiverWithKey:requestURL];
+            cacheData = [RapidStorageClass readDictionaryDataArchiverWithKey:url];
         }else {
             cacheData = nil;
         }
@@ -109,7 +116,7 @@
 + (void)postWithUrl:(NSString *)url params:(NSDictionary *)params isReadCache: (BOOL)isReadCache success:(responseSuccess)success failed:(responseFailed)failed {
     LoadingView *loadView= [[LoadingView alloc] init];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadView];
-    NSString * head_token =[lUSER_DEFAULT objectForKey:ACCESSTOKEN];
+    NSString * head_token =[RapidStorageClass readToken];
     NSString * token=[NSString stringWithFormat:@"Bearer %@",head_token];
     if (head_token.length>0) {
         [[NetworkingTool sharedManager].requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
@@ -122,7 +129,7 @@
         if (success) {
             success(task,responseObject);
         }
-        DDLog(@"请求数据:[%@]-[%@",url,responseObject);
+        DDLog(@"接口名称:[%@]-[%@",url,responseObject);
         
        [RapidStorageClass saveDictionaryDataArchiver:responseObject key:requestURL];
         //请求成功,保存数据
@@ -144,35 +151,42 @@
     
 }
 
-//文件上传
 
-+ (void)uploadWithUrl: (NSString *)url params: (NSDictionary *)params fileData: (NSData *)fileData name: (NSString *)name fileName: (NSString *)fileName mimeType: (NSString *)mimeType progress: (progress)progress success: (responseSuccess)success failed: (responseFailed)failed {
++ (void)uploadWithfileData: (NSData *)fileData name: (NSString *)name fileName: (NSString *)fileName mimeType: (NSString *)mimeType progress: (progress)progress success: (uploadSuccess)success failed: (uploadFail)failed {
+    [OSSLog enableLog];//执行该方法，开启日志记录
+
     
-    [[NetworkingTool sharedManager] POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        [formData appendPartWithFileData:fileData name:name fileName:fileName mimeType:mimeType];
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        if (progress) {
-            progress(uploadProgress);
+    id<OSSCredentialProvider> credential = [[OSSPlainTextAKSKPairCredentialProvider alloc] initWithPlainTextAccessKey:OSS_ACCESS_ID
+                                                                                                            secretKey:OSS_ACCESS_KEY];
+    OSSClient * client = [[OSSClient alloc] initWithEndpoint:OSS_ENDPOITN credentialProvider:credential];
+    OSSPutObjectRequest * put = [OSSPutObjectRequest new];
+    // 必填字段
+    put.bucketName = OSS_BUCKETNAME;
+    put.objectKey = fileName;
+     put.uploadingData =fileData; // 直接上传NSData
+    // 可选字段，可不设置
+    put.uploadProgress = ^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
+        DDLog(@"%lld, %lld, %lld", bytesSent, totalByteSent, totalBytesExpectedToSend);
+    };
+    OSSTask * putTask = [client  putObject:put];
+    [putTask continueWithBlock:^id(OSSTask *task) {
+        
+        task = [client presignPublicURLWithBucketName:OSS_BUCKETNAME
+                                        withObjectKey:fileName];
+        if (!task.error) {
+            NSLog(@"upload object success!");
+            if (success) {
+                success( fileName);
+            }
+    
+        } else {
+            NSLog(@"upload object failed, error: %@" , task.error);
+            
         }
-        
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success) {
-            success(task,responseObject);
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (failed) {
-            failed(task,error,nil);
-        }
-        
+        return nil;
     }];
-    
+
 }
-
-
-
-
 
 
 

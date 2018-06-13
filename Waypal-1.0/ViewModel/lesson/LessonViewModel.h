@@ -46,4 +46,23 @@
  */
 -(void)scheduleHelpsWithSchedule_id:(NSString *)schedule_id errorCode:(NSString *)error_code errorMsg:(NSString *)error_msg;
 
+/**
+ 获取导航分栏 courseid
+ */
+-(void)getGreatcourses;
+
+/**
+ 获取泛读列表
+
+ @param course_id 课程id
+ @param page  页数
+ */
+-(void)getGetCourseWithCourseID:(NSString *)course_id page:(NSString *)page;
+
+/**
+ 获取读本详情
+ @param book_id 读本id
+ */
+-(void)getGreatcoursesDetailWithbookID:(NSString *)book_id;
+
 @end

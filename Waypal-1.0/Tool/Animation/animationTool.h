@@ -10,6 +10,10 @@
 #import <UIKit/UIKit.h>
 @interface animationTool : NSObject
 +(instancetype)shareInstance;
+-(void)shakeToShow:(UIButton *)button;
+
 - (void)animationWithSubView:(UIView *)superView ;
+-(void)bgAnimationWithSubView:(UIView *)superView;
+-(void)transformAnimationGroupWithLayer:(CALayer *)layer;
 
 @end

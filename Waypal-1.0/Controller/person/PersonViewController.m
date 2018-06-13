@@ -13,6 +13,7 @@
 #import "AppVersionModel.h"
 #import "Config.h"
 #import "LLTClearCustomViewController.h"
+#import "UpLoadHeadManager.h"
 @interface PersonViewController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *person_avatarImgView;
 @property (weak, nonatomic) IBOutlet UITextField *person_UserNameTF;
@@ -25,26 +26,30 @@
 @property (weak, nonatomic) IBOutlet UIImageView *person_bgImageView;
 @property (nonatomic,strong)UIButton *selectedBtn;
 @property (weak, nonatomic) IBOutlet UIView *person_ResourceBgView;
-@property (weak, nonatomic) IBOutlet UILabel *student_nickNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *person_infoBgView;
 @property (nonatomic,strong)SettingView * settingV;
 @property (weak, nonatomic) IBOutlet UIView *editLine;
+@property (nonatomic,strong) NSString * avatarImagePath;
 @end
 
 @implementation PersonViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.person_nameLabel.transform = CGAffineTransformMakeRotation(-M_PI*1/6);
     self.person_UserNameTF.delegate=self;
     self.person_nameTF.delegate =self;
     lViewBorderRadius(self.person_avatarImgView, 60, 2,[UIColor whiteColor]);
     [self userInfo];
     [self showSettingView];
-    [self defaultShowResource];
     [self addTapGestureInAvatarImgView];
+    [self defaultShowResource];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadSucess:) name:@"uploadSuccess" object:nil];
+    
 }
-
+-(void)uploadSucess:(NSNotification *)nofi{
+    DDLog(@"上传成功");
+    self.avatarImagePath= nofi.userInfo[@"imagePath"];
+}
 #pragma mark 初始化settingview
 -(void)showSettingView{
     WeakSelf(self);
@@ -64,16 +69,15 @@
 {
     self.selectedBtn =self.person_sourceBtn;
     self.settingV.hidden =YES;
-    self.person_settingBtn.transform = CGAffineTransformMakeScale(0.5, 0.5);
+    self.person_avatarImgView.userInteractionEnabled =NO;
+    
 }
 -(void)userInfo{
     NSDictionary *userInfoDict=[RapidStorageClass readDictionaryDataArchiverWithKey:@"userInfo"];
     NSDictionary *userInfo=userInfoDict[@"output"][@"user"];
     self.person_nameTF.text =[NSString stringWithFormat:@"%@",userInfo[@"nick"]];
-    self.person_nameLabel.text =[NSString stringWithFormat:@"%@",userInfo[@"nick"]];
     self.person_UserNameTF.text =[NSString stringWithFormat:@"%@",userInfo[@"username"]];
       NSString * advatar_url=userInfo[@"avatar"];
-
     [self.person_avatarImgView sd_setImageWithURL:[NSURL URLWithString:advatar_url] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"]options:SDWebImageAllowInvalidSSLCertificates];
     
 }
@@ -96,8 +100,6 @@
         self.person_ResourceBgView.hidden =YES;
         self.settingV.hidden=NO;
     }
-    [self changeViewButtonWithButton];
- 
 }
 
 
@@ -106,13 +108,13 @@
     NSString * title=sender.selected?@"完成":@"编辑资料";
     [sender setTitle:title forState:UIControlStateNormal];
     self.person_nameTF.enabled = sender.selected?YES:NO;
-    self.person_nameLabel.text =self.person_nameTF.text;
+    self.person_avatarImgView.userInteractionEnabled =sender.selected?YES:NO;
     if (!sender.selected){
         [self finishEditUserInfo];
         self.editLine.backgroundColor=[UIColor clearColor];
 
     }else{
-        self.editLine.backgroundColor=[UIColor whiteColor];
+        self.editLine.backgroundColor=[UIColor colorWithHexString:@"#FE9319"];
     }
 }
 -(void)finishEditUserInfo{
@@ -120,9 +122,17 @@
     NSString * name=self.person_UserNameTF.text;
     NSString *password=@"";
     PersonViewModel *personVM =[[PersonViewModel alloc ] init];
-    [personVM editUserInfoWithName:name nick:nick password:password];
+    if (self.avatarImagePath.length==0) {
+        NSDictionary *userInfoDict=[RapidStorageClass readDictionaryDataArchiverWithKey:@"userInfo"];
+        NSDictionary *userInfo=userInfoDict[@"output"][@"user"];
+        NSString * advatar_url=userInfo[@"avatar"];
+        self.avatarImagePath= advatar_url;
+    }
+    [personVM editUserInfoWithName:name nick:nick password:password avatarImagePath:self.avatarImagePath];
     [personVM setBlockWithReturnBlock:^(id returnValue) {
+//        [lUSER_DEFAULT setObject:self.person_nameTF.text forKey:@"saveName"];
         [LoadingView tipViewWithTipString:@"信息保存成功"];
+        
     } WithErrorBlock:^(id errorCode) {
         [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@",errorCode]];
 
@@ -132,54 +142,28 @@
 }
 
 - (IBAction)backAction:(id)sender {
+//    NSString *nickName=[lUSER_DEFAULT objectForKey:@"saveName"];
     WeakSelf(self);
        [self dismissViewControllerAnimated:YES completion:^{
         if (weakself.editNickNameBlock) {
-            weakself.editNickNameBlock(weakself.person_nameLabel.text);
+            weakself.editNickNameBlock(self.person_nameTF.text,self.person_avatarImgView.image);
         }
     }];
 }
 
--(void)changeViewButtonWithButton{
-    if (self.selectedBtn ==self.person_sourceBtn) {
-        [UIView animateWithDuration:0.5 animations:^{
-             self.person_sourceBtn.transform = CGAffineTransformMakeScale(1, 1);
-        }];
-     }
-    else
-    {
-        [UIView animateWithDuration:0.5 animations:^{
-        self.person_sourceBtn.transform = CGAffineTransformMakeScale(0.5, 0.5);
-        }];
-    }
-    if (self.selectedBtn==self.person_settingBtn) {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.person_settingBtn.transform = CGAffineTransformMakeScale(1, 1);
-        }];
-    }
-    else
-    {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.person_settingBtn.transform = CGAffineTransformMakeScale(0.5, 0.5);
-        }];
-    }
-  
-}
 //退出登录
 -(void)loginOut
 {
     [CustomAlterView showAlterViewWithTitle:@"提示" message:@"是否退出登录？" rightBtnText:@"确定" leftBtnText:@"取消" rightBtnBlock:^{
         UIViewController *loginVC =lStoryboard(@"Main", @"login");
       [RapidStorageClass deleteDictionaryDataArchiverWithKey:Key_LOGININFORMATION];
-        [lUSER_DEFAULT removeObjectForKey:ACCESSTOKEN];
+        [RapidStorageClass deleteToken];
         LLTClearCustomViewController *nav=[[LLTClearCustomViewController alloc]initWithRootViewController:loginVC];
        [[UIApplication sharedApplication]keyWindow].rootViewController =nav;
     } leftBtnBlock:nil presentViewController:self];
-    
 }
 -(void)updateAppVersion{
     [self checkUpdateVersion];
-   
 }
 
 - (void)checkUpdateVersion
@@ -206,6 +190,7 @@
     }
     else{
         [[LAlertViewCustom sharedInstance] alertViewTitle:@"版本信息" content:[NSString stringWithFormat:@"当前为%@版本",currentVersion] leftButtonTitle:nil rightButtonTitle:@"好" autoDismiss:NO rightButtonTapDoing:nil  leftButtonTapORDismissDoing:nil];
+        
     }
 }
 
@@ -218,32 +203,34 @@
 }
 -(void)changeAvatarImgView:(UITapGestureRecognizer*)tap
 {
-    
-        
         //调起actionsheet 选择上传方式
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"选择照片" message:nil preferredStyle: UIAlertControllerStyleActionSheet];
-    
         UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-
+            [[UpLoadHeadManager sharedInstance] clUploadHeadImageWithMethed:1 withBlock:^(UIImage *obj, NSString *imagePath) {
+                self.person_avatarImgView.image=obj;
+            }];
         }];
         UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-  
-            
-        }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        }];
     
-    UIPopoverPresentationController *popover = alertController.popoverPresentationController;
-    if (popover) {
-        
-        popover.sourceView = self.person_avatarImgView;
-        popover.sourceRect = self.person_avatarImgView.bounds;
-        popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
-    }
-
+            [[UpLoadHeadManager sharedInstance] clUploadHeadImageWithMethed:2 withBlock:^(UIImage *obj, NSString *imagePath) {
+                self.person_avatarImgView.image=obj;
+                self.avatarImagePath =imagePath;
+                
+            }];
+        }];
+        UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+        if (popover) {
+            popover.sourceView = self.person_avatarImgView;
+            popover.sourceRect = self.person_avatarImgView.bounds;
+            popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        }
+ 
+    [UpLoadHeadManager sharedInstance].successBlock = ^(UIImage *obj, NSString *imagePath) {
+        self.avatarImagePath=imagePath;
+        self.person_avatarImgView.image=obj;
+    };
         [alertController addAction:deleteAction];
         [alertController addAction:saveAction];
-        [alertController addAction:cancelAction];
         [self presentViewController:alertController animated:YES completion:nil];
     
 }
@@ -252,22 +239,25 @@
     if (self.person_nameTF.text.length>8) {
         self.person_nameTF.text =[self.person_nameTF.text substringToIndex:8];
     }
-    
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField ==self.person_nameTF) {
         self.editLine.backgroundColor =[UIColor colorWithHexString:@"#FF8F00"];
+        self.person_nameTF.textColor =[UIColor colorWithHexString:@"#FE9319"];
+        self.person_nameLabel.textColor=[UIColor colorWithHexString:@"#FE9319"];
+
     }
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField ==self.person_nameTF) {
-        self.editLine.backgroundColor =[UIColor whiteColor];
+        self.editLine.backgroundColor =[UIColor clearColor];
+        self.person_nameTF.textColor =[UIColor colorWithHexString:@"#923BA8"];
+        self.person_nameLabel.textColor=[UIColor colorWithHexString:@"#923BA8"];
     }
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

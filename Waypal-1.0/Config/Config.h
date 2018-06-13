@@ -26,10 +26,14 @@
 #import "LoadingView.h"
 #import "animationTool.h"
 #import <WeClassRoomSDK/WeClassRoomSDK.h>
+#import "MInspectClass.h"
+#import "UIButton+countDown.h"
+#import <AliyunOSSiOS/AliyunOSSiOS.h>
 
 //获取屏幕 宽度、高度、
 #define lSCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define lSCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
 #define D_GrayColor3 [NSColor colorWithSRGBRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1]
 #define WeakSelf(type)  __weak typeof(type) weak##type = type;
 #define lUSER_DEFAULT [NSUserDefaults standardUserDefaults]
@@ -73,8 +77,7 @@ static const double kAlertViewAutoDismissSecond = 3.0;
 //时区差
 #define TIMEZONEOFFSET  -([[NSTimeZone systemTimeZone]secondsFromGMT]/60)
 
-//accessToken
-#define ACCESSTOKEN @"token"
+
 
 //请求网络接口
 #warning 测试的环境
@@ -105,15 +108,51 @@ static const double kAlertViewAutoDismissSecond = 3.0;
 #define EnterTempClassOPERATION @"temp/liveroom/join"
 //课程帮助
 #define SCHUDULEHELP @"schedulehelps"
+//上传文件的
+#define UPLOADSIGN  @"uploadsign/image"
+//注册
+#define REGISTEROPERATION @"register"
+//发送验证码
+#define VERIFICODEOPERATION @"smscode"
+//泛读导航课程列表
+#define GREATCOURSESOPERATION @"greatcourses"
+//泛读列表
+#define  GREATCOURSESLISTOPERATION @"greatcourses/index/"
+//泛读详情
+#define GREATCOURSESDETAILOPERATION @"greatcourses/show/"
+
+#warning 记得修改
+#define GETBACKPSDOPERATION @"getbackPassword"
+
+
 
 
 //请求的状态吗
 #define REQUESTSUCCESS 200
-
 //机构id
 #define INSTITUTIONID @"293"
 
 
 #define Key_LOGININFORMATION @"loginInfo"
 #define key_FirsrtEnter @"FirsrtEnter"
+#define Key_RemberUserAccount @"remberUserAccount"
+
+
+
+
+
+//oss
+#define OSS_ENDPOITN @"http://oss-cn-beijing.aliyuncs.com/"
+#define OSS_BUCKETNAME @"waypal-test"
+#define OSS_ACCESS_ID @"LTAIVEC3rPRRES79"
+#define OSS_ACCESS_KEY @"vm2gBV70XfY9To5GDGJ4zzfahrDafh"
+
+
+#pragma mark 头像路径前缀
+#define  imagePathPrefix  @""
+
+
+
+
+
 #endif

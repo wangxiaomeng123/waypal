@@ -15,6 +15,10 @@
 #import "Config.h"
 #import "LessonInfoModel.h"
 #import "liveRoomModel.h"
+#import "BookModel.h"
+#import "CourseModel.h"
+
+#define pagesize @"16"
 @implementation LessonViewModel
 -(void)getLessonSchedulesListWithFromTime:(NSString *)from_time
 {
@@ -84,6 +88,7 @@
 -(void)enterLivewroomSuccessCallBackWithSchedule_id:(NSString *)schedule_id{
     [NetworkingTool postWithUrl:EnterCALLBACKOPERATION params:@{@"schedule_id":schedule_id} isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
         
+        
     } failed:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
         self.failureBlock();
     }];
@@ -145,6 +150,71 @@
           self.failureBlock();
     }];
     
+}
+-(void)getGreatcourses
+{
+    NSMutableArray * coursesArr=[NSMutableArray array];
+    [NetworkingTool getWithUrl:GREATCOURSESOPERATION params:nil isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"code"] intValue]==REQUESTSUCCESS) {
+           NSArray * courseArr=  responseObject[@"output"];
+            for(NSDictionary *courseDict in courseArr){
+                CourseModel *model=[[CourseModel alloc] init];
+                [model setValuesForKeysWithDictionary:courseDict];
+                [coursesArr addObject:model];
+            }
+            self.returnBlock(coursesArr);
+        }else{
+            self.errorBlock(responseObject[@"tip"]);
+        }
+    } failed:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
+        self.failureBlock();
+    }];
+    
+}
+-(void)getGetCourseWithCourseID:(NSString *)course_id  page:(NSString *)page {
+    
+    [RapidStorageClass saveUserID:@"535"];
+    NSMutableArray *booksArr=[NSMutableArray array];
+    NSString *resquestURL =[NSString stringWithFormat:@"%@%@",GREATCOURSESLISTOPERATION,course_id];
+    NSDictionary *param=@{@"student_id":[RapidStorageClass readUserID],@"page":page,@"pagesize":pagesize};
+    [NetworkingTool getWithUrl:resquestURL params:param isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"code"] intValue]==REQUESTSUCCESS) {
+             NSArray * bookArr=    responseObject[@"output"];
+            for(NSDictionary *bookDict in bookArr)
+            {
+                BookModel *book=[[BookModel alloc] init];
+                [book setValuesForKeysWithDictionary:bookDict];
+                [booksArr addObject:book];
+            }
+            self.returnBlock(booksArr);
+        }else
+        {
+            self.errorBlock(responseObject[@"tip"]);
+            
+        }
+        
+    } failed:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
+        self.failureBlock();
+    }];
+    
+}
+-(void)getGreatcoursesDetailWithbookID:(NSString *)book_id  {
+    NSString *resquestURL =[NSString stringWithFormat:@"%@%@",GREATCOURSESDETAILOPERATION,book_id];
+    [NetworkingTool getWithUrl:resquestURL params:@{@"student_id":[RapidStorageClass readUserID]} isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"code"] intValue]==REQUESTSUCCESS)
+        {
+            self.returnBlock(responseObject[@"output"]);
+        }else
+        {
+            self.errorBlock(responseObject[@"tip"]);
+            
+        }
+    } failed:^(NSURLSessionDataTask *task, NSError *error, id responseObject)
+    {
+        self.failureBlock();
+    }];
+    
+
 }
 
 

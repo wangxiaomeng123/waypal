@@ -17,6 +17,9 @@
 #import "liveRoomModel.h"
 #import "LiveRoom.h"
 #import "UserInfoModel.h"
+#import "StarrySkyAnimate.h"
+#import "navCourseImageView.h"
+#define SAFEAREABOTTOM_HEIGHT (SCREEN_HEIGHT == 812.f ? 34.f : 0.f)
 
 @interface LessonViewController ()<UIScrollViewDelegate,WCRClassRoomDelegate>
 
@@ -38,14 +41,13 @@
 @property (nonatomic,strong)UIButton * guide_inClassButton;//上课
 @property (weak, nonatomic) IBOutlet UIImageView *lesson_bgImageView;
 @property (nonatomic,assign)BOOL isNotHistory;//是否还有历史课堂
-
 @property (nonatomic,strong) NSMutableArray * lessonListArrary;//课程列表
 @property (nonatomic,strong) NSArray * currentLesson;//当前可以上课的
 @property(nonatomic,strong)  NSArray * historyLessson;//历史的数据
 @property(nonatomic,assign)BOOL isReshHistory;//是否刷新历史记录
 @property (nonatomic,assign)int guideNum;//引导页的的总个数
 @property(nonatomic,assign) CGFloat lastContentOffset;//用判断左滑还是右
-
+@property (nonatomic,strong)  NSMutableArray * navCourseArr;
 @end
 
 @implementation LessonViewController
@@ -54,6 +56,7 @@
     self.currentPage =0;//默认是1
     self.guideNum=1;
     self.lessonListArrary=[NSMutableArray array];
+    self.navCourseArr=[NSMutableArray array];
     self.lessonVM =[[LessonViewModel alloc] init];
     [self ConfigUserInfo];
     [self loadGuideView];
@@ -65,15 +68,14 @@
     if (self.lessonListArrary.count==0)
     {
         self.lesson_nothingImgView.hidden=NO;
-        
     }
-    else{
+    else
+    {
         self.lesson_nothingImgView.hidden=YES;
-        
     }
     [self requestAction];
-
 }
+
 -(UIButton *)guide_playbackButton
 {
     if (_guide_playbackButton==nil)
@@ -87,7 +89,7 @@
 {
     if (![lUSER_DEFAULT objectForKey:key_FirsrtEnter])
     {
-      [self.guide_playbackButton setImage:[UIImage imageNamed:@"guide_guide1"]forState:UIControlStateNormal];
+        [self.guide_playbackButton setImage:[UIImage imageNamed:@"guide_guide1"]forState:UIControlStateNormal];
         [self.guide_playbackButton addTarget:self action:@selector(nextActionWithButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:self.guide_playbackButton];
     }
@@ -132,7 +134,6 @@
     tempRoom.liveroomModel=self.liveroomModel;
     tempRoom.tempModel =tempModel;
     WCRClassJoinInfo *joinInfo= [tempRoom configTempLiveRoomInfo];
-    DDLog(@"临时教室：%@",joinInfo);
     self.classRoom = [[WCRClassRoom alloc] init];
     self.classRoom.delegate = self;
     [self.classRoom joinRoom: joinInfo];
@@ -148,8 +149,9 @@
     personVC.comebackAction = ^{
         [weakself dismissViewControllerAnimated:NO completion:nil];
     };
-    personVC.editNickNameBlock = ^(NSString *nickName) {
-        weakself.studentNameLabel.text=nickName;
+    personVC.editNickNameBlock = ^(NSString *nickName, UIImage *avarImage) {
+          weakself.studentNameLabel.text=nickName;
+        weakself.student_advatarImageView.image =avarImage;
     };
     [self presentViewController:personVC animated:YES completion:nil];
 }
@@ -159,9 +161,8 @@
     NSDictionary *userInfo=userInfoDict[@"output"][@"user"];
     NSString * advatar_url=userInfo[@"avatar"];
     self.studentNameLabel.text=userInfo[@"nick"];
+    [self.studentNameLabel setAdjustsFontSizeToFitWidth:YES];
     [self.student_advatarImageView sd_setImageWithURL:[NSURL URLWithString:advatar_url] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"]options:SDWebImageAllowInvalidSSLCertificates];
-    
-    
 }
 
 
@@ -170,12 +171,12 @@
     WeakSelf(self);
     if (self.lessonListArrary.count ==0)
     {
-        self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"lesson_nothing_background"]];
+        self.lesson_bgImageView.image=[UIImage imageNamed:@"lesson_nothing_background"];
         self.lesson_nothingImgView.hidden =NO;
     }else
     {
    
-        self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"lesson_background"]];
+        self.lesson_bgImageView.image=[UIImage imageNamed:@"lesson_background"];
         self.lesson_nothingImgView.hidden =YES;
     }
     
@@ -242,7 +243,6 @@
 #pragma mark - WCRClassRoomDelegate
 - (void)roomDidJoin:(BOOL)successed
 {
-    
     self.isJoining = NO;
     if(successed) {
         UIViewController* classRoomViewController = self.classRoom.roomViewController;
@@ -259,7 +259,6 @@
 
 -(void)hanlerLeaveLiveRoomWithStatusCode:(WCRLeaveRoomReason)statusCode
 {
-    
     self.prevButton.hidden =YES;
     WeakSelf(self);
     if (self.selectInfoModel==nil) {
@@ -318,7 +317,6 @@
 
 #pragma mark 获取历史数据
 -(void)requestHistoryLesson{
-//    self.prevButton.hidden=YES;
     [self lessonListRequestWithType:2];
 }
 
@@ -565,6 +563,10 @@
     }
         return  YES;
 }
+
+
+
+
 
 
 @end

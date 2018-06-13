@@ -6,4 +6,5 @@ target 'Waypal-1.0' do
  pod 'IQKeyboardManager', '~> 6.0.3'
  pod 'SDWebImage', '~> 4.3.3'
  pod 'Bugly', '~> 2.5.0'
+ pod 'AliyunOSSiOS', '~> 2.10.2'
 end

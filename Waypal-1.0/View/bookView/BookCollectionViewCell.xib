@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BookCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="208" height="272"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="208" height="272"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="woowo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZh-zu-MOl">
+                        <rect key="frame" x="0.0" y="0.0" width="208" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27" id="5fv-5i-GSa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book_background.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kyp-CO-6sj" customClass="book_ba">
+                        <rect key="frame" x="0.0" y="27" width="208" height="245"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U1O-3m-7Se">
+                        <rect key="frame" x="5" y="47" width="188" height="225"/>
+                    </imageView>
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pz-u8-e2i">
+                        <rect key="frame" x="0.0" y="27" width="208" height="245"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book_lock.png" translatesAutoresizingMaskIntoConstraints="NO" id="ttf-q2-uj7">
+                                <rect key="frame" x="147" y="204" width="41" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="H9e-hJ-Skk"/>
+                                    <constraint firstAttribute="width" constant="41" id="ToK-eG-nez"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.44178082191780821" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ttf-q2-uj7" secondAttribute="bottom" id="EzK-Tq-ABL"/>
+                            <constraint firstAttribute="trailing" secondItem="ttf-q2-uj7" secondAttribute="trailing" constant="20" id="elG-iy-J6b"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="2Pz-u8-e2i" secondAttribute="trailing" id="0Ti-AJ-rGx"/>
+                <constraint firstItem="PZh-zu-MOl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8AJ-Zt-2K5"/>
+                <constraint firstItem="U1O-3m-7Se" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="GJV-4Z-oIi"/>
+                <constraint firstAttribute="bottom" secondItem="2Pz-u8-e2i" secondAttribute="bottom" id="HIk-io-gVo"/>
+                <constraint firstItem="U1O-3m-7Se" firstAttribute="top" secondItem="PZh-zu-MOl" secondAttribute="bottom" constant="20" id="IDo-7X-H2h"/>
+                <constraint firstAttribute="bottom" secondItem="Kyp-CO-6sj" secondAttribute="bottom" id="IMd-c5-u9q"/>
+                <constraint firstItem="2Pz-u8-e2i" firstAttribute="top" secondItem="PZh-zu-MOl" secondAttribute="bottom" id="LlE-2s-W4J"/>
+                <constraint firstAttribute="trailing" secondItem="Kyp-CO-6sj" secondAttribute="trailing" id="Pec-bV-qw7"/>
+                <constraint firstAttribute="trailing" secondItem="PZh-zu-MOl" secondAttribute="trailing" id="SGN-cw-LtV"/>
+                <constraint firstItem="Kyp-CO-6sj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ud2-MV-Nbo"/>
+                <constraint firstItem="Kyp-CO-6sj" firstAttribute="top" secondItem="PZh-zu-MOl" secondAttribute="bottom" id="VF2-Bz-cfE"/>
+                <constraint firstItem="PZh-zu-MOl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gug-sv-JtF"/>
+                <constraint firstAttribute="trailing" secondItem="U1O-3m-7Se" secondAttribute="trailing" constant="15" id="hzt-nB-Rn8"/>
+                <constraint firstAttribute="bottom" secondItem="U1O-3m-7Se" secondAttribute="bottom" id="r45-V8-JH3"/>
+                <constraint firstItem="2Pz-u8-e2i" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uqA-yu-3Fa"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="208" height="272"/>
+            <connections>
+                <outlet property="book_imageView" destination="U1O-3m-7Se" id="3b4-Jx-FVZ"/>
+                <outlet property="book_nameLabel" destination="PZh-zu-MOl" id="fxV-Bn-hxb"/>
+                <outlet property="lock_bgView" destination="2Pz-u8-e2i" id="aoN-16-q6D"/>
+            </connections>
+            <point key="canvasLocation" x="104" y="163"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="book_background.png" width="138" height="154"/>
+        <image name="book_lock.png" width="41" height="41"/>
+    </resources>
+</document>

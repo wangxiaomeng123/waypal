@@ -31,6 +31,7 @@
     UINavigationBar *nav=self.navigationController.navigationBar;
     [nav setBackgroundImage:[UIImage imageNamed:@"Nav.png"] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [nav setShadowImage:[UIImage new]];
+    self.login_user.text=[lUSER_DEFAULT objectForKey:Key_RemberUserAccount]?[lUSER_DEFAULT objectForKey:Key_RemberUserAccount]:@"";
 }
 - (void)setStatusBarBackgroundColor:(UIColor *)color {
     
@@ -46,7 +47,7 @@
     self.login_password.delegate =self;
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"background@2x"]];
 
-    self.login_user.text=[lUSER_DEFAULT objectForKey:@"remberUserName"]?[lUSER_DEFAULT objectForKey:@"remberUserName"]:@"";
+
 }
 
 - (IBAction)loginAction:(id)sender {
@@ -80,7 +81,7 @@
 -(void)enterLessonListViewController
 {
     WeakSelf(self);
-    UIStoryboard * s =[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+     UIStoryboard * s =[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     LessonViewController *lessonVC=  [s instantiateViewControllerWithIdentifier:@"Lesson"];
     lessonVC.comebackAction = ^{
         [weakself dismissViewControllerAnimated:NO completion:nil];
@@ -117,6 +118,11 @@
     }
 }
 
+- (IBAction)registerAction:(id)sender {
+    
+ UIViewController *registerVC=   lStoryboard(@"Main", @"register");
+ [self  presentViewController:registerVC animated:YES completion:nil];
+}
 
 
 - (void)didReceiveMemoryWarning {

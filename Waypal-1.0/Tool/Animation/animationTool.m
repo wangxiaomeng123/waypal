@@ -18,7 +18,17 @@
     });
     return anTool;
 }
-
+-(void)shakeToShow:(UIButton *)button{
+    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    animation.duration = 1.0;
+    NSMutableArray *values = [NSMutableArray array];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9, 0.9, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]];
+    animation.values = values;
+    [button.layer addAnimation:animation forKey:nil];
+}
 - (void)animationWithSubView:(UIView *)superView {
     
     //粒子发射器
@@ -63,6 +73,63 @@
     snowEmitter.emitterCells = [NSArray arrayWithObject:snowflake];
     [superView.layer insertSublayer:snowEmitter atIndex:0];
 }
+
+-(void)bgAnimationWithSubView:(UIView *)superView{
+    CABasicAnimation *animation =  [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    //默认是顺时针效果，若将fromValue和toValue的值互换，则为逆时针效果
+    animation.fromValue = [NSNumber numberWithFloat:0.f];
+    animation.toValue =  [NSNumber numberWithFloat: M_PI *2];
+    animation.duration  = 200;
+    animation.autoreverses = NO;
+    animation.fillMode =kCAFillModeForwards;
+    animation.repeatCount = MAXFLOAT; //如果这里想设置成一直自旋转，可以设置为MAXFLOAT，否则设置具体的数值则代表执行多少次
+    [ superView.layer addAnimation:animation forKey:nil];
+}
+
+
+
+
+
+
+-(void)transformAnimationGroupWithLayer:(CALayer *)layer
+{
+    //平移
+    CABasicAnimation *transition = [CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
+    transition.toValue = @(300);
+    
+    //旋转
+    CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    rotation.toValue = @(M_PI);
+    
+    //缩放
+    CABasicAnimation *scale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    scale.toValue = @(0.2);
+    
+    
+    CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];//必须写opacity才行。
+    opacity.fromValue = [NSNumber numberWithFloat:1.0f];
+    opacity.toValue = [NSNumber numberWithFloat:0.0f];//这是透明度。
+    
+    
+    
+    //添加组动画
+    CAAnimationGroup *group = [CAAnimationGroup animation];
+    
+    
+    //注意这里动画的效果 要设置成group的
+    group.duration = 2.0;
+    group.animations = @[rotation, scale, transition,opacity];
+    group.removedOnCompletion = NO;
+    group.fillMode = kCAFillModeForwards;
+    
+    [layer addAnimation:group forKey:nil];
+}
+
+
+
+
+
+
 @end
 
 

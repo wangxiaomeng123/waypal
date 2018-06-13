@@ -27,11 +27,11 @@
     [self setupBugly];
     AppVersionViewModel *appSetting = [[AppVersionViewModel alloc] init];
     [appSetting initAppSetting];
+    [appSetting initUploadSingureRequest];
     [NetworkingTool netWorkReachability];
     [self managerKeyboard];
 
-
-    if (![lUSER_DEFAULT objectForKey:ACCESSTOKEN])
+    if (![RapidStorageClass readToken])
     {
        MLoginViewController *login1= lStoryboard(@"Main",@"login");
         LLTClearCustomViewController *nav=[[LLTClearCustomViewController alloc] initWithRootViewController:login1];
@@ -46,6 +46,10 @@
 
     return YES;
 }
+
+
+
+
 - (void)setupBugly {
     // Get the default config
     BuglyConfig * config = [[BuglyConfig alloc] init];
@@ -55,21 +59,7 @@
 #if DEBUG
     config.debugMode = YES;
 #endif
-    
-    // Open the customized log record and report, BuglyLogLevelWarn will report Warn, Error log message.
-    // Default value is BuglyLogLevelSilent that means DISABLE it.
-    // You could change the value according to you need.
-    //    config.reportLogLevel = BuglyLogLevelWarn;
-    
-    // Open the STUCK scene data in MAIN thread record and report.
-    // Default value is NO
-    //    config.blockMonitorEnable = YES;
-    
-    // Set the STUCK THRESHOLD time, when STUCK time > THRESHOLD it will record an event and report data when the app launched next time.
-    // Default value is 3.5 second.
-    //    config.blockMonitorTimeout = 1.5;
-    
-    // Set the app channel to deployment
+
     config.channel = @"Bugly";
     
     config.delegate = self;

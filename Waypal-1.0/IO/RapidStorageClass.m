@@ -13,11 +13,12 @@
 #define lUserPhoneKEY @"userPhone"
 #define lUserPasswordKEY @"password"
 #define lUserIDKEY @"userID"
+#define ACCESSTOKEN @"token"
+
+
+
 #define lDocument [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
-
 @implementation RapidStorageClass
-
-
 + (void)saveUserPhone:(NSString *)phoneNumberString
 {
     [lUSER_DEFAULT setObject:phoneNumberString forKey:lUserPhoneKEY];
@@ -31,6 +32,15 @@
     [lUSER_DEFAULT removeObjectForKey:lUserPhoneKEY];
 }
 
++(void)saveLoginToken:(NSString *)token{
+    [lUSER_DEFAULT setObject:token forKey:ACCESSTOKEN];
+}
++(NSString*)readToken{
+    return   [lUSER_DEFAULT objectForKey:ACCESSTOKEN];
+}
++(void)deleteToken{
+    [lUSER_DEFAULT removeObjectForKey:ACCESSTOKEN];
+}
 
 + (void)saveUserPassword:(NSString *)passwordString
 {
@@ -44,8 +54,6 @@
 {
     [lUSER_DEFAULT removeObjectForKey:lUserPasswordKEY];
 }
-
-
 + (void)saveUserID:(NSString *)uidString
 {
     [lUSER_DEFAULT setObject:uidString forKey:lUserIDKEY];
@@ -116,7 +124,12 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictData options:NSJSONWritingPrettyPrinted error:&error];
     if (!error)
     {
-        [jsonData writeToFile:filePath atomically:YES];
+        if([jsonData writeToFile:filePath atomically:YES]) {
+            NSLog(@"写入成功！");
+        } else {
+            NSLog(@"写入失败！");
+        }
+        
     }
 }
 

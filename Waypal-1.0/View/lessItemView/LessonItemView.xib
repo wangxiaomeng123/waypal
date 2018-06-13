@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -112,7 +113,6 @@
                 <outlet property="teacher_advatarImageView" destination="Erl-9x-J9K" id="cqs-cr-I9d"/>
                 <outlet property="teacher_avatarImgView" destination="Erl-9x-J9K" id="bac-oO-ae6"/>
                 <outlet property="teacher_nameLabel" destination="yd1-tc-XCf" id="Y6a-q5-fCC"/>
-                <outlet property="teacher_nickLabel" destination="yd1-tc-XCf" id="Yhm-3j-WRF"/>
             </connections>
             <point key="canvasLocation" x="-140.5" y="-70.5"/>
         </view>

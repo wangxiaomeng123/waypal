@@ -16,24 +16,12 @@
 
 - (IBAction)touchStatusButtonAction:(id)sender {
     UIButton * btn =(UIButton *)sender;
-    [self shakeToShow:btn];
+    [[animationTool shareInstance] shakeToShow:btn];
     if (self.joinLiveRoomBlock) {
         self.joinLiveRoomBlock(self.tag);
     }
 }
 
-
--(void)shakeToShow:(UIButton *)button{
-    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-    animation.duration = 1.0;
-    NSMutableArray *values = [NSMutableArray array];
-    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)]];
-    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)]];
-    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9, 0.9, 1.0)]];
-    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]];
-    animation.values = values;
-    [button.layer addAnimation:animation forKey:nil];
-}
 -(void)setDataWithLessonInfoModel:(LessonInfoModel *)lessonInfoModel
 {
     self.teacher_avatarImgView.layer.borderColor=[UIColor whiteColor].CGColor;
@@ -52,33 +40,20 @@
     if (lessonInfoModel.status ==6) {
           self.bgImageView.image=[UIImage imageNamed:@"lesson_playbackBgView@2x"];
         [self.teach_statusImgView setBackgroundImage:[UIImage imageNamed:@"lesson_playback@2x"] forState:UIControlStateNormal];
+        self.teacher_nameLabel.textColor=[UIColor colorWithHexString:@"#11748F"];
+        self.teach_dateLabel.textColor =[UIColor colorWithHexString:@"#11748F"];
     }else
     {
         self.bgImageView.image=[UIImage imageNamed:@"lesson_planet"];
         [self.teach_statusImgView setBackgroundImage:[UIImage imageNamed:@"lesson_attclass@2x"] forState:UIControlStateNormal];
+//        self.teacher_nameLabel.textColor=[UIColor colorWithHexString:@"#11748F"];
+
     }
     
         self.lessInfoModel =lessonInfoModel;
     
 }
 
-// Only override dra2306wRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    
-//    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-//                                   //默认是顺时针效果，若将fromValue和toValue的值互换，则为逆时针效果
-//                                   animation.fromValue = [NSNumber numberWithFloat:0.f];
-//                                    animation.toValue = [NSNumber numberWithFloat: M_PI *2];
-//                                    animation.toValue = [NSNumber numberWithFloat: -M_PI *2];
-//                                   animation.toValue = [NSNumber numberWithFloat: M_PI *2];
-//                                   animation.duration = 3;
-//                                   animation.autoreverses = NO;
-//                                   animation.fillMode = kCAFillModeForwards;
-//                                   animation.repeatCount = 1; //如果这里想设置成一直自旋转，可以设置为MAXFLOAT，否则设置具体的数值则代表执行多少次
-//                                   [self.layer addAnimation:animation forKey:nil];
-    
-}
 
 
 @end

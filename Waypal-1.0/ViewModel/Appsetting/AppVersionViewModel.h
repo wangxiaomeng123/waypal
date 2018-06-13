@@ -11,4 +11,9 @@
 #import <AdSupport/AdSupport.h>
 @interface AppVersionViewModel : ViewModelClass
 -(void)initAppSetting;
+
+/**
+ 上传头像，获取相关OSS 配置信息
+ */
+-(void)initUploadSingureRequest;
 @end

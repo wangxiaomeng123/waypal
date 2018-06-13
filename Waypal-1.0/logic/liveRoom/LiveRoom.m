@@ -14,7 +14,7 @@
 @implementation LiveRoom
 -(WCRClassJoinInfo *)configLiveRoomInfo
 {
-    NSString * token =[lUSER_DEFAULT objectForKey:ACCESSTOKEN];
+    NSString * token =[RapidStorageClass readToken];
     NSDictionary *userInfoDict=[RapidStorageClass readDictionaryDataArchiverWithKey:@"userInfo"];
     NSDictionary *userInfo=userInfoDict[@"output"][@"user"];
 
@@ -82,7 +82,7 @@
 
 
 -(WCRClassJoinInfo *)configTempLiveRoomInfo{
-    NSString * token =[lUSER_DEFAULT objectForKey:ACCESSTOKEN];
+    NSString * token =[RapidStorageClass readToken];
     NSDictionary *userInfoDict=[RapidStorageClass readDictionaryDataArchiverWithKey:@"userInfo"];
     NSDictionary *userInfo=userInfoDict[@"output"][@"user"];
     NSString *student_id =userInfo[@"id"];

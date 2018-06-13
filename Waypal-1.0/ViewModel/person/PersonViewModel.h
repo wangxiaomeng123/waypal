@@ -9,5 +9,5 @@
 #import "ViewModelClass.h"
 
 @interface PersonViewModel : ViewModelClass
--(void)editUserInfoWithName:(NSString *)name nick:(NSString *)nick password:(NSString *)password;
+-(void)editUserInfoWithName:(NSString *)name nick:(NSString *)nick password:(NSString *)password  avatarImagePath:(NSString *)imagePath ;
 @end

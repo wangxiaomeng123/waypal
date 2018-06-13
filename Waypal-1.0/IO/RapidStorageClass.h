@@ -10,7 +10,6 @@
 
 @interface RapidStorageClass : NSObject
 
-
 /**
  保存、读取、删除 用户登录手机号
 
@@ -36,6 +35,15 @@
 + (void) saveUserID:(NSString *)uidString;
 + (NSString *) readUserID;
 + (void) deleteUserID;
+
+
+/**
+ 保存token
+ */
++(void)saveLoginToken:(NSString *)token;
++(NSString*)readToken;
++(void)deleteToken;
+
 
 
 /**

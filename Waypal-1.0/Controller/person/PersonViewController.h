@@ -7,7 +7,8 @@
 //
 typedef void(^loginOutComebackAction)(void);
 #import <UIKit/UIKit.h>
-typedef void(^editNickName)(NSString *nickName);
+typedef void(^editNickName)(NSString *nickName,UIImage * avarImage);
+
 
 @interface PersonViewController : UIViewController
 @property (nonatomic,strong)editNickName editNickNameBlock;

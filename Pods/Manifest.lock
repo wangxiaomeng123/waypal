@@ -1,4 +1,5 @@
 PODS:
+  - AliyunOSSiOS (2.10.2)
   - Bugly (2.5.0)
   - IQKeyboardManager (6.0.3)
   - SDWebImage (4.3.3):
@@ -7,6 +8,7 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - AliyunOSSiOS (~> 2.10.2)
   - Bugly (~> 2.5.0)
   - IQKeyboardManager (~> 6.0.3)
   - SDWebImage (~> 4.3.3)
@@ -14,17 +16,19 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AliyunOSSiOS
     - Bugly
     - IQKeyboardManager
     - SDWebImage
     - SVProgressHUD
 
 SPEC CHECKSUMS:
+  AliyunOSSiOS: bf4b78956c08340db0ca6c2fc5a697c9d1508dc0
   Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   IQKeyboardManager: c390e612f4b98c8fd748016470138537dc163ead
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 580fb18b94b3c841b38ac93d0be7b311b2fb8d5d
+PODFILE CHECKSUM: c7dd266495ac3bf63af8b39ecd25c1fa301e3905
 
 COCOAPODS: 1.5.2
