@@ -28,12 +28,30 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book_background.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kyp-CO-6sj" customClass="book_ba">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CTL-lk-IiZ">
                         <rect key="frame" x="0.0" y="27" width="208" height="245"/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U1O-3m-7Se">
-                        <rect key="frame" x="5" y="47" width="188" height="225"/>
-                    </imageView>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U1O-3m-7Se">
+                                <rect key="frame" x="0.0" y="2" width="206" height="243"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book_shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="9mc-x1-Bo5">
+                                <rect key="frame" x="0.0" y="0.0" width="20" height="260"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="zoi-qm-2lX"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="9mc-x1-Bo5" secondAttribute="bottom" constant="-15" id="9cV-CO-UoB"/>
+                            <constraint firstAttribute="bottom" secondItem="U1O-3m-7Se" secondAttribute="bottom" id="Ez9-57-h18"/>
+                            <constraint firstItem="9mc-x1-Bo5" firstAttribute="leading" secondItem="CTL-lk-IiZ" secondAttribute="leading" id="UG9-Rb-bSx"/>
+                            <constraint firstAttribute="trailing" secondItem="U1O-3m-7Se" secondAttribute="trailing" constant="2" id="d59-rx-3GM"/>
+                            <constraint firstItem="U1O-3m-7Se" firstAttribute="leading" secondItem="CTL-lk-IiZ" secondAttribute="leading" id="hbM-VZ-s79"/>
+                            <constraint firstItem="9mc-x1-Bo5" firstAttribute="top" secondItem="CTL-lk-IiZ" secondAttribute="top" id="rpT-DK-CMN"/>
+                            <constraint firstItem="U1O-3m-7Se" firstAttribute="top" secondItem="CTL-lk-IiZ" secondAttribute="top" constant="2" id="sPv-ZS-AkK"/>
+                        </constraints>
+                    </view>
                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pz-u8-e2i">
                         <rect key="frame" x="0.0" y="27" width="208" height="245"/>
                         <subviews>
@@ -56,23 +74,20 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="2Pz-u8-e2i" secondAttribute="trailing" id="0Ti-AJ-rGx"/>
                 <constraint firstItem="PZh-zu-MOl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8AJ-Zt-2K5"/>
-                <constraint firstItem="U1O-3m-7Se" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="GJV-4Z-oIi"/>
+                <constraint firstAttribute="trailing" secondItem="CTL-lk-IiZ" secondAttribute="trailing" id="B0H-7s-OTM"/>
                 <constraint firstAttribute="bottom" secondItem="2Pz-u8-e2i" secondAttribute="bottom" id="HIk-io-gVo"/>
-                <constraint firstItem="U1O-3m-7Se" firstAttribute="top" secondItem="PZh-zu-MOl" secondAttribute="bottom" constant="20" id="IDo-7X-H2h"/>
-                <constraint firstAttribute="bottom" secondItem="Kyp-CO-6sj" secondAttribute="bottom" id="IMd-c5-u9q"/>
                 <constraint firstItem="2Pz-u8-e2i" firstAttribute="top" secondItem="PZh-zu-MOl" secondAttribute="bottom" id="LlE-2s-W4J"/>
-                <constraint firstAttribute="trailing" secondItem="Kyp-CO-6sj" secondAttribute="trailing" id="Pec-bV-qw7"/>
+                <constraint firstItem="CTL-lk-IiZ" firstAttribute="top" secondItem="PZh-zu-MOl" secondAttribute="bottom" id="Osv-fr-LxY"/>
                 <constraint firstAttribute="trailing" secondItem="PZh-zu-MOl" secondAttribute="trailing" id="SGN-cw-LtV"/>
-                <constraint firstItem="Kyp-CO-6sj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ud2-MV-Nbo"/>
-                <constraint firstItem="Kyp-CO-6sj" firstAttribute="top" secondItem="PZh-zu-MOl" secondAttribute="bottom" id="VF2-Bz-cfE"/>
+                <constraint firstAttribute="bottom" secondItem="CTL-lk-IiZ" secondAttribute="bottom" id="eeM-ib-y6c"/>
                 <constraint firstItem="PZh-zu-MOl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="gug-sv-JtF"/>
-                <constraint firstAttribute="trailing" secondItem="U1O-3m-7Se" secondAttribute="trailing" constant="15" id="hzt-nB-Rn8"/>
-                <constraint firstAttribute="bottom" secondItem="U1O-3m-7Se" secondAttribute="bottom" id="r45-V8-JH3"/>
                 <constraint firstItem="2Pz-u8-e2i" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uqA-yu-3Fa"/>
+                <constraint firstItem="CTL-lk-IiZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xRB-8y-UKw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="208" height="272"/>
             <connections>
+                <outlet property="book_bgView" destination="CTL-lk-IiZ" id="877-pL-xLA"/>
                 <outlet property="book_imageView" destination="U1O-3m-7Se" id="3b4-Jx-FVZ"/>
                 <outlet property="book_nameLabel" destination="PZh-zu-MOl" id="fxV-Bn-hxb"/>
                 <outlet property="lock_bgView" destination="2Pz-u8-e2i" id="aoN-16-q6D"/>
@@ -81,7 +96,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="book_background.png" width="138" height="154"/>
         <image name="book_lock.png" width="41" height="41"/>
+        <image name="book_shadow.png" width="28" height="146"/>
     </resources>
 </document>

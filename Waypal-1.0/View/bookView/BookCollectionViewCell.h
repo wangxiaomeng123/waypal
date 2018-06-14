@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *book_imageView;
 @property (weak, nonatomic) IBOutlet UILabel *book_nameLabel;
 @property (weak, nonatomic) IBOutlet UIView *lock_bgView;
+@property (weak, nonatomic) IBOutlet UIView *book_bgView;
 
 -(void)setCellDataDict:(BookModel *)bookModel;
 @end

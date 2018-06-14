@@ -14,31 +14,6 @@
 @implementation navCourseImageView
 
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-//- (void)drawRect:(CGRect)rect {
-//    switch (self.tag) {
-//        case 0:
-//            self.image=[UIImage imageNamed:@"book_smart"];
-//            break;
-//        case 1:
-//            self.image=[UIImage imageNamed:@"book_smart"];
-//            
-//            break;
-//        case 2:
-//            self.image=[UIImage imageNamed:@"book_smart"];
-//            break;
-//        case 3:
-//            self.image=[UIImage imageNamed:@"book_smart"];
-//
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//    
-//}
-
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     self.orginPoint= self.center;

@@ -200,6 +200,8 @@
 		E7FE016D20D1155300A3BF98 /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7FE016C20D1155300A3BF98 /* BookDetailViewController.m */; };
 		E7FE017420D11D0B00A3BF98 /* book_background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7FE017220D11D0A00A3BF98 /* book_background@3x.png */; };
 		E7FE017520D11D0B00A3BF98 /* book_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7FE017320D11D0B00A3BF98 /* book_background@2x.png */; };
+		E7FE017820D204E900A3BF98 /* book_shadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7FE017620D204E700A3BF98 /* book_shadow@3x.png */; };
+		E7FE017920D204E900A3BF98 /* book_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E7FE017720D204E800A3BF98 /* book_shadow@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -486,6 +488,8 @@
 		E7FE016C20D1155300A3BF98 /* BookDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
 		E7FE017220D11D0A00A3BF98 /* book_background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book_background@3x.png"; sourceTree = "<group>"; };
 		E7FE017320D11D0B00A3BF98 /* book_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book_background@2x.png"; sourceTree = "<group>"; };
+		E7FE017620D204E700A3BF98 /* book_shadow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book_shadow@3x.png"; sourceTree = "<group>"; };
+		E7FE017720D204E800A3BF98 /* book_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book_shadow@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1179,6 +1183,8 @@
 		E7FE011A20CFA25600A3BF98 /* book */ = {
 			isa = PBXGroup;
 			children = (
+				E7FE017720D204E800A3BF98 /* book_shadow@2x.png */,
+				E7FE017620D204E700A3BF98 /* book_shadow@3x.png */,
 				E7FE017320D11D0B00A3BF98 /* book_background@2x.png */,
 				E7FE017220D11D0A00A3BF98 /* book_background@3x.png */,
 				E7FE015E20D111D700A3BF98 /* book_great@2x.png */,
@@ -1416,6 +1422,7 @@
 				E7895B9A20AFC35600F19491 /* user@3x.png in Resources */,
 				E720B45220BBADFD0003F268 /* lesson_playbackBgView@2x.png in Resources */,
 				E7895B9E20AFC35600F19491 /* Login box@2x.png in Resources */,
+				E7FE017820D204E900A3BF98 /* book_shadow@3x.png in Resources */,
 				E7895BA420AFC35600F19491 /* user@2x.png in Resources */,
 				E7FE012D20CFA27000A3BF98 /* book_right@2x.png in Resources */,
 				E706955220C0001300D27167 /* guide_guide3@3x.png in Resources */,
@@ -1481,6 +1488,7 @@
 				E7895CAF20B0356800F19491 /* SettingView.xib in Resources */,
 				E7141F9220C153CB001E6AA4 /* DazStarOutline.png in Resources */,
 				E7FE010020C9335100A3BF98 /* person_settingSelected@2x.png in Resources */,
+				E7FE017920D204E900A3BF98 /* book_shadow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
