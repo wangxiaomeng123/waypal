@@ -30,4 +30,16 @@
     self.view.centerY=-20;
     [NetworkingTool netWorkReachability];
 }
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return (UIInterfaceOrientationLandscapeRight | UIInterfaceOrientationLandscapeLeft);
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscapeRight | UIInterfaceOrientationMaskLandscapeLeft;
+}
+
+//必须有
+-(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return UIInterfaceOrientationLandscapeRight;
+}
 @end

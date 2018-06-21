@@ -17,7 +17,7 @@
 #import "liveRoomModel.h"
 #import "BookModel.h"
 #import "CourseModel.h"
-
+#import "bookDetailModel.h"
 #define pagesize @"16"
 @implementation LessonViewModel
 -(void)getLessonSchedulesListWithFromTime:(NSString *)from_time
@@ -203,7 +203,11 @@
     [NetworkingTool getWithUrl:resquestURL params:@{@"student_id":[RapidStorageClass readUserID]} isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"code"] intValue]==REQUESTSUCCESS)
         {
-            self.returnBlock(responseObject[@"output"]);
+            NSDictionary *outputDict=(NSDictionary *)responseObject[@"output"];
+            bookDetailModel *detailModel=[[bookDetailModel alloc] init];
+            [detailModel setValuesForKeysWithDictionary:outputDict];
+            self.returnBlock(detailModel);
+            
         }else
         {
             self.errorBlock(responseObject[@"tip"]);

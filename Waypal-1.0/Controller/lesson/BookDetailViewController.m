@@ -13,8 +13,20 @@
 #import "BookDetailViewController.h"
 #import "Config.h"
 #import "LessonViewModel.h"
+#import "bookDetailModel.h"
 @interface BookDetailViewController ()
 @property(nonatomic,strong)LessonViewModel *lessVModel;
+@property(nonatomic,strong)bookDetailModel * detailModel;
+@property (weak, nonatomic) IBOutlet UILabel *bookNameLabel;
+@property (weak, nonatomic) IBOutlet UIView *pageView;
+@property (weak, nonatomic) IBOutlet UIButton *prevButton;
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+
+@property (nonatomic,strong)NSMutableArray *bookImagesArr;
+@property (nonatomic,strong)NSMutableArray *questionArr;
+
+
+
 @end
 
 @implementation BookDetailViewController
@@ -22,24 +34,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.lessVModel =[[LessonViewModel alloc] init];
+    [self.bookNameLabel setAdjustsFontSizeToFitWidth:YES];
+    self.bookNameLabel.text=self.bookModel.name;
     [self resquestBookDetailData];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)resquestBookDetailData{
+    WeakSelf(self);
     [self.lessVModel getGreatcoursesDetailWithbookID:self.bookModel.book_id];
     [self.lessVModel setBlockWithReturnBlock:^(id returnValue) {
-        
+        weakself.detailModel =(bookDetailModel *)returnValue;
     } WithErrorBlock:^(id errorCode) {
-        
+
     } WithFailureBlock:^{
-        
+
     }];
+    
+    
 }
+- (IBAction)backAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)prevAction:(id)sender {
+}
+
+
+- (IBAction)nextAction:(id)sender {
+}
+
 /*
 #pragma mark - Navigation
 
