@@ -11,9 +11,10 @@
 #import "Config.h"
 @implementation LoadingView
 
--(instancetype)init
+-(instancetype)initWithFrame:(CGRect)frame
 {
-    if (self=[super init]) {
+    self=[super initWithFrame:frame];
+    if (self) {
         self.backgroundColor= [[UIColor blackColor] colorWithAlphaComponent:0.5];
         self.frame =CGRectMake(0, 0, lSCREEN_WIDTH, lSCREEN_HEIGHT);
         self.imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 460, 163)];

@@ -40,14 +40,23 @@
                                     <constraint firstAttribute="width" constant="20" id="zoi-qm-2lX"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book_readed.png" translatesAutoresizingMaskIntoConstraints="NO" id="KHy-J5-8jE">
+                                <rect key="frame" x="168" y="10" width="35" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="d9z-Vj-TuU"/>
+                                    <constraint firstAttribute="height" constant="15" id="j4S-Lh-v5K"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="9mc-x1-Bo5" secondAttribute="bottom" constant="-15" id="9cV-CO-UoB"/>
                             <constraint firstAttribute="bottom" secondItem="U1O-3m-7Se" secondAttribute="bottom" id="Ez9-57-h18"/>
                             <constraint firstItem="9mc-x1-Bo5" firstAttribute="leading" secondItem="CTL-lk-IiZ" secondAttribute="leading" id="UG9-Rb-bSx"/>
+                            <constraint firstAttribute="trailing" secondItem="KHy-J5-8jE" secondAttribute="trailing" constant="5" id="VTf-s7-9g4"/>
                             <constraint firstAttribute="trailing" secondItem="U1O-3m-7Se" secondAttribute="trailing" constant="2" id="d59-rx-3GM"/>
                             <constraint firstItem="U1O-3m-7Se" firstAttribute="leading" secondItem="CTL-lk-IiZ" secondAttribute="leading" id="hbM-VZ-s79"/>
+                            <constraint firstItem="KHy-J5-8jE" firstAttribute="top" secondItem="CTL-lk-IiZ" secondAttribute="top" constant="10" id="ioN-XF-Upn"/>
                             <constraint firstItem="9mc-x1-Bo5" firstAttribute="top" secondItem="CTL-lk-IiZ" secondAttribute="top" id="rpT-DK-CMN"/>
                             <constraint firstItem="U1O-3m-7Se" firstAttribute="top" secondItem="CTL-lk-IiZ" secondAttribute="top" constant="2" id="sPv-ZS-AkK"/>
                         </constraints>
@@ -90,6 +99,7 @@
                 <outlet property="book_bgView" destination="CTL-lk-IiZ" id="877-pL-xLA"/>
                 <outlet property="book_imageView" destination="U1O-3m-7Se" id="3b4-Jx-FVZ"/>
                 <outlet property="book_nameLabel" destination="PZh-zu-MOl" id="fxV-Bn-hxb"/>
+                <outlet property="isReadImageView" destination="KHy-J5-8jE" id="mpg-5Y-cS8"/>
                 <outlet property="lock_bgView" destination="2Pz-u8-e2i" id="aoN-16-q6D"/>
             </connections>
             <point key="canvasLocation" x="104" y="163"/>
@@ -97,6 +107,7 @@
     </objects>
     <resources>
         <image name="book_lock.png" width="41" height="41"/>
+        <image name="book_readed.png" width="35" height="15"/>
         <image name="book_shadow.png" width="28" height="146"/>
     </resources>
 </document>

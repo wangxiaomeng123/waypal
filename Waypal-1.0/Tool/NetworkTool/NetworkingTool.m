@@ -70,6 +70,7 @@
                                                                                    @"text/javascript",
                                                                                    @"text/xml",
                                                                                    @"image/*"]];
+
     });
     return instance;
 }
@@ -114,6 +115,7 @@
 }
 //post请求
 + (void)postWithUrl:(NSString *)url params:(NSDictionary *)params isReadCache: (BOOL)isReadCache success:(responseSuccess)success failed:(responseFailed)failed {
+    
     LoadingView *loadView= [[LoadingView alloc] init];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadView];
     NSString * head_token =[RapidStorageClass readToken];
@@ -123,7 +125,8 @@
     }
     NSMutableDictionary *mutableDict =[[NSMutableDictionary alloc] initWithDictionary:params];
     [mutableDict setObject:[NSNumber numberWithInteger:TIMEZONEOFFSET] forKey:@"offset"];
-    NSString * requestURL =[NSString stringWithFormat:@"%@%@",REQUESTPUBLICURL,url];
+     NSString * requestURL =[NSString stringWithFormat:@"%@%@",REQUESTPUBLICURL,url];
+    
     [[NetworkingTool sharedManager] POST:requestURL parameters:mutableDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [loadView hiddenLoadingView];
         if (success) {

@@ -65,4 +65,13 @@
  */
 -(void)getGreatcoursesDetailWithbookID:(NSString *)book_id;
 
+
+
+/**
+ 提交泛读的答题信息
+
+ @param bookId 课本id
+ @param optionArr 答题内容
+ */
+-(void)submitGreatCoursesQuestionWithBookId:(NSString *)bookId  questionOptionArr:(NSArray *)optionArr;
 @end

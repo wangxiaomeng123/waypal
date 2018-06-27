@@ -18,6 +18,7 @@
 #import "BookModel.h"
 #import "CourseModel.h"
 #import "bookDetailModel.h"
+#import <AFNetworking/AFNetworking.h>
 #define pagesize @"16"
 @implementation LessonViewModel
 -(void)getLessonSchedulesListWithFromTime:(NSString *)from_time
@@ -59,7 +60,6 @@
     [NetworkingTool postWithUrl:JOINLIVEROOMOPERATION params:joinLiveRoomParam isReadCache:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         DDLog(@"joinliveRoom：%@",responseObject);
         [self checkJoinLiveRoomWithDataDict:responseObject];
-       
         
     } failed:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
         self.failureBlock();
@@ -88,7 +88,7 @@
 -(void)enterLivewroomSuccessCallBackWithSchedule_id:(NSString *)schedule_id{
     [NetworkingTool postWithUrl:EnterCALLBACKOPERATION params:@{@"schedule_id":schedule_id} isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        
+        DDLog(@"进入直播间成功");
     } failed:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
         self.failureBlock();
     }];
@@ -99,10 +99,6 @@
  */
 -(void)quitLivewroomSuccessCallBackWithSchedule_id:(NSString *)schedule_id{
     [NetworkingTool postWithUrl:QuitCALLBACKOPERATION params:@{@"schedule_id":schedule_id}  isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        
-        
-        
     } failed:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
         self.failureBlock();
         
@@ -112,12 +108,12 @@
 
 -(void)enterTempClassRoomWithRoomPassword:(NSString *)password
 {
-    [NetworkingTool postWithUrl:EnterTempClassOPERATION params:nil isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NetworkingTool postWithUrl:EnterTempClassOPERATION params:
+     @{@"password":password}isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"code"] integerValue]==REQUESTSUCCESS)
         {
             NSDictionary * outPut=responseObject[@"output"];
            self.returnBlock(outPut);
-            
         }else{
             self.errorBlock(responseObject[@"tip"]);
             
@@ -220,7 +216,56 @@
     
 
 }
+-(void)submitGreatCoursesQuestionWithBookId:(NSString *)bookId  questionOptionArr:(NSArray *)optionArr{
+    
+    NSDictionary * paramDict=@{@"student_id":[NSNumber numberWithInt:[[RapidStorageClass readUserID] intValue]],@"book_id":[NSNumber numberWithInt:[bookId intValue]],@"result":optionArr};
+    [self requestWithRequestURL:@"https://t.api.waypal.com/api/booktest/result" parameter:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"code"] intValue]==REQUESTSUCCESS) {
+                self.returnBlock(responseObject[@"output"]);
+        }else{
+                 self.returnBlock(responseObject[@"tip"]);
+        }
+        
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                self.failureBlock();
+            }];
+    
+}
+- (void) requestWithRequestURL:(NSString *)requestURL
+                     parameter:(NSDictionary *)parameter
+                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    
+    
+    NSURL *url = [NSURL URLWithString:requestURL];
+    
+    AFHTTPSessionManager *httpRequestManager = [AFHTTPSessionManager manager];
+    //设置请求头
+    [self  setHeadParameter:httpRequestManager];
+    
+    [httpRequestManager POST:url.absoluteString parameters:parameter success:success failure:failure];
+    
+}
 
+
+//设置请求头
+- (void)setHeadParameter:(AFHTTPSessionManager *)httpRequestManager
+{
+    
+    httpRequestManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    httpRequestManager.requestSerializer = [AFJSONRequestSerializer serializer];
+    httpRequestManager.requestSerializer.timeoutInterval = 20;//20秒算请求超时
+    httpRequestManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json",@"text/html", @"text/plain",@"application/x-javascript",nil];
+    
+    //AFHTTPRequestSerializer
+    //请求头
+    [httpRequestManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        NSString * head_token =[RapidStorageClass readToken];
+        NSString * token=[NSString stringWithFormat:@"Bearer %@",head_token];
+    [httpRequestManager.requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
+    
+}
 
 
 

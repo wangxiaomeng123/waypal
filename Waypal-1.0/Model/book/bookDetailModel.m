@@ -21,7 +21,8 @@
         self.audio_id=audioDict[@"id"];
         self.audio_ext=audioDict[@"ext"];
         self.audio_filname=audioDict[@"filname"];
-        self.audio_part=audioDict[@"part"];
+      NSMutableArray *audioArr=[NSJSONSerialization JSONObjectWithData:[audioDict[@"part"] dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+        self.audio_partArr=audioArr;
     }
     if ([key isEqualToString:@"booktests"]) {
         NSArray * booktestArr=(NSArray *)value;

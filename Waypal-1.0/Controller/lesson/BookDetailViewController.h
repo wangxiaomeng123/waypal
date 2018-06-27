@@ -10,4 +10,5 @@
 #import "BookModel.h"
 @interface BookDetailViewController : UIViewController
 @property(nonatomic,strong)BookModel *bookModel;
+
 @end

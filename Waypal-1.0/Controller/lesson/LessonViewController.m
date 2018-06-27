@@ -48,6 +48,9 @@
 @property (nonatomic,assign)int guideNum;//引导页的的总个数
 @property(nonatomic,assign) CGFloat lastContentOffset;//用判断左滑还是右
 @property (nonatomic,strong)  NSMutableArray * navCourseArr;
+
+@property(nonatomic,assign)BOOL isTempClass;
+@property (nonatomic,strong)TempClassModel *tempModel;
 @end
 
 @implementation LessonViewController
@@ -118,7 +121,10 @@
     vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [vc.view setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f]];
     vc.enterTempClassBlockDoing = ^(TempClassModel *tempModel) {
-        [self enterTempClassWithTempClass:tempModel];
+                    self.isTempClass =YES;
+                    self.tempModel=tempModel;
+//                    self.selectInfoModel.schedule_id =self.tempModel.schedule_id;
+                 [self enterTempClassWithTempClass:tempModel];
     };
     [self presentViewController:vc animated:YES completion:nil];
 
@@ -131,6 +137,7 @@
     }
     LiveRoom *tempRoom =[[LiveRoom alloc] init];
     tempRoom.selectInfoModel=self.selectInfoModel;
+    self.selectInfoModel.schedule_id=tempModel.schedule_id;
     tempRoom.liveroomModel=self.liveroomModel;
     tempRoom.tempModel =tempModel;
     WCRClassJoinInfo *joinInfo= [tempRoom configTempLiveRoomInfo];
@@ -216,12 +223,13 @@
     } WithErrorBlock:^(id errorCode)
      {
     [[LAlertViewCustom sharedInstance] alertViewTitle:nil content:[NSString stringWithFormat:@"%@",errorCode] leftButtonTitle:nil rightButtonTitle:nil autoDismiss:YES rightButtonTapDoing:nil leftButtonTapORDismissDoing:nil];
+         
     } WithFailureBlock:^{
         [LoadingView tipViewWithTipString:@"网络请求失败"];
     }];
 }
 
-#pragma mark 进入直播间
+#pragma mark 预约的课时进入直播间
 -(void)joinLiveRoom
 {
     if (self.isJoining)
@@ -236,7 +244,6 @@
     self.classRoom.delegate = self;
     [self.classRoom joinRoom: joinInfo];
     self.isJoining=YES;
-    
 }
 
 
@@ -245,6 +252,8 @@
 {
     self.isJoining = NO;
     if(successed) {
+        NSString *scheduce_id =self.isTempClass?self.tempModel.schedule_id:self.selectInfoModel.schedule_id;
+        [self.lessonVM enterLivewroomSuccessCallBackWithSchedule_id:scheduce_id];
         UIViewController* classRoomViewController = self.classRoom.roomViewController;
         [self presentViewController:classRoomViewController animated:YES completion: nil];
     }else{
@@ -261,10 +270,8 @@
 {
     self.prevButton.hidden =YES;
     WeakSelf(self);
-    if (self.selectInfoModel==nil) {
-        self.selectInfoModel=self.lessonListArrary[0];
-    }
-    [self.lessonVM quitLivewroomSuccessCallBackWithSchedule_id:self.selectInfoModel.schedule_id];
+    NSString *scheduce_id=self.isTempClass?self.tempModel.schedule_id:self.selectInfoModel.schedule_id;
+    [self.lessonVM quitLivewroomSuccessCallBackWithSchedule_id:scheduce_id];
     
     if (statusCode==WCRLeaveRoomReasonAfterClass)
     {
@@ -303,6 +310,9 @@
     NSString * helpText=helpDict2[@"text1"];
     if (helpText.length==0) {
         helpText=text1;
+    }
+    if (self.isTempClass) {
+        self.selectInfoModel.schedule_id=self.tempModel.schedule_id;
     }
     [self.lessonVM scheduleHelpsWithSchedule_id:self.selectInfoModel.schedule_id errorCode:helpID errorMsg:helpText];
     

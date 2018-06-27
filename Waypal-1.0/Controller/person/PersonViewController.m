@@ -215,7 +215,6 @@
             [[UpLoadHeadManager sharedInstance] clUploadHeadImageWithMethed:2 withBlock:^(UIImage *obj, NSString *imagePath) {
                 self.person_avatarImgView.image=obj;
                 self.avatarImagePath =imagePath;
-                
             }];
         }];
         UIPopoverPresentationController *popover = alertController.popoverPresentationController;

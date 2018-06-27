@@ -11,7 +11,7 @@
 @implementation CourseModel
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key{
     if ([key isEqualToString:@"id"]) {
-        self.bookid =value;
+        self.NavCourseId =value;
     }
 }
 @end

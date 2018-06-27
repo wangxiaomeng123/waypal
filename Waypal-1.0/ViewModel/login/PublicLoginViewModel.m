@@ -89,7 +89,7 @@
     NSDictionary *login_userInfo=responseData[@"output"];
     NSDictionary * userInfoDict=login_userInfo[@"user"];
     [RapidStorageClass saveDictionaryDataArchiver:responseData key:@"userInfo"];
-    [lUSER_DEFAULT setObject:userInfoDict[@"name"] forKey:Key_RemberUserAccount];
+    [lUSER_DEFAULT setObject:userInfoDict[@"username"] forKey:Key_RemberUserAccount];
     NSString *token =responseData[@"output"][@"token"];
     [RapidStorageClass saveLoginToken:token];
     [RapidStorageClass saveUserID:userInfoDict[@"id"] ];

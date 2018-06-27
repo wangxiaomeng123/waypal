@@ -73,6 +73,7 @@
         [LoadingView tipViewWithTipString:@"网络请求失败"];
     }];
 }
+#pragma mark 点击确定
 - (IBAction)sureAction:(id)sender {
     [self requestEnterTempClassData];
 }

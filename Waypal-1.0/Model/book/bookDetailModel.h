@@ -12,8 +12,10 @@
 //audio
 @property(nonatomic,strong)  NSString * audio_ext;
 @property(nonatomic,strong)  NSString * audio_filname;
-@property(nonatomic,strong)  NSString * audio_part;
+@property(nonatomic,strong)  NSMutableArray * audio_partArr;
 @property(nonatomic,strong) NSString * audio_id;
+
+@property (nonatomic,strong) NSString * audio_path;
 
 
 
@@ -24,7 +26,7 @@
 @property(nonatomic,strong) NSString * course_id;
 @property(nonatomic,strong) NSString * cover;
 @property(nonatomic,strong) NSString * cover_path;
-@property(nonatomic,strong) NSString * audio_path; 
+//@property(nonatomic,strong) NSString * audio_path; 
 @property(nonatomic,strong)NSMutableArray  *  imagesArrary;
 @property(nonatomic,strong)NSString * detail_id;
 

@@ -10,17 +10,17 @@
 
 #ifndef MVVMTest_Config_h
 #define MVVMTest_Config_h
-#import <SVProgressHUD.h>
+#import "SVProgressHUD.h"
 #import "DateTool.h"
 #import "RapidStorageClass.h"
 #import <SDWebImage/SDWebImageDownloader.h>
-#import <UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
 #import "LAlertViewCustom.h"
 #import "UIView+Extension.h"
 #import "LInspectionClass.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "NetworkingTool.h"
-#import <IQKeyboardManager.h>
+#import "IQKeyboardManager.h"
 #import "UIColor+Extension.h"
 #import "UIViewController+Reability.h"
 #import "LoadingView.h"
@@ -120,6 +120,10 @@ static const double kAlertViewAutoDismissSecond = 3.0;
 #define  GREATCOURSESLISTOPERATION @"greatcourses/index/"
 //泛读详情
 #define GREATCOURSESDETAILOPERATION @"greatcourses/show/"
+ //泛读测验提交
+#define GREATCOURSEQUESTIONRESULT @"booktest/result"
+
+
 
 #warning 记得修改
 #define GETBACKPSDOPERATION @"getbackPassword"

@@ -11,7 +11,7 @@
 @interface CourseModel : NSObject
 @property (nonatomic,strong)NSString *category;
 @property (nonatomic,strong)NSString *cover;
-@property (nonatomic,strong)NSString * bookid;
+@property (nonatomic,strong)NSString * NavCourseId;
 @property (nonatomic,strong)NSString *logo;
 @property (nonatomic,strong)NSString *name_chinese;
 @property (nonatomic,strong)NSString *name_english;

@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *book_nameLabel;
 @property (weak, nonatomic) IBOutlet UIView *lock_bgView;
 @property (weak, nonatomic) IBOutlet UIView *book_bgView;
+@property (weak, nonatomic) IBOutlet UIImageView *isReadImageView;
 
 -(void)setCellDataDict:(BookModel *)bookModel;
 @end
