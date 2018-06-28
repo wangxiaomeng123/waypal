@@ -51,20 +51,6 @@
  */
 -(void)getGreatcourses;
 
-/**
- 获取泛读列表
-
- @param course_id 课程id
- @param page  页数
- */
--(void)getGetCourseWithCourseID:(NSString *)course_id page:(NSString *)page;
-
-/**
- 获取读本详情
- @param book_id 读本id
- */
--(void)getGreatcoursesDetailWithbookID:(NSString *)book_id;
-
 
 
 /**
@@ -74,4 +60,9 @@
  @param optionArr 答题内容
  */
 -(void)submitGreatCoursesQuestionWithBookId:(NSString *)bookId  questionOptionArr:(NSArray *)optionArr;
+
+
+
+
+
 @end

@@ -79,7 +79,7 @@
 //get请求
 + (void)getWithUrl: (NSString *)url params: (NSDictionary *)params isReadCache: (BOOL)isReadCache success: (responseSuccess)success failed: (responseFailed)failed  {
     
-    LoadingView *loadView= [[LoadingView alloc] init];
+    LoadingView *loadView= [[LoadingView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadView];
 
     NSString * head_token =[RapidStorageClass readToken];

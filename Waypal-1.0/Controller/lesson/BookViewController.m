@@ -17,6 +17,8 @@
 #import "AdvancedBookViewController.h"
 #import "CourseModel.h"
 #import "StageButton.h"
+#import "BooksViewModel.h"
+#import "TipView.h"
 #define bookItemH
 #define bookItemW   125
 #define perPageCount 16
@@ -30,20 +32,18 @@
 @property (nonatomic,assign)CGFloat itemSpacing;//之间的距离
 
 @property (nonatomic,strong)NSMutableArray * advanceStageArrary;
-//@property (nonatomic,strong)NSMutableArray * starStageArray;;
+
 
 @property(nonatomic,assign) CGFloat lastContentOffset;
 @property (weak, nonatomic) IBOutlet UIView *collectionBgView;
 @property(nonatomic,strong) LessonViewModel *lessVModel;
 @property(nonatomic,assign) BOOL isLoadMore;//是否加载更多
 @property (weak, nonatomic) IBOutlet UIImageView *bookShelfImageView;
-@property(nonatomic,strong)NSMutableArray * navCourseArr;
 @property (weak, nonatomic) IBOutlet UIButton *advanceStageButton;
 @property (weak, nonatomic) IBOutlet UIButton *starStageButton;
 @property (nonatomic,strong)UIButton *selectedBtn;
 @property (nonatomic,strong)NSMutableArray *anserQuestionArr;//回答问题的正确
 @property(nonatomic,assign) CGFloat offset;
-@property(nonatomic,strong)NSArray *NavCourseArray;
 @property(nonatomic,strong)NSString * selectNavCourseId;
 
 @end
@@ -54,16 +54,35 @@
     [super viewDidLoad];
     [self initData];
     [self addSwipGesture];
-    [self resquestGreatBookList];
+    [self operationQueues];
+    
+}
+
+-(void)operationQueues{
+//    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
+//    NSBlockOperation * op1 = [NSBlockOperation blockOperationWithBlock:^{
+//        [self resquestNavCoursesList];
+//    }];
+//    NSBlockOperation * op2 = [NSBlockOperation blockOperationWithBlock:^{
+        [self resquestGreatBookList];
+//    }];
+//    [op2 addDependency:op1];
+//    [queue addOperation:op1];
+//    [queue addOperation:op2];
+    
+    
     
 }
 
 -(void)initData{
     self.currentPage=0;
-    [self stageChange:self.starStageButton];
     self.lessVModel=[[LessonViewModel alloc] init];
     self.advanceStageArrary=[NSMutableArray array];
+//    self.NavCourseArray =[NSMutableArray array];
     [self configCollectionView];
+    [self.advanceStageButton sizeToFit];
+    [self.starStageButton sizeToFit];
+    [self hanlerNavCourseWithNavCourseArr:self.NavCourseArray];
 }
 
 - (IBAction)backAction:(id)sender {
@@ -110,22 +129,44 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
               static NSString *ID=@"BookCollectionViewCell";
              BookCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
-           [cell setCellDataDict:self.advanceStageArrary[indexPath.row]];
+          DDLog(@"%@",self.advanceStageArrary);
+           BookModel *bookModel= self.advanceStageArrary[indexPath.row];
+           [cell setCellDataDict:bookModel];
     
           return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
         BookModel *bookModel= self.advanceStageArrary[indexPath.row];
-        bookModel.is_readed =@"1";
-        if (self.advanceStageArrary.count!=0)
-        {
-            [self.advanceStageArrary replaceObjectAtIndex:indexPath.row withObject:bookModel];
-        }
+    
+    if ([bookModel.is_readed boolValue]==NO) {
+        TipView *alert = [[[NSBundle mainBundle] loadNibNamed:@"TipView" owner:self options:0] lastObject];
+        alert.frame=CGRectMake(0, 0, 372, 270);
+        alert.okDoingBlock = ^{
+            bookModel.is_readed =@"1";
+            if (self.advanceStageArrary.count!=0)
+            {
+                [self.advanceStageArrary replaceObjectAtIndex:indexPath.row withObject:bookModel];
+            }
+            [self enterBookDetailVCWithBookModel:bookModel];
+            [self.bookCollectionView reloadData];
+            
+        };
+        [alert  jk_showInWindowWithMode:JKCustomAnimationModeAlert inView:nil bgAlpha:0.2 needEffectView:YES];
+    }else{
         [self enterBookDetailVCWithBookModel:bookModel];
-       [self.bookCollectionView reloadData];
+        [self.bookCollectionView reloadData];
+
+    }
+    
+
 
 }
+
+
+
+
+
 #pragma mark ad
 -(void)enterAdvanceViewControllerWithNavCourseID:(NSArray *)navCourseArr
 {
@@ -167,40 +208,19 @@
     }
 }
 
-
-
-#pragma mark 阶段切换
-- (IBAction)stageChange:(UIButton *)optionBtn {
-    if (optionBtn!= self.selectedBtn) {
-        self.selectedBtn.selected = NO;
-        optionBtn.selected = YES;
-        self.selectedBtn = optionBtn;
-    }else{
-        self.selectedBtn.selected = YES;
-    }
-    if (self.selectedBtn==self.starStageButton){
-        [self changeAnimationStartStageTranstionX:112 advanceStageTranstionX:-112 shelfImageName:@"book_shelfPink"];
-        [self.view bringSubviewToFront:self.starStageButton];
-        
-    }
-    else if (self.selectedBtn==self.advanceStageButton)
-    {
-     
-        self.starStageButton.selected=YES;
-        self.advanceStageButton.selected=NO;
-        [self enterAdvanceViewControllerWithNavCourseID: self.NavCourseArray];
-    }
-}
-
--(void)configStageView{
+- (IBAction)enterAdvanceStageAction:(id)sender {
+    [self.advanceStageArrary removeAllObjects];
+      CGRect frame=self.bookCollectionView.frame;
+    [self.bookCollectionView removeFromSuperview];
+    self.bookCollectionView.frame=frame;
+    [self.collectionBgView addSubview:self.bookCollectionView];
+    [self resquestGreatBookList];
     
-    CGFloat  Width=118;
-    for (int i=0; i<self.navCourseArr.count; i++) {
-        StageButton *stageBtn=[[StageButton alloc] initWithFrame:CGRectMake(Width*i, 0, Width, 120)];
-    }
-    
-}
+//    [self.bookCollectionView reloadData];
+    return;
+    [self enterAdvanceViewControllerWithNavCourseID: self.NavCourseArray];
 
+}
 
 
 -(void)changeAnimationStartStageTranstionX:(CGFloat)star_x  advanceStageTranstionX:(CGFloat)advanced_x  shelfImageName:(NSString *)imageName{
@@ -250,34 +270,52 @@
 //==========================网络请求==============================
 
 
-#pragma mark 请求泛读导航数据
--(void)resquestNavCoursesList{
-    WeakSelf(self);
-    [self.lessVModel getGreatcourses];
-    [self.lessVModel setBlockWithReturnBlock:^(id returnValue) {
-        weakself.NavCourseArray=(NSArray *)returnValue;
-        CourseModel *model=weakself.NavCourseArray[0];
-        [weakself.starStageButton setTitle:model.name_chinese forState:UIControlStateNormal];
-        CourseModel *model1=weakself.navCourseArr[1];
-        [weakself.advanceStageButton setTitle:model1.name_chinese forState:UIControlStateNormal];
-    } WithErrorBlock:^(id errorCode) {
-        [LoadingView tipViewWithTipString:errorCode];
-    } WithFailureBlock:^{
-        [LoadingView tipViewWithTipString:@"网络请求失败"];
-    }];
-    [self.bookCollectionView reloadData];
+//#pragma mark 请求泛读导航数据
+//-(void)resquestNavCoursesList{
+//    WeakSelf(self);
+//    [self.lessVModel getGreatcourses];
+//    [self.lessVModel setBlockWithReturnBlock:^(id returnValue) {
+//        [weakself.NavCourseArray addObjectsFromArray:returnValue];
+//        [weakself hanlerNavCourseWithNavCourseArr:weakself.NavCourseArray];
+//
+//    } WithErrorBlock:^(id errorCode) {
+//        [LoadingView tipViewWithTipString:errorCode];
+//    } WithFailureBlock:^{
+//        [LoadingView tipViewWithTipString:@"网络请求失败"];
+//    }];
+//    [self.bookCollectionView reloadData];
+//}
+-(void)hanlerNavCourseWithNavCourseArr:(NSArray *)navCourseArr{
+    if (navCourseArr.count==0) {
+        return;
+    }
+    CourseModel *model=navCourseArr[0];
+    [self.starStageButton setTitle:model.name_chinese forState:UIControlStateNormal];
+    if (navCourseArr.count==1) {
+        self.advanceStageButton.hidden= YES;
+        return;
+    }
+    CourseModel *model1=navCourseArr[1];
+    [self.advanceStageButton setTitle:model1.name_chinese forState:UIControlStateNormal];
 }
+
+
 #pragma mark  booklist
 -(void)resquestGreatBookList{
     WeakSelf(self);
-    [self.lessVModel getGetCourseWithCourseID:navCourseID  page:[NSString stringWithFormat:@"%ld",(long)self.currentPage] ];
-    [self.lessVModel setBlockWithReturnBlock:^(id returnValue) {
-        
-        [weakself resquestNavCoursesList];
+    BooksViewModel *booksVM=[[BooksViewModel alloc] init];
+    if (self.NavCourseArray.count==0) {
+        return;
+    }
+    NSString *NavCourseID =[self.NavCourseArray[0]NavCourseId];
+     [booksVM getGetCourseWithCourseID:NavCourseID  page:[NSString stringWithFormat:@"%ld",(long)self.currentPage] ];
+      [booksVM setBlockWithReturnBlock:^(id returnValue) {
         weakself.isLoadMore=[weakself isLoadMoreBookDataWithData:returnValue];
         [weakself.advanceStageArrary addObjectsFromArray:returnValue];
         weakself. totalPages=ceil(self.advanceStageArrary.count/8.0);
-    } WithErrorBlock:^(id errorCode) {
+       [weakself.bookCollectionView  reloadData];
+
+      } WithErrorBlock:^(id errorCode) {
         
         [LoadingView tipViewWithTipString:errorCode];
         
@@ -286,7 +324,7 @@
         [LoadingView tipViewWithTipString:@"网络请求失败"];
         
     }];
-    [weakself.bookCollectionView  reloadData];
+          [self.bookCollectionView  reloadData];
 
 }
 

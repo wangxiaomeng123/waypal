@@ -22,7 +22,8 @@
 #import "audioModel.h"
 #import "QuestionView.h"
 #import "SubmitChooseOption.h"
-@interface BookDetailViewController ()
+#import "BooksViewModel.h"
+@interface BookDetailViewController ()<AVAudioPlayerDelegate>
 @property(nonatomic,strong)LessonViewModel *lessVModel;
 @property(nonatomic,strong)bookDetailModel * detailModel;
 @property (weak, nonatomic) IBOutlet UILabel *bookNameLabel;
@@ -32,7 +33,9 @@
 @property (nonatomic,strong)NSMutableArray *bookImagesArr;
 @property (nonatomic,strong)NSMutableArray *questionArr;
 @property (nonatomic,strong)NSMutableArray *audioArr;
-@property(nonatomic,strong)AVPlayer *audioPlay;
+//@property(nonatomic,strong)AVPlayer *audioPlay;
+@property(nonatomic,strong)AVAudioPlayer *audioPlay;
+
 @property(nonatomic,assign) NSInteger  currentPage;
 @property (nonatomic,strong)UIButton *selectedBtn;//选中的btn
 @property (nonatomic,strong) audioModel *audioModel;
@@ -53,30 +56,30 @@
     self.bookNameLabel.text=self.bookModel.name;
     [self resquestBookDetailData];
     self.currentPage=0;
-    
-    if (self.audioModel) {
-        [self audioPlayAction];
-//        [self.audioPlay pause];
-////        self.audioPlay.currentTime=[self.audioModel.st  doubleValue];
-//        [self.audioPlay play];
-    }
     [self addSwipeGesture];
     
 }
 
 -(void)audioPlayAction{
      self.audioPlayPath = self.detailModel.audio_path;
-    self.audioPlay=[[AVPlayer alloc] initWithURL:[NSURL URLWithString:self.audioPlayPath]];
-    [self.audioPlay play];
+    NSData *audioData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.audioPlayPath]];
+    NSString *docDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *fileName=self.detailModel.audio_filname;
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@.mp3", docDirPath ,fileName];
+    [audioData writeToFile:filePath atomically:YES];
+    NSError *error;
+    NSURL *fileURL = [NSURL fileURLWithPath:filePath];
+    self.audioPlay = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
+    self.audioPlay.currentTime=[self.audioModel.st  doubleValue];
+    if (  self.audioPlay == nil)
+    {
+        NSLog(@"AudioPlayer did not load properly: %@", [error description]);
+    }
+    else
+    {
+        [self.audioPlay play];
+    }
     
-    
-//    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.audioPlayPath]];
-//   self.audioPlay=[[AVAudioPlayer alloc] initWithData:data error:nil];
-//    self.audioPlay=[[AVAudioPlayer alloc] init];
-//    self.audioPlay.volume = 0.5;
-//    self.audioPlay.numberOfLoops =1;
-//    self.audioPlay.currentTime = 0;
-//    [self.audioPlay prepareToPlay];
 }
 
 
@@ -96,26 +99,19 @@
     [self.audioTimer setFireDate:[NSDate distantFuture]];
 }
 -(void)timerAction{
-//    double currentTime=
-    AVPlayerItem *item=self.audioPlay.currentItem;
-     double currentTime =self. audioPlay.currentTime.value/item.currentTime.timescale;
-        if ( ceil(currentTime)==ceil([self.audioModel.et intValue]))
-        {
-            [self stopTimer];
-            [self.audioPlay pause];
-        }
-
-//    if ( ceil(self.audioPlay.currentTime)==ceil([self.audioModel.et intValue]))
-//    {
-//        [self stopTimer];
-//        [self.audioPlay pause];
-//    }
+    if ( ceil(self.audioPlay.currentTime)==ceil([self.audioModel.et intValue]))
+    {
+        [self stopTimer];
+        [self.audioPlay pause];
+    }
 }
+
 
 -(void)resquestBookDetailData{
     WeakSelf(self);
-    [self.lessVModel getGreatcoursesDetailWithbookID:self.bookModel.book_id];
-    [self.lessVModel setBlockWithReturnBlock:^(id returnValue) {
+    BooksViewModel *booksVM=[[BooksViewModel alloc] init];
+    [booksVM getGreatcoursesDetailWithbookID:self.bookModel.book_id];
+    [booksVM setBlockWithReturnBlock:^(id returnValue) {
          weakself.detailModel =(bookDetailModel *)returnValue;
          weakself.bookImagesArr=weakself.detailModel.imagesArrary;
         weakself.questionArr=weakself.detailModel.booktestsArrary;
@@ -123,11 +119,12 @@
         [weakself.pageView addSubview:[weakself getLabelForIndex:0]];
         [weakself playDuringWithPageIndex:self.currentPage+1];
         [weakself questionResultConfig];
-        [self audioPlayAction];
+        [weakself audioPlayAction];
     } WithErrorBlock:^(id errorCode) {
-
+        [self dismissViewControllerAnimated:YES completion:nil];
+         [LoadingView tipViewWithTipString:errorCode];
     } WithFailureBlock:^{
-
+        [LoadingView tipViewWithTipString:@"网络请求失败"];
     }];
 }
 
@@ -261,16 +258,6 @@
 
 
 
-
-//-(AVAudioPlayer *)audioPlay
-//{
-//    if (_audioPlay==nil) {
-//
-//    }
-//    return _audioPlay;
-//}
-
-
 #pragma mark 匹配当前页面是否含有语音播放内容
 -(void)playDuringWithPageIndex:(NSInteger)pageIndex{
     self.audioPlayPath = self.detailModel.audio_path;
@@ -288,10 +275,8 @@
                      self.audioModel=model;
                 if (self.audioModel) {
                      [self.audioPlay pause];
-                    AVPlayerItem *item=self.audioPlay.currentItem;
-                    double currentTime =self. audioPlay.currentTime.value/item.currentTime.timescale;
-//                        self.audioPlay.currentTime=[self.audioModel.st  doubleValue];
-//                        [self.audioPlay prepareToPlay];
+                        self.audioPlay.currentTime=[self.audioModel.st  doubleValue];
+                        [self.audioPlay prepareToPlay];
                         [self.audioPlay play];
                         [self starTimer];
                         return;

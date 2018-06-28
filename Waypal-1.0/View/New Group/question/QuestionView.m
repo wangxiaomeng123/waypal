@@ -22,9 +22,25 @@
     self.booktest_id =model.booktest_id;
     UIImageView *imageV=[[UIImageView alloc] initWithFrame:self.frame];
     imageV.image =[UIImage imageNamed:@"question_bgView"];
-    UILabel * questionLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 159, self.frame.size.width, 50)];
+    
+    UILabel * questionLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 120, self.frame.size.width, 50)];
     questionLabel.text =model.content;
+    questionLabel.numberOfLines=0;
+//    [questionLabel setAdjustsFontSizeToFitWidth:YES];
     questionLabel.textAlignment=NSTextAlignmentCenter;
+    
+    UIImageView * questionImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    questionImageView.backgroundColor =[UIColor redColor];
+    
+    [questionImageView sd_setImageWithURL:[NSURL URLWithString:model.image_path]];
+    if (questionImageView.image!=nil) {
+        CGSize  size=  questionImageView.image.size;
+        questionImageView.size=size;
+        questionImageView.frame=CGRectMake(
+                                           (self.frame.size.width-size.width*0.6)/2, 175, size.width*0.6, size.height*0.6);
+    }
+ 
+    
     UIView *optionView=[self optionsBgViewWithQuestionModel:model];
     UIButton *voiceBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     voiceBtn.frame=CGRectMake(self.frame.size.width-153, self.frame.size.height-73, 135, 60);
@@ -34,12 +50,14 @@
     [self addSubview:questionLabel];
     [self addSubview:optionView];
     [self addSubview:voiceBtn];
+    [self addSubview:questionImageView];
+
 }
 
 -(UIView *)optionsBgViewWithQuestionModel:(QuestionModel *)model{
     
     self.selectQuestionModel=model;
-    UIView * bg=[[UIView alloc] initWithFrame:CGRectMake(0, 250, self.frame.size.width, 40)];
+    UIView * bg=[[UIView alloc] initWithFrame:CGRectMake(0, 250, self.frame.size.width, 100)];
     CGFloat width=150;
     NSInteger  optionCount=   model.optionsArr.count;
     CGFloat spacing =(659-150*optionCount)/(optionCount+1);
@@ -68,6 +86,12 @@
                     self.selectedBtn =btn;
                 }
            }
+        
+        UIImageView * optionImageView=[[UIImageView alloc] initWithFrame:CGRectMake(50, 50, 100,50 )];
+        QuestionOptionModel *questionModel=[model.optionsArr objectAtIndex:i];
+        [optionImageView sd_setImageWithURL:[NSURL URLWithString:questionModel.image_path] ];
+        optionImageView.backgroundColor =[UIColor redColor];
+        [optionView addSubview:optionImageView];
         [optionView addSubview:btn];
         [optionView addSubview:label];
         [bg addSubview:optionView];

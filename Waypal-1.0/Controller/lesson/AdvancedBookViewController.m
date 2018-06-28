@@ -8,11 +8,12 @@
 
 #import "AdvancedBookViewController.h"
 #import "Config.h"
-#import "LessonViewModel.h"
+
 #import "BookCollectionViewCell.h"
 #import "HorizontalPageFlowlayout.h"
 #import "BookDetailViewController.h"
 #import "CourseModel.h"
+#import "BooksViewModel.h"
 #define bookItemH
 #define bookItemW   125
 #define perPageCount 16
@@ -26,15 +27,15 @@
 @property (nonatomic,assign)CGFloat itemSpacing;//之间的距离
 
 @property (nonatomic,strong)NSMutableArray * advanceStageArrary;
-//@property (nonatomic,strong)NSMutableArray * starStageArray;;
+
 
 @property(nonatomic,assign) CGFloat lastContentOffset;
 @property (weak, nonatomic) IBOutlet UIView *collectionBgView;
-@property(nonatomic,strong) LessonViewModel *lessVModel;
+
 @property(nonatomic,assign) BOOL isLoadMore;//是否加载更多
 @property (weak, nonatomic) IBOutlet UIImageView *bookShelfImageView;
 
-//@property(nonatomic,strong)NSMutableArray * navCourseArr;
+
 @property (weak, nonatomic) IBOutlet UIButton *advanceStageButton;
 @property (weak, nonatomic) IBOutlet UIButton *starStageButton;
 @property (nonatomic,strong)UIButton *selectedBtn;
@@ -50,12 +51,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentPage=0;
-    [self.starStageButton setTitle:[NSString stringWithFormat:@"%@",[self.navCourseArr[0]name_chinese]] forState:UIControlStateNormal];
-     [self.advanceStageButton setTitle:[NSString stringWithFormat:@"%@",[self.navCourseArr[1]name_chinese]] forState:UIControlStateNormal];
+    [self.advanceStageButton setTitle:[NSString stringWithFormat:@"%@",[self.navCourseArr[0]name_chinese]] forState:UIControlStateNormal];
+     [self.starStageButton setTitle:[NSString stringWithFormat:@"%@",[self.navCourseArr[1]name_chinese]] forState:UIControlStateNormal];
     [self AdvanceStageChange:self.advanceStageButton];
-    self.lessVModel=[[LessonViewModel alloc] init];
     self.advanceStageArrary=[NSMutableArray array];
     [self resquestBookData];
+    [self.advanceStageButton sizeToFit];
+    [self.starStageButton sizeToFit];
     [self configCollectionView];
 }
 
@@ -69,8 +71,9 @@
 -(void)resquestGreatCourses{
     
     WeakSelf(self);
-    [self.lessVModel getGetCourseWithCourseID:[NSString stringWithFormat:@"%@",[self.navCourseArr[1]NavCourseId]] page:[NSString stringWithFormat:@"%ld",(long)self.currentPage] ];
-    [self.lessVModel setBlockWithReturnBlock:^(id returnValue) {
+    BooksViewModel *booksVM=[[BooksViewModel alloc] init];
+    [booksVM getGetCourseWithCourseID:[NSString stringWithFormat:@"%@",[self.navCourseArr[1]NavCourseId]] page:[NSString stringWithFormat:@"%ld",(long)self.currentPage] ];
+    [booksVM setBlockWithReturnBlock:^(id returnValue) {
         NSArray * perLoadDataArr =(NSArray *)returnValue;
         if (perLoadDataArr.count <perPageCount) {
             weakself.isLoadMore =NO;
@@ -165,31 +168,39 @@
 
 #pragma mark 阶段切换
 - (IBAction)AdvanceStageChange:(UIButton *)optionBtn {
-    if (optionBtn!= self.selectedBtn) {
-        self.selectedBtn.selected = NO;
-        optionBtn.selected = YES;
-        self.selectedBtn = optionBtn;
-    }else{
-        self.selectedBtn.selected = YES;
-    }
-    if (self.selectedBtn==self.starStageButton){
+//    if (optionBtn!= self.selectedBtn) {
+//        self.selectedBtn.selected = NO;
+//        optionBtn.selected = YES;
+//        self.selectedBtn = optionBtn;
+//    }else{
+//        self.selectedBtn.selected = YES;
+//    }
+    if (self.selectedBtn==self.advanceStageButton){
 //        [self changeAnimationStartStageTranstionX:112 advanceStageTranstionX:-112 shelfImageName:@"book_shelfPink"];
 //        [self.view bringSubviewToFront:self.starStageButton];
-        CATransition *animation = [CATransition animation];
-        animation.duration = 0.4;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
-        animation.type = @"pageCurl";
-        animation.type = kCATransitionFromRight;
-        [self.view.window.layer addAnimation:animation forKey:nil];
-        [self dismissViewControllerAnimated:NO completion:nil];
+   
     }
-    else if (self.selectedBtn==self.advanceStageButton){
-//        [self changeAnimationStartStageTranstionX:0 advanceStageTranstionX:0 shelfImageName:@"book_shelfYellow"];
-//        [self.view bringSubviewToFront:self.advanceStageButton];
-//
-    }
+//    else if (self.selectedBtn==self.advanceStageButton){
+////        [self changeAnimationStartStageTranstionX:0 advanceStageTranstionX:0 shelfImageName:@"book_shelfYellow"];
+////        [self.view bringSubviewToFront:self.advanceStageButton];
+////
+//    }
     //    [self.bookCollectionView reloadData];
 }
+
+- (IBAction)dismissStarStageAction:(id)sender {
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.4;
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.type = @"pageCurl";
+    animation.type = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:animation forKey:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+
+
+
 -(void)changeAnimationStartStageTranstionX:(CGFloat)star_x  advanceStageTranstionX:(CGFloat)advanced_x  shelfImageName:(NSString *)imageName{
 
     [UIView animateWithDuration:0.3 animations:^{

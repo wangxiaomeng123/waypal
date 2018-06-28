@@ -14,5 +14,6 @@
 @property(nonatomic,strong)NSString * image_id;
 @property(nonatomic,strong) NSString *options_id;
 @property(nonatomic,strong)NSString  *isanswer;
+@property(nonatomic,strong)NSString * image_path;
 @property (nonatomic,assign)BOOL  isSelected;
 @end

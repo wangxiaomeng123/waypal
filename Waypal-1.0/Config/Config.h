@@ -29,6 +29,8 @@
 #import "MInspectClass.h"
 #import "UIButton+countDown.h"
 #import <AliyunOSSiOS/AliyunOSSiOS.h>
+#import <JKViewAnimation/UIView+CustomAlertView.h>
+
 
 //获取屏幕 宽度、高度、
 #define lSCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)

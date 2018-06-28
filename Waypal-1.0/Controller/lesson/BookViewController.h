@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BookViewController : UIViewController
+@property(nonatomic,strong)NSMutableArray *NavCourseArray;
 
 @end

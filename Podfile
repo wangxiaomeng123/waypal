@@ -15,7 +15,7 @@ target 'Waypal-1.0' do
  pod 'Bugly', '~> 2.5.0'
  pod 'AliyunOSSiOS', '~> 2.10.2'
  pod 'AFNetworking', '~> 3.2.1'
-
+ pod 'JKViewAnimation', '~> 1.0.1'
 
 
 end

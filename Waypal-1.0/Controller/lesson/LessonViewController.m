@@ -19,6 +19,7 @@
 #import "UserInfoModel.h"
 #import "StarrySkyAnimate.h"
 #import "navCourseImageView.h"
+#import "BookViewController.h"
 #define SAFEAREABOTTOM_HEIGHT (SCREEN_HEIGHT == 812.f ? 34.f : 0.f)
 
 @interface LessonViewController ()<UIScrollViewDelegate,WCRClassRoomDelegate>
@@ -123,7 +124,6 @@
     vc.enterTempClassBlockDoing = ^(TempClassModel *tempModel) {
                     self.isTempClass =YES;
                     self.tempModel=tempModel;
-//                    self.selectInfoModel.schedule_id =self.tempModel.schedule_id;
                  [self enterTempClassWithTempClass:tempModel];
     };
     [self presentViewController:vc animated:YES completion:nil];
@@ -311,10 +311,9 @@
     if (helpText.length==0) {
         helpText=text1;
     }
-    if (self.isTempClass) {
-        self.selectInfoModel.schedule_id=self.tempModel.schedule_id;
-    }
-    [self.lessonVM scheduleHelpsWithSchedule_id:self.selectInfoModel.schedule_id errorCode:helpID errorMsg:helpText];
+
+    NSString * schude_id =self.isTempClass?self.tempModel.schedule_id:self.selectInfoModel.schedule_id;
+    [self.lessonVM scheduleHelpsWithSchedule_id:schude_id errorCode:helpID errorMsg:helpText];
     
     [self.lessonVM setBlockWithReturnBlock:^(id returnValue) {
         
@@ -575,6 +574,24 @@
 }
 
 
+- (IBAction)enterGreateBookAction:(id)sender {
+    WeakSelf(self);
+    [self.lessonVM getGreatcourses];
+    [self.lessonVM setBlockWithReturnBlock:^(id returnValue) {
+        BookViewController * bookView =lStoryboard(@"Main", @"book");
+        bookView.NavCourseArray =(NSMutableArray *)returnValue;
+        [weakself presentViewController:bookView animated:YES completion:nil];
+        
+    } WithErrorBlock:^(id errorCode) {
+        
+    } WithFailureBlock:^{
+        
+    }];
+    
+    
+    
+    
+}
 
 
 
