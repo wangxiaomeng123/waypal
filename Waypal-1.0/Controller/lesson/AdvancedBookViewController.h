@@ -10,8 +10,6 @@
 typedef void(^dissMissBlock)(void);
 
 @interface AdvancedBookViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UICollectionView *bookCollectionView;
-@property(nonatomic,strong)dissMissBlock dismissDoingBlock;
 @property(nonatomic,strong)NSArray * navCourseArr;
 
 @end

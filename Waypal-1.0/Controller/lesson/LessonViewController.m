@@ -20,6 +20,7 @@
 #import "StarrySkyAnimate.h"
 #import "navCourseImageView.h"
 #import "BookViewController.h"
+#import "AdvancedBookViewController.h"
 #define SAFEAREABOTTOM_HEIGHT (SCREEN_HEIGHT == 812.f ? 34.f : 0.f)
 
 @interface LessonViewController ()<UIScrollViewDelegate,WCRClassRoomDelegate>
@@ -578,10 +579,9 @@
     WeakSelf(self);
     [self.lessonVM getGreatcourses];
     [self.lessonVM setBlockWithReturnBlock:^(id returnValue) {
-        BookViewController * bookView =lStoryboard(@"Main", @"book");
-        bookView.NavCourseArray =(NSMutableArray *)returnValue;
+        AdvancedBookViewController * bookView =lStoryboard(@"Main", @"advanced");
+        bookView.navCourseArr =(NSMutableArray *)returnValue;
         [weakself presentViewController:bookView animated:YES completion:nil];
-        
     } WithErrorBlock:^(id errorCode) {
         
     } WithFailureBlock:^{

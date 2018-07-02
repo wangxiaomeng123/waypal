@@ -26,21 +26,15 @@
     UILabel * questionLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 120, self.frame.size.width, 50)];
     questionLabel.text =model.content;
     questionLabel.numberOfLines=0;
-//    [questionLabel setAdjustsFontSizeToFitWidth:YES];
     questionLabel.textAlignment=NSTextAlignmentCenter;
-    
     UIImageView * questionImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    questionImageView.backgroundColor =[UIColor redColor];
-    
-    [questionImageView sd_setImageWithURL:[NSURL URLWithString:model.image_path]];
+        [questionImageView sd_setImageWithURL:[NSURL URLWithString:model.image_path]];
     if (questionImageView.image!=nil) {
         CGSize  size=  questionImageView.image.size;
         questionImageView.size=size;
         questionImageView.frame=CGRectMake(
                                            (self.frame.size.width-size.width*0.6)/2, 175, size.width*0.6, size.height*0.6);
     }
- 
-    
     UIView *optionView=[self optionsBgViewWithQuestionModel:model];
     UIButton *voiceBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     voiceBtn.frame=CGRectMake(self.frame.size.width-153, self.frame.size.height-73, 135, 60);
@@ -90,7 +84,6 @@
         UIImageView * optionImageView=[[UIImageView alloc] initWithFrame:CGRectMake(50, 50, 100,50 )];
         QuestionOptionModel *questionModel=[model.optionsArr objectAtIndex:i];
         [optionImageView sd_setImageWithURL:[NSURL URLWithString:questionModel.image_path] ];
-        optionImageView.backgroundColor =[UIColor redColor];
         [optionView addSubview:optionImageView];
         [optionView addSubview:btn];
         [optionView addSubview:label];

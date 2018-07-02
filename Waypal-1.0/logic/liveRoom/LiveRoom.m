@@ -86,7 +86,7 @@
     NSDictionary *userInfoDict=[RapidStorageClass readDictionaryDataArchiverWithKey:@"userInfo"];
     NSDictionary *userInfo=userInfoDict[@"output"][@"user"];
     NSString *student_id =userInfo[@"id"];
-    NSString *student_name =userInfo[@"name"];
+    NSString *student_name =userInfo[@"nick"];
     NSString *student_mobile=userInfo[@"mobile"];
     NSString * student_avatar=userInfo[@"avatar"];
     

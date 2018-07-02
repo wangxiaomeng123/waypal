@@ -16,7 +16,6 @@
 #import "BookDetailViewController.h"
 #import "AdvancedBookViewController.h"
 #import "CourseModel.h"
-#import "StageButton.h"
 #import "BooksViewModel.h"
 #import "TipView.h"
 #define bookItemH
@@ -59,19 +58,8 @@
 }
 
 -(void)operationQueues{
-//    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
-//    NSBlockOperation * op1 = [NSBlockOperation blockOperationWithBlock:^{
-//        [self resquestNavCoursesList];
-//    }];
-//    NSBlockOperation * op2 = [NSBlockOperation blockOperationWithBlock:^{
+
         [self resquestGreatBookList];
-//    }];
-//    [op2 addDependency:op1];
-//    [queue addOperation:op1];
-//    [queue addOperation:op2];
-    
-    
-    
 }
 
 -(void)initData{
@@ -158,9 +146,6 @@
         [self.bookCollectionView reloadData];
 
     }
-    
-
-
 }
 
 
@@ -172,9 +157,7 @@
 {
   AdvancedBookViewController *advanceVC=  lStoryboard(@"Main", @"advanced");
     advanceVC.navCourseArr =self.NavCourseArray;
-    advanceVC.dismissDoingBlock = ^{
-        [self dismissViewControllerAnimated:NO completion:nil];
-    };
+ 
     [self presentViewController:advanceVC animated:NO completion:nil];
 }
 
@@ -209,16 +192,7 @@
 }
 
 - (IBAction)enterAdvanceStageAction:(id)sender {
-    [self.advanceStageArrary removeAllObjects];
-      CGRect frame=self.bookCollectionView.frame;
-    [self.bookCollectionView removeFromSuperview];
-    self.bookCollectionView.frame=frame;
-    [self.collectionBgView addSubview:self.bookCollectionView];
-    [self resquestGreatBookList];
-    
-//    [self.bookCollectionView reloadData];
-    return;
-    [self enterAdvanceViewControllerWithNavCourseID: self.NavCourseArray];
+     [self enterAdvanceViewControllerWithNavCourseID: self.NavCourseArray];
 
 }
 
@@ -270,21 +244,6 @@
 //==========================网络请求==============================
 
 
-//#pragma mark 请求泛读导航数据
-//-(void)resquestNavCoursesList{
-//    WeakSelf(self);
-//    [self.lessVModel getGreatcourses];
-//    [self.lessVModel setBlockWithReturnBlock:^(id returnValue) {
-//        [weakself.NavCourseArray addObjectsFromArray:returnValue];
-//        [weakself hanlerNavCourseWithNavCourseArr:weakself.NavCourseArray];
-//
-//    } WithErrorBlock:^(id errorCode) {
-//        [LoadingView tipViewWithTipString:errorCode];
-//    } WithFailureBlock:^{
-//        [LoadingView tipViewWithTipString:@"网络请求失败"];
-//    }];
-//    [self.bookCollectionView reloadData];
-//}
 -(void)hanlerNavCourseWithNavCourseArr:(NSArray *)navCourseArr{
     if (navCourseArr.count==0) {
         return;

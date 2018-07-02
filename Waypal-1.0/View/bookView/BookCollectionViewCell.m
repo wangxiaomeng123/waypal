@@ -18,7 +18,7 @@
     
     self.book_nameLabel.text =[NSString stringWithFormat:@"%@",bookModel.name];
     [self.book_nameLabel setAdjustsFontSizeToFitWidth:YES];
-    self.isReadImageView.hidden =[bookModel.is_readed  boolValue];
+    self.isReadImageView.hidden =![bookModel.is_readed  boolValue];
      self.lock_bgView.hidden =YES;
     [self.book_imageView sd_setImageWithURL:[NSURL URLWithString:bookModel.cover_path] placeholderImage:[UIImage imageNamed:@"book_placeholder"] options:SDWebImageAllowInvalidSSLCertificates];
     

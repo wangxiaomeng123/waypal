@@ -181,7 +181,10 @@
                                   if (self.currentPage< self.bookImagesArr.count) {
                                      [self playDuringWithPageIndex:self.currentPage+1];
                                   }else if (self.currentPage==self.questionArr.count+self.bookImagesArr.count-1){
-                                       [self submitQuestionOption];
+                                      if (self.questionArr.count!=0) {
+                                          [self submitQuestionOption];
+                                      }
+
                                   }
                            
            }
@@ -222,16 +225,19 @@
             [container addSubview:optionView];
         }else
         {
-            WeakSelf(self);
-            SubmitChooseOption *chooseOption=[[[NSBundle mainBundle] loadNibNamed:@"SubmitChooseOption" owner:self options:0] lastObject];
-            chooseOption.frame=container.frame;
-            chooseOption.readAgainDoingBlock = ^{
-                   weakself.currentPage=0;
-                [weakself.pageView removeAllSubviews];
-                [weakself.pageView addSubview:[weakself getLabelForIndex: weakself.currentPage]];
-            };
-            [chooseOption setDataWithDict:self.questionResultDict];
-            [container addSubview:chooseOption];
+            if (self.questionArr.count!=0) {
+                WeakSelf(self);
+                SubmitChooseOption *chooseOption=[[[NSBundle mainBundle] loadNibNamed:@"SubmitChooseOption" owner:self options:0] lastObject];
+                chooseOption.frame=container.frame;
+                chooseOption.readAgainDoingBlock = ^{
+                    weakself.currentPage=0;
+                    [weakself.pageView removeAllSubviews];
+                    [weakself.pageView addSubview:[weakself getLabelForIndex: weakself.currentPage]];
+                };
+                [chooseOption setDataWithDict:self.questionResultDict];
+                [container addSubview:chooseOption];
+            }
+        
         }
        
     }

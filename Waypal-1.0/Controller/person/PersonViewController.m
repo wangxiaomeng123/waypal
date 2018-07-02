@@ -97,6 +97,8 @@
       
     }
     else if (self.selectedBtn==self.person_settingBtn){
+        
+        [self editAction:self.person_editBtn];
         self.person_ResourceBgView.hidden =YES;
         self.settingV.hidden=NO;
     }
@@ -130,7 +132,6 @@
     }
     [personVM editUserInfoWithName:name nick:nick password:password avatarImagePath:self.avatarImagePath];
     [personVM setBlockWithReturnBlock:^(id returnValue) {
-//        [lUSER_DEFAULT setObject:self.person_nameTF.text forKey:@"saveName"];
         [LoadingView tipViewWithTipString:@"信息保存成功"];
         
     } WithErrorBlock:^(id errorCode) {

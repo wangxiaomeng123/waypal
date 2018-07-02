@@ -8,71 +8,74 @@
 
 #import "AdvancedBookViewController.h"
 #import "Config.h"
-
 #import "BookCollectionViewCell.h"
 #import "HorizontalPageFlowlayout.h"
 #import "BookDetailViewController.h"
 #import "CourseModel.h"
 #import "BooksViewModel.h"
+#import "TipView.h"
+#import "NavCourseView.h"
 #define bookItemH
 #define bookItemW   125
 #define perPageCount 16
 
-#define navCourseID @"11"
 @interface AdvancedBookViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
-//@property (weak, nonatomic) IBOutlet UICollectionView *bookCollectionView;
-
+@property (nonatomic, nonatomic)  UICollectionView *bookCollectionView;
 @property (nonatomic,assign)NSInteger currentPage;
 @property (nonatomic,assign)NSInteger  totalPages;
 @property (nonatomic,assign)CGFloat itemSpacing;//之间的距离
-
+@property (weak, nonatomic) IBOutlet UIScrollView *collection_BgView;
 @property (nonatomic,strong)NSMutableArray * advanceStageArrary;
-
-
 @property(nonatomic,assign) CGFloat lastContentOffset;
 @property (weak, nonatomic) IBOutlet UIView *collectionBgView;
-
 @property(nonatomic,assign) BOOL isLoadMore;//是否加载更多
 @property (weak, nonatomic) IBOutlet UIImageView *bookShelfImageView;
-
-
-@property (weak, nonatomic) IBOutlet UIButton *advanceStageButton;
-@property (weak, nonatomic) IBOutlet UIButton *starStageButton;
-@property (nonatomic,strong)UIButton *selectedBtn;
-
-
 @property (nonatomic,strong)NSMutableArray *anserQuestionArr;//回答问题的正确
 @property(nonatomic,assign) CGFloat offset;
-
+@property (weak, nonatomic) IBOutlet UIView *navCourseOptionBgView;
+@property(nonatomic,strong) NSString *currentSelectNavCourseID;
 @end
-
 @implementation AdvancedBookViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.currentPage=0;
-    [self.advanceStageButton setTitle:[NSString stringWithFormat:@"%@",[self.navCourseArr[0]name_chinese]] forState:UIControlStateNormal];
-     [self.starStageButton setTitle:[NSString stringWithFormat:@"%@",[self.navCourseArr[1]name_chinese]] forState:UIControlStateNormal];
-    [self AdvanceStageChange:self.advanceStageButton];
     self.advanceStageArrary=[NSMutableArray array];
-    [self resquestBookData];
-    [self.advanceStageButton sizeToFit];
-    [self.starStageButton sizeToFit];
-    [self configCollectionView];
+    [self initNavCourseView];
+    [self initCollectionView];
+
+}
+
+-(void)initNavCourseView
+{
+    WeakSelf(self);
+    CGSize  size=self.navCourseOptionBgView.size;
+    NavCourseView *navV=[[NavCourseView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height) titileArr:self.navCourseArr];
+    navV.chooseNavCourseDoingBlock = ^(NSString *nav_courseID, NSString *shelf_ImageName) {
+        weakself.currentSelectNavCourseID=nav_courseID;
+        [weakself ReloadCollectionViewDataWithNavCourseID:nav_courseID shelfImageName:shelf_ImageName];
+    };
+    [self.navCourseOptionBgView addSubview:navV];
+}
+
+
+-(void)ReloadCollectionViewDataWithNavCourseID:(NSString *)NavCourseID shelfImageName:(NSString *)shelfImageName{
+    self.currentPage=0;
+    self.bookShelfImageView.image=[UIImage imageNamed:shelfImageName];
+    [self.bookCollectionView removeFromSuperview];
+    [self.advanceStageArrary removeAllObjects];
+    [self resquestGreatCoursesWithNavCourseID:NavCourseID];
+    [self initCollectionView];
+    [self.bookCollectionView reloadData];
 }
 
 #pragma mark 请求泛读数据
--(void)resquestBookData
-{
-    [self resquestGreatCourses];
-    
-}
+-(void)resquestGreatCoursesWithNavCourseID:(NSString *)NavCourseID{
 
--(void)resquestGreatCourses{
-    
     WeakSelf(self);
     BooksViewModel *booksVM=[[BooksViewModel alloc] init];
-    [booksVM getGetCourseWithCourseID:[NSString stringWithFormat:@"%@",[self.navCourseArr[1]NavCourseId]] page:[NSString stringWithFormat:@"%ld",(long)self.currentPage] ];
+    [booksVM getGetCourseWithCourseID:[NSString stringWithFormat:@"%@", NavCourseID] page:[NSString stringWithFormat:@"%ld",(long)self.currentPage] ];
+ 
     [booksVM setBlockWithReturnBlock:^(id returnValue) {
         NSArray * perLoadDataArr =(NSArray *)returnValue;
         if (perLoadDataArr.count <perPageCount) {
@@ -80,62 +83,54 @@
         }else{
             weakself.isLoadMore =YES;
         }
+        DDLog(@"%ld",weakself.advanceStageArrary.count);
         [weakself.advanceStageArrary addObjectsFromArray:returnValue];
         weakself. totalPages=ceil(self.advanceStageArrary.count/8.0);
+        DDLog(@"perLoadDataArr:%ld-%ld-%ld",perLoadDataArr.count,weakself.advanceStageArrary.count,(long)self.currentPage);
         [weakself.bookCollectionView reloadData];
     } WithErrorBlock:^(id errorCode) {
         [LoadingView tipViewWithTipString:errorCode];
     } WithFailureBlock:^{
         [LoadingView tipViewWithTipString:@"网络请求失败"];
     }];
+    [self.bookCollectionView reloadData];
+    
+    
 }
 
 - (IBAction)backAction:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        if (self.dismissDoingBlock) {
-            self.dismissDoingBlock();
-        }
-    }];
-    
-    
-    
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.4;
+//    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.type = @"pageCurl";
+    animation.type = kCATransitionFromRight;
+    [self.view.window.layer addAnimation:animation forKey:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
--(void)configCollectionView{
-    CGFloat spacing  =(self.bookCollectionView.frame.size.width - bookItemW*4)/5;
-    self.offset=spacing;
-    HorizontalPageFlowlayout *layout = [[HorizontalPageFlowlayout alloc] initWithRowCount:2 itemCountPerRow:4];
-    [layout setColumnSpacing:spacing rowSpacing:40 edgeInsets:UIEdgeInsetsMake(0, spacing, 10, spacing)];
-    layout.minimumInteritemSpacing = 0;
-    layout.minimumLineSpacing = spacing;
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    [self.bookCollectionView setCollectionViewLayout:layout];
-    self.bookCollectionView.delegate = self;
-    self.bookCollectionView.dataSource = self;
-    self.bookCollectionView.alwaysBounceHorizontal =YES;
-    self.bookCollectionView.scrollEnabled=NO;
-    self.bookCollectionView.pagingEnabled=YES;
-    [self.bookCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BookCollectionViewCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"BookCollectionViewCell"];
-    
-    UISwipeGestureRecognizer *left_swip=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwip:)];
-    left_swip.direction=UISwipeGestureRecognizerDirectionLeft;
-    [self.bookCollectionView addGestureRecognizer:left_swip];
-    UISwipeGestureRecognizer *right_swip=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwip:)];
-    right_swip.direction=UISwipeGestureRecognizerDirectionRight;
-    [self.bookCollectionView addGestureRecognizer:right_swip];
-}
--(void)leftSwip:(UISwipeGestureRecognizer *)swip{
-    if (swip.state ==UIGestureRecognizerStateEnded) {
-        [self nextPageAction:nil];
-    }
-}
--(void)rightSwip:(UISwipeGestureRecognizer *)swip{
-    if (swip.state ==UIGestureRecognizerStateEnded) {
-        [self prevPageAction:nil];
-    }
-}
+-(void )initCollectionView{
+        CGFloat spacing  =(self.collection_BgView.frame.size.width - bookItemW*4)/5;
+        self.offset=spacing;
+        HorizontalPageFlowlayout *layout = [[HorizontalPageFlowlayout alloc] initWithRowCount:2 itemCountPerRow:4];
+        [layout setColumnSpacing:spacing rowSpacing:40 edgeInsets:UIEdgeInsetsMake(0, spacing, 10, spacing)];
+        layout.minimumInteritemSpacing = 0;
+        layout.minimumLineSpacing = spacing;
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+      self.bookCollectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.collection_BgView.frame.size.width, self.collection_BgView.frame.size.height) collectionViewLayout:layout];
+        self.bookCollectionView.delegate = self;
+        self.bookCollectionView.dataSource = self;
+        self.bookCollectionView.alwaysBounceHorizontal =YES;
+        self.bookCollectionView.scrollEnabled=NO;
+        self.bookCollectionView.pagingEnabled=YES;
+       self.bookCollectionView.backgroundColor=[UIColor clearColor];
+        [self.bookCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([BookCollectionViewCell class]) bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"BookCollectionViewCell"];
+        [self.collection_BgView addSubview:self.bookCollectionView];
+       [self.bookCollectionView reloadData];
+        [self addGesture];
+ }
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.advanceStageArrary.count;
+      return self.advanceStageArrary.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -150,13 +145,25 @@
 {
     
     BookModel *bookModel= self.advanceStageArrary[indexPath.row];
-    bookModel.is_readed =@"1";
-    if (self.advanceStageArrary.count!=0) {
-        [self.advanceStageArrary replaceObjectAtIndex:indexPath.row withObject:bookModel];
+    if ([bookModel.is_readed boolValue]==NO) {
+        TipView *alert = [[[NSBundle mainBundle] loadNibNamed:@"TipView" owner:self options:0] lastObject];
+        alert.frame=CGRectMake(0, 0, 372, 270);
+        alert.okDoingBlock = ^{
+            bookModel.is_readed =@"1";
+            if (self.advanceStageArrary.count!=0)
+            {
+                [self.advanceStageArrary replaceObjectAtIndex:indexPath.row withObject:bookModel];
+            }
+            [self enterBookDetailVCWithBookModel:bookModel];
+            [self.bookCollectionView reloadData];
+            
+        };
+        [alert  jk_showInWindowWithMode:JKCustomAnimationModeAlert inView:nil bgAlpha:0.2 needEffectView:YES];
+    }else{
+        [self enterBookDetailVCWithBookModel:bookModel];
+        [self.bookCollectionView reloadData];
+        
     }
-    [self enterBookDetailVCWithBookModel:bookModel];
-    
-    [self.bookCollectionView reloadData];
     
 }
 -(void)enterBookDetailVCWithBookModel:(BookModel *)bookModel
@@ -166,57 +173,25 @@
     [self presentViewController:bookDetail animated:YES completion:nil];
 }
 
-#pragma mark 阶段切换
-- (IBAction)AdvanceStageChange:(UIButton *)optionBtn {
-//    if (optionBtn!= self.selectedBtn) {
-//        self.selectedBtn.selected = NO;
-//        optionBtn.selected = YES;
-//        self.selectedBtn = optionBtn;
-//    }else{
-//        self.selectedBtn.selected = YES;
-//    }
-    if (self.selectedBtn==self.advanceStageButton){
-//        [self changeAnimationStartStageTranstionX:112 advanceStageTranstionX:-112 shelfImageName:@"book_shelfPink"];
-//        [self.view bringSubviewToFront:self.starStageButton];
-   
-    }
-//    else if (self.selectedBtn==self.advanceStageButton){
-////        [self changeAnimationStartStageTranstionX:0 advanceStageTranstionX:0 shelfImageName:@"book_shelfYellow"];
-////        [self.view bringSubviewToFront:self.advanceStageButton];
-////
-//    }
-    //    [self.bookCollectionView reloadData];
-}
-
-- (IBAction)dismissStarStageAction:(id)sender {
-    CATransition *animation = [CATransition animation];
-    animation.duration = 0.4;
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-    animation.type = @"pageCurl";
-    animation.type = kCATransitionFromRight;
-    [self.view.window.layer addAnimation:animation forKey:nil];
-    [self dismissViewControllerAnimated:NO completion:nil];
-}
-
-
-
-
--(void)changeAnimationStartStageTranstionX:(CGFloat)star_x  advanceStageTranstionX:(CGFloat)advanced_x  shelfImageName:(NSString *)imageName{
-
-    [UIView animateWithDuration:0.3 animations:^{
-        CGAffineTransform transform1= CGAffineTransformMakeTranslation(advanced_x, 0);
-        self.starStageButton.transform=transform1;
-        CGAffineTransform transform= CGAffineTransformMakeTranslation(star_x, 0);
-        self.advanceStageButton.transform=transform;
-        self.bookShelfImageView.image=[UIImage imageNamed:imageName];
-    } completion:^(BOOL finished) {
-       
-    }];
+-(void)addGesture {
+    UISwipeGestureRecognizer *left_swip=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwip:)];
+    left_swip.direction=UISwipeGestureRecognizerDirectionLeft;
+    [self.bookCollectionView addGestureRecognizer:left_swip];
+    UISwipeGestureRecognizer *right_swip=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwip:)];
+    right_swip.direction=UISwipeGestureRecognizerDirectionRight;
+    [self.bookCollectionView addGestureRecognizer:right_swip];
     
 }
-
-
-
+-(void)leftSwip:(UISwipeGestureRecognizer *)swip{
+    if (swip.state ==UIGestureRecognizerStateEnded) {
+        [self nextPageAction:nil];
+    }
+}
+-(void)rightSwip:(UISwipeGestureRecognizer *)swip{
+    if (swip.state ==UIGestureRecognizerStateEnded) {
+        [self prevPageAction:nil];
+    }
+}
 #pragma mark 上一页
 - (IBAction)prevPageAction:(id)sender {
     [[animationTool shareInstance] shakeToShow:sender];
@@ -229,15 +204,19 @@
 #pragma mark 下一页
 - (IBAction)nextPageAction:(id)sender {
     if (self.isLoadMore ==YES) {
-        [self resquestGreatCourses];
+        if (   self.currentSelectNavCourseID.length!=0) {
+           [self resquestGreatCoursesWithNavCourseID: self.currentSelectNavCourseID];
+        }
+  
     }else
     {
-        [LoadingView tipViewWithTipString:@"没有更多了哦"];
+//        [LoadingView tipViewWithTipString:@"没有更多了哦"];
     }
     [self.bookCollectionView reloadData];
     
     [[animationTool shareInstance] shakeToShow:sender];
     if (self.currentPage==self.totalPages-1) {
+        [LoadingView tipViewWithTipString:@"没有更多了哦"];
         return;
     }
     self.currentPage++;
@@ -248,14 +227,5 @@
     [super didReceiveMemoryWarning];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
