@@ -9,20 +9,28 @@
 
 #import "LoadingView.h"
 #import "Config.h"
+#import "UIImage+GIF.h"
 @implementation LoadingView
 
--(instancetype)init
+-(instancetype)initWithFrame:(CGRect)frame
 {
-    if (self=[super init]) {
-        self.backgroundColor= [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    self=[super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor= [[UIColor blackColor] colorWithAlphaComponent:0.1];
         self.frame =CGRectMake(0, 0, lSCREEN_WIDTH, lSCREEN_HEIGHT);
-        self.imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 460, 163)];
+        self.imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 377*0.7, 131*0.7)];
         self.imageView.center=self.center;
-        self.imageView.image =[UIImage imageNamed:@"gloal_loading@2x"];
+        NSString  *filePath = [[NSBundle bundleWithPath:[[NSBundle mainBundle] bundlePath]] pathForResource:@"loading.gif" ofType:nil];
+        NSData  *imageData = [NSData dataWithContentsOfFile:filePath];
+        self.imageView.image=[UIImage sd_animatedGIFWithData:imageData];
+        
         [self addSubview:_imageView];
     }
     return self;
 }
+
+
+
 -(void)showLoadingView{
   
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

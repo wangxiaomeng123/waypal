@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BookModel.h"
+#import "bookDetailModel.h"
 @interface BookDetailViewController : UIViewController
 @property(nonatomic,strong)BookModel *bookModel;
+@property(nonatomic,strong)bookDetailModel * detailModel;
 @end

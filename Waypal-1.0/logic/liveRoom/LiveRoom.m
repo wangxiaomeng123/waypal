@@ -26,7 +26,7 @@
     joinInfo.userAvatar =[NSString stringWithFormat:@"%@",self.selectInfoModel.student_portrait];
     joinInfo.classID = [NSString stringWithFormat:@"%@",self.liveroomModel.room_id];
     joinInfo.teacherID =[NSString stringWithFormat:@"%@",self.selectInfoModel.teacher_id] ;
-    joinInfo.teacherName = [NSString stringWithFormat:@"%@",self.selectInfoModel.teacher_name];
+    joinInfo.teacherName = [NSString stringWithFormat:@"%@",self.selectInfoModel.teacher_nick];
     joinInfo.teacherAvatar = [NSString stringWithFormat:@"%@",self.selectInfoModel.teacher_portrait];
     joinInfo.actionReplayMode =YES;
     joinInfo.classTitle = @"Waypal";
@@ -86,7 +86,7 @@
     NSDictionary *userInfoDict=[RapidStorageClass readDictionaryDataArchiverWithKey:@"userInfo"];
     NSDictionary *userInfo=userInfoDict[@"output"][@"user"];
     NSString *student_id =userInfo[@"id"];
-    NSString *student_name =userInfo[@"name"];
+    NSString *student_name =userInfo[@"nick"];
     NSString *student_mobile=userInfo[@"mobile"];
     NSString * student_avatar=userInfo[@"avatar"];
     

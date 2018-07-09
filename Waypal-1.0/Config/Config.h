@@ -10,17 +10,17 @@
 
 #ifndef MVVMTest_Config_h
 #define MVVMTest_Config_h
-#import <SVProgressHUD.h>
+//#import "SVProgressHUD.h"
 #import "DateTool.h"
 #import "RapidStorageClass.h"
 #import <SDWebImage/SDWebImageDownloader.h>
-#import <UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
 #import "LAlertViewCustom.h"
 #import "UIView+Extension.h"
 #import "LInspectionClass.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "NetworkingTool.h"
-#import <IQKeyboardManager.h>
+#import "IQKeyboardManager.h"
 #import "UIColor+Extension.h"
 #import "UIViewController+Reability.h"
 #import "LoadingView.h"
@@ -29,6 +29,8 @@
 #import "MInspectClass.h"
 #import "UIButton+countDown.h"
 #import <AliyunOSSiOS/AliyunOSSiOS.h>
+#import <JKViewAnimation/UIView+CustomAlertView.h>
+
 
 //获取屏幕 宽度、高度、
 #define lSCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
@@ -81,9 +83,12 @@ static const double kAlertViewAutoDismissSecond = 3.0;
 
 //请求网络接口
 #warning 测试的环境
-#define REQUESTPUBLICURL @"https://t.api.waypal.com/api/"
+//#define REQUESTPUBLICURL @"https://t.api.waypal.com/api/"
+//#define    OSS_BUCKETNAME @"waypal-test"
+
 #warning 正式的环境
-//#define REQUESTPUBLICURL @"https://api.waypal.com/api/"
+#define REQUESTPUBLICURL @"https://api.waypal.com/api/"
+#define  OSS_BUCKETNAME @"waypal"
 
 //客户端初始化信息
 #define CLIENTAPPSETTINGOPERATION @"client/init"
@@ -120,6 +125,10 @@ static const double kAlertViewAutoDismissSecond = 3.0;
 #define  GREATCOURSESLISTOPERATION @"greatcourses/index/"
 //泛读详情
 #define GREATCOURSESDETAILOPERATION @"greatcourses/show/"
+ //泛读测验提交
+#define GREATCOURSEQUESTIONRESULT @"booktest/result"
+
+
 
 #warning 记得修改
 #define GETBACKPSDOPERATION @"getbackPassword"
@@ -143,7 +152,9 @@ static const double kAlertViewAutoDismissSecond = 3.0;
 
 //oss
 #define OSS_ENDPOITN @"http://oss-cn-beijing.aliyuncs.com/"
-#define OSS_BUCKETNAME @"waypal-test"
+
+//#define OSS_BUCKETNAME @"waypal-test"
+
 #define OSS_ACCESS_ID @"LTAIVEC3rPRRES79"
 #define OSS_ACCESS_KEY @"vm2gBV70XfY9To5GDGJ4zzfahrDafh"
 

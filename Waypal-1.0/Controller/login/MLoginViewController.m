@@ -27,7 +27,7 @@
 @implementation MLoginViewController
 -(void)viewWillAppear:(BOOL)animated
 {
-  //    1.官方设置导航透明
+    //    1.官方设置导航透明
     UINavigationBar *nav=self.navigationController.navigationBar;
     [nav setBackgroundImage:[UIImage imageNamed:@"Nav.png"] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [nav setShadowImage:[UIImage new]];
@@ -46,8 +46,8 @@
     self.login_user.delegate=self;
     self.login_password.delegate =self;
     self.view.backgroundColor =[UIColor colorWithPatternImage:[UIImage imageNamed:@"background@2x"]];
-
-
+    
+    
 }
 
 - (IBAction)loginAction:(id)sender {
@@ -55,7 +55,7 @@
     NSString *userName =self.login_user.text;
     NSString *password =self.login_password.text;
     if (userName.length==0) {
-       self.errorTipLabel.text=@"请输入用户名";
+        self.errorTipLabel.text=@"请输入用户名";
         return;
     }
     if (password.length ==0) {
@@ -65,7 +65,6 @@
     
     PublicLoginViewModel *loginVM =[[PublicLoginViewModel alloc] init];
     [loginVM loginWithUserName:userName password:password];
-    
     [loginVM setBlockWithReturnBlock:^(id returnValue) {
         DDLog(@"returnValue:%@",returnValue);
         [self enterLessonListViewController];
@@ -81,13 +80,13 @@
 -(void)enterLessonListViewController
 {
     WeakSelf(self);
-     UIStoryboard * s =[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    UIStoryboard * s =[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     LessonViewController *lessonVC=  [s instantiateViewControllerWithIdentifier:@"Lesson"];
     lessonVC.comebackAction = ^{
         [weakself dismissViewControllerAnimated:NO completion:nil];
     };
     [[UIApplication sharedApplication]keyWindow ].rootViewController =lessonVC;
- 
+    
 }
 
 - (IBAction)forgetPasswordAction:(id)sender {
@@ -102,9 +101,9 @@
     }
     else if ([textField isEqual:self.login_password])
     {
-      self.login_pwsLine.backgroundColor=[UIColor colorWithHexString:@"#FF8F00"];
+        self.login_pwsLine.backgroundColor=[UIColor colorWithHexString:@"#FF8F00"];
     }
-
+    
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
@@ -120,8 +119,8 @@
 
 - (IBAction)registerAction:(id)sender {
     
- UIViewController *registerVC=   lStoryboard(@"Main", @"register");
- [self  presentViewController:registerVC animated:YES completion:nil];
+    UIViewController *registerVC=   lStoryboard(@"Main", @"register");
+    [self  presentViewController:registerVC animated:YES completion:nil];
 }
 
 

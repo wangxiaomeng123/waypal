@@ -9,6 +9,7 @@
 #import "NetworkingTool.h"
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import "LoadingView.h"
+#import "LLTClearCustomViewController.h"
 
 @interface NetworkingTool()
 @property (strong, nonatomic) OSSClient *client;
@@ -70,6 +71,7 @@
                                                                                    @"text/javascript",
                                                                                    @"text/xml",
                                                                                    @"image/*"]];
+
     });
     return instance;
 }
@@ -78,7 +80,7 @@
 //get请求
 + (void)getWithUrl: (NSString *)url params: (NSDictionary *)params isReadCache: (BOOL)isReadCache success: (responseSuccess)success failed: (responseFailed)failed  {
     
-    LoadingView *loadView= [[LoadingView alloc] init];
+    LoadingView *loadView= [[LoadingView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadView];
 
     NSString * head_token =[RapidStorageClass readToken];
@@ -86,10 +88,10 @@
     if (head_token.length>0) {
         [[NetworkingTool sharedManager].requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
     }
+      DDLog(@"[token]:%@",token);
       NSString * requestURL =[NSString stringWithFormat:@"%@%@?offset=%ld",REQUESTPUBLICURL,url,TIMEZONEOFFSET];
     [[NetworkingTool sharedManager] GET:requestURL parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DDLog(@"接口名称:[%@]-[%@",url,responseObject);
-
+        DDLog(@"接口名称:[%@]-[%@]",url,responseObject);
         [loadView hiddenLoadingView];
         if (success) {
             success(task,responseObject);
@@ -97,23 +99,41 @@
         [RapidStorageClass saveDictionaryDataArchiver:responseObject key:requestURL];
 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
          [loadView hiddenLoadingView];
-        id cacheData= nil;
-        if (isReadCache) {
-            cacheData = [RapidStorageClass readDictionaryDataArchiverWithKey:url];
-        }else {
-            cacheData = nil;
+        NSHTTPURLResponse * responses = (NSHTTPURLResponse *)task.response;
+        if ( responses.statusCode==401|| responses.statusCode==400||responses.statusCode==403)
+        {
+            DDLog(@"responses.statusCode:%ld",responses.statusCode);
+            
+            UIViewController *loginVC =lStoryboard(@"Main", @"login");
+            [RapidStorageClass deleteDictionaryDataArchiverWithKey:Key_LOGININFORMATION];
+//              [RapidStorageClass deleteToken];
+            LLTClearCustomViewController *nav=[[LLTClearCustomViewController alloc]initWithRootViewController:loginVC];
+            [[UIApplication sharedApplication]keyWindow].rootViewController =nav;
+            
+            
+            
+        }else{
+            id cacheData= nil;
+            if (isReadCache) {
+                cacheData = [RapidStorageClass readDictionaryDataArchiverWithKey:url];
+            }else {
+                cacheData = nil;
+            }
+            
+            if (failed) {
+                failed(task,error,cacheData);
+            }
         }
-
-        if (failed) {
-            failed(task,error,cacheData);
-        }
-       
+    
+            
+        
+ 
     }];
 }
 //post请求
 + (void)postWithUrl:(NSString *)url params:(NSDictionary *)params isReadCache: (BOOL)isReadCache success:(responseSuccess)success failed:(responseFailed)failed {
+    
     LoadingView *loadView= [[LoadingView alloc] init];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadView];
     NSString * head_token =[RapidStorageClass readToken];
@@ -123,30 +143,42 @@
     }
     NSMutableDictionary *mutableDict =[[NSMutableDictionary alloc] initWithDictionary:params];
     [mutableDict setObject:[NSNumber numberWithInteger:TIMEZONEOFFSET] forKey:@"offset"];
-    NSString * requestURL =[NSString stringWithFormat:@"%@%@",REQUESTPUBLICURL,url];
+     NSString * requestURL =[NSString stringWithFormat:@"%@%@",REQUESTPUBLICURL,url];
+    DDLog(@"[token]:%@",token);
     [[NetworkingTool sharedManager] POST:requestURL parameters:mutableDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [loadView hiddenLoadingView];
         if (success) {
             success(task,responseObject);
         }
-        DDLog(@"接口名称:[%@]-[%@",url,responseObject);
-        
+        DDLog(@"接口名称:[%@]-[%@]]",url,responseObject);
        [RapidStorageClass saveDictionaryDataArchiver:responseObject key:requestURL];
         //请求成功,保存数据
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
          [loadView hiddenLoadingView];
-      
-        id cacheData= nil;
-        //是否读取缓存
-        if (isReadCache) {
-            [RapidStorageClass readDictionaryDataArchiverWithKey:requestURL];
-        }else {
-            cacheData = nil;
+        DDLog(@"error:%ld-%@-%@",[error code],[error domain],[error userInfo]);
+        NSHTTPURLResponse * responses = (NSHTTPURLResponse *)task.response;
+        if ( responses.statusCode==401|| responses.statusCode==400||responses.statusCode==403)
+        {
+            UIViewController *loginVC =lStoryboard(@"Main", @"login");
+            [RapidStorageClass deleteDictionaryDataArchiverWithKey:Key_LOGININFORMATION];
+//            [RapidStorageClass deleteToken];
+            LLTClearCustomViewController *nav=[[LLTClearCustomViewController alloc]initWithRootViewController:loginVC];
+            [[UIApplication sharedApplication]keyWindow].rootViewController =nav;
+            
+        }else{
+            id cacheData= nil;
+            if (isReadCache) {
+                cacheData = [RapidStorageClass readDictionaryDataArchiverWithKey:url];
+            }else {
+                cacheData = nil;
+            }
+            
+            if (failed) {
+                failed(task,error,cacheData);
+            }
+            
         }
-
-        if (failed) {
-            failed(task,error,cacheData);
-        }
+        
     }];
     
 }
@@ -188,8 +220,10 @@
 
 }
 
+-(void)enterLoginViewController{
+    UIViewController  * rootController=[[UIApplication sharedApplication] keyWindow].rootViewController;
+      rootController=lStoryboard(@"Domain", @"login");
+}
 
-
-    
 
 @end

@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.loginVModel=[[PublicLoginViewModel alloc] init];
-//    [self transformAnimation];
+    //    [self transformAnimation];
 }
 - (IBAction)getVerficodeAction:(id)sender {
     
@@ -41,9 +41,9 @@
     }
     [self.loginVModel getVerficdoeWithPhoneNum:self.phoneTF.text];
     [self.loginVModel setBlockWithReturnBlock:^(id returnValue) {
-     [weakself.getVerfiCodeBtn  startWithTime:60 title:@"获取验证码" countDownTitle:@"s" mainColor:nil countColor:nil];
+        [weakself.getVerfiCodeBtn  startWithTime:60 title:@"获取验证码" countDownTitle:@"s" mainColor:nil countColor:nil];
     } WithErrorBlock:^(id errorCode) {
-                [LoadingView tipViewWithTipString:[NSString stringWithFormat:@"%@",errorCode]];
+        [LoadingView tipViewWithTipString:[NSString stringWithFormat:@"%@",errorCode]];
     } WithFailureBlock:^{
         [LoadingView tipViewWithTipString:@"网络请求失败"];
     }];
@@ -51,7 +51,7 @@
 }
 - (IBAction)isDisagressProtocolAction:(UIButton *)sender{
     
-        sender.selected=!sender.selected;
+    sender.selected=!sender.selected;
     
 }
 - (IBAction)registerAction:(id)sender
@@ -67,16 +67,12 @@
      {
          [lUSER_DEFAULT setObject:weakself.phoneTF.text forKey:Key_RemberUserAccount];
          [weakself dismissViewControllerAnimated:YES completion:nil];
-        
-    } WithErrorBlock:^(id errorCode) {
-        [LoadingView tipViewWithTipString:[NSString stringWithFormat:@"%@",errorCode]];
-    } WithFailureBlock:^{
-        [LoadingView tipViewWithTipString:@"网络请求失败"];
-    }];
-    
-    
-    
-    
+         
+     } WithErrorBlock:^(id errorCode) {
+         [LoadingView tipViewWithTipString:[NSString stringWithFormat:@"%@",errorCode]];
+     } WithFailureBlock:^{
+         [LoadingView tipViewWithTipString:@"网络请求失败"];
+     }];
     
 }
 - (IBAction)goToLoginAction:(id)sender {
@@ -115,7 +111,7 @@
     animation.fromValue = [NSNumber numberWithFloat:1.0f];
     animation.toValue = [NSNumber numberWithFloat:0.0f];//这是透明度。
     animation.autoreverses = YES;
-//    animation.duration = time;
+    //    animation.duration = time;
     animation.repeatCount = MAXFLOAT;
     animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
@@ -129,17 +125,17 @@
 - (IBAction)textChangeAction:(UITextField*)sender {
     if (sender ==self.phoneTF) {
         if (self.phoneTF.text.length>11) {
-               self.phoneTF.text =[self.phoneTF.text substringToIndex:11];
+            self.phoneTF.text =[self.phoneTF.text substringToIndex:11];
         }
-     
+        
     }
     if (sender==self.verfiCodeTF) {
         if (self.verfiCodeTF.text.length >4) {
-             self.verfiCodeTF.text =[self.verfiCodeTF.text substringToIndex:4];
+            self.verfiCodeTF.text =[self.verfiCodeTF.text substringToIndex:4];
         }
     }
     if (sender ==self.passwordTF) {
-//        self.passwordTF.text =[self.passwordTF.text substringFromIndex:8];
+        //        self.passwordTF.text =[self.passwordTF.text substringFromIndex:8];
     }
     
     
@@ -152,7 +148,7 @@
     }
     if (textField==self.verfiCodeTF) {
         self.verfiCodeLine.backgroundColor =[UIColor colorWithHexString:@"#FF8F00"];
-
+        
     }
     if (textField ==self.passwordTF) {
         self.passwordLine.backgroundColor =[UIColor colorWithHexString:@"#FF8F00"];
@@ -182,13 +178,13 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

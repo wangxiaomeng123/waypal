@@ -25,6 +25,9 @@
         }
         self.optionsArr = optionsArrary;
     }
-    
+    if ([key isEqualToString:@"audio"]) {
+        NSDictionary *dict=(NSDictionary *)value;
+        self.filname=dict[@"filname"];
+    }
 }
 @end

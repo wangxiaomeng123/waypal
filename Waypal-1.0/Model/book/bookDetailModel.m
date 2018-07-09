@@ -16,12 +16,13 @@
     if ([key isEqualToString:@"id"]) {
         self.detail_id =value;
     }
-    if ([key isEqualToString:@"audio"]) {
-        NSDictionary * audioDict =(NSDictionary *)value;
-        self.audio_id=audioDict[@"id"];
-        self.audio_ext=audioDict[@"ext"];
-        self.audio_filname=audioDict[@"filname"];
-        self.audio_part=audioDict[@"part"];
+    if ([key isEqualToString:@"audio_part"]) {
+        NSString * part =(NSString *)value;
+//        self.audio_id=audioDict[@"id"];
+//        self.audio_ext=audioDict[@"ext"];
+//        self.audio_filname=audioDict[@"filname"];
+      NSMutableArray *audioArr=[NSJSONSerialization JSONObjectWithData:[part dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+        self.audio_partArr=audioArr;
     }
     if ([key isEqualToString:@"booktests"]) {
         NSArray * booktestArr=(NSArray *)value;

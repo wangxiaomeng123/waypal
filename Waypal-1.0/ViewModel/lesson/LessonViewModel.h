@@ -16,7 +16,8 @@
 -(void)getLessonSchedulesListWithFromTime:(NSString *)from_time;
 
 /**
- che
+ 
+ 获取进入直播间的信息
 
  @param schedule_id 课件id
  */
@@ -51,18 +52,15 @@
  */
 -(void)getGreatcourses;
 
-/**
- 获取泛读列表
 
- @param course_id 课程id
- @param page  页数
- */
--(void)getGetCourseWithCourseID:(NSString *)course_id page:(NSString *)page;
 
 /**
- 获取读本详情
- @param book_id 读本id
+ 提交泛读的答题信息
+
+ @param bookId 课本id
+ @param optionArr 答题内容
  */
--(void)getGreatcoursesDetailWithbookID:(NSString *)book_id;
+-(void)submitGreatCoursesQuestionWithBookId:(NSString *)bookId  questionOptionArr:(NSArray *)optionArr;
+
 
 @end

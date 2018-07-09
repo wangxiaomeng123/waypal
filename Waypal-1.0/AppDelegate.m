@@ -36,7 +36,8 @@
        MLoginViewController *login1= lStoryboard(@"Main",@"login");
         LLTClearCustomViewController *nav=[[LLTClearCustomViewController alloc] initWithRootViewController:login1];
        self.window.rootViewController=nav;
-    }else
+    }
+    else
     {
         UIViewController *lesson=lStoryboard(@"Main", @"Lesson");
         self.window.rootViewController =lesson;
@@ -46,8 +47,6 @@
 
     return YES;
 }
-
-
 
 
 - (void)setupBugly {
