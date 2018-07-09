@@ -12,12 +12,6 @@
 @implementation BookModel
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-    if ([key isEqualToString:@"audio"]) {
-        NSDictionary* audioDict=(NSDictionary*)value;
-        self.ext =audioDict[@"ext"];
-        self.filname=audioDict[@"filname"];
-        self.part=audioDict[@"part"];
-    }
     if ([key isEqualToString:@"id"]) {
         self.book_id =value;
     }

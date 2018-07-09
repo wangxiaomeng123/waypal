@@ -16,7 +16,8 @@
 -(void)getLessonSchedulesListWithFromTime:(NSString *)from_time;
 
 /**
- che
+ 
+ 获取进入直播间的信息
 
  @param schedule_id 课件id
  */
@@ -60,9 +61,6 @@
  @param optionArr 答题内容
  */
 -(void)submitGreatCoursesQuestionWithBookId:(NSString *)bookId  questionOptionArr:(NSArray *)optionArr;
-
-
-
 
 
 @end

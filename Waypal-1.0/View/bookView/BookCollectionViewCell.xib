@@ -34,7 +34,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U1O-3m-7Se">
                                 <rect key="frame" x="0.0" y="2" width="206" height="243"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book_shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="9mc-x1-Bo5">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book_shadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="9mc-x1-Bo5">
                                 <rect key="frame" x="0.0" y="0.0" width="20" height="260"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="zoi-qm-2lX"/>

@@ -7,7 +7,7 @@
 //
 
 typedef void(^chooseOptionBlock)(NSDictionary *chooseOptionInfoDict,NSInteger index);
-typedef void(^playQuestionAudioBlock)(NSString *playAudioPath);
+typedef void(^playQuestionAudioBlock)(NSString *playAudioPath,NSString *fileName);
 #import <UIKit/UIKit.h>
 #import "QuestionModel.h"
 #import "QuestionOptionModel.h"
@@ -19,8 +19,7 @@ typedef void(^playQuestionAudioBlock)(NSString *playAudioPath);
 @property(nonatomic,strong) NSString * answer_option_id;
 @property(nonatomic,strong) NSString * right_option_id;
 @property(nonatomic,strong)NSString  * booktest_id;
-
-
+@property(nonatomic,strong)NSMutableArray * selectOptionArr;
 -(void)setViewData:(QuestionModel *)model;
 
 @end

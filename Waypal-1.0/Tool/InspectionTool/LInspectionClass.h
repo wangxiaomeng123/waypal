@@ -282,5 +282,4 @@
 +(NSAttributedString *)setButtonFont:(int ) font  textColor:(int  )colorHEX   lineColor:(int )lineColorHEX  text:(NSString *)textStr;
 
 
-
 @end

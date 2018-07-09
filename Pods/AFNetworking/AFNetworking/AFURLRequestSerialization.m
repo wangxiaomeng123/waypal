@@ -505,7 +505,6 @@ forHTTPHeaderField:(NSString *)field
                     break;
             }
         }
-        
     }
 
     if ([self.HTTPMethodsEncodingParametersInURI containsObject:[[request HTTPMethod] uppercaseString]]) {

@@ -35,5 +35,32 @@
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[date timeIntervalSince1970]];
     return timeSp;
 }
++(NSDictionary *)setTextLineSpaceWithString:(NSString *)string withLineBreakMode:(NSLineBreakMode)lineBreakMode withAlignment:(NSTextAlignment)alignment withFont:(UIFont *)font withLineSpace:(CGFloat)lineSpace withTextlengthSpace:(NSNumber *)textlengthSpace andParagraphSpaceing:(CGFloat)paragraphSpacing {
+    // 1. 创建样式对象
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    // 2. 每行容纳字符的宽度
+    style.lineBreakMode = lineBreakMode;
+    // 3. 对齐方式
+    style.alignment = alignment;
+    // 4. 设置行间距
+    style.lineSpacing = lineSpace;
+    // 5. 连字符号链接
+    style.hyphenationFactor = 1.0f;
+    // 6. 首行缩进
+    style.firstLineHeadIndent = 30.0f;
+    // 7. 段间距
+    style.paragraphSpacing = paragraphSpacing;
+    // 8. 段前间距
+    style.paragraphSpacingBefore = 0.0f;
+    // 9. 除首行之外其他行缩进
+    style.headIndent = 0.0f;
+    // 10. 每行容纳字符的宽度
+    style.tailIndent = 0.0f;
+    NSDictionary *dict = @{NSFontAttributeName : font,
+                           NSParagraphStyleAttributeName : style,
+                           NSKernAttributeName : textlengthSpace,
+                           };
+    return dict;
+}
 
 @end

@@ -170,13 +170,13 @@
 -(void)submitGreatCoursesQuestionWithBookId:(NSString *)bookId  questionOptionArr:(NSArray *)optionArr{
     
     NSDictionary * paramDict=@{@"student_id":[NSNumber numberWithInt:[[RapidStorageClass readUserID] intValue]],@"book_id":[NSNumber numberWithInt:[bookId intValue]],@"result":optionArr};
-    [self requestWithRequestURL:@"https://t.api.waypal.com/api/booktest/result" parameter:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSString * url=[NSString stringWithFormat:@"%@%@", REQUESTPUBLICURL,GREATCOURSEQUESTIONRESULT];
+    [self requestWithRequestURL:url parameter:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"code"] intValue]==REQUESTSUCCESS) {
                 self.returnBlock(responseObject[@"output"]);
         }else{
                  self.returnBlock(responseObject[@"tip"]);
         }
-        
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 self.failureBlock();
             }];
@@ -215,7 +215,6 @@
         NSString * head_token =[RapidStorageClass readToken];
         NSString * token=[NSString stringWithFormat:@"Bearer %@",head_token];
     [httpRequestManager.requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
-    
 }
 
 

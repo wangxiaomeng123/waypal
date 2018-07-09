@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface BookModel : NSObject
-@property(nonatomic,strong)NSString *  ext;
-@property(nonatomic,strong)NSString * filname;
-@property(nonatomic,strong)NSString * part;
+@property(nonatomic,strong)NSString * audio_part;
+@property(nonatomic,strong)NSString *audio_path;
 @property(nonatomic,strong)NSString * audio_id;
 @property(nonatomic,strong)NSString * course_id;
 @property(nonatomic,strong)NSString * cover;

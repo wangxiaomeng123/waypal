@@ -34,4 +34,5 @@
  */
 +(NSString *)timeStampWithTime:(NSDate *)date;
 
++(NSDictionary *)setTextLineSpaceWithString:(NSString *)string withLineBreakMode:(NSLineBreakMode)lineBreakMode withAlignment:(NSTextAlignment)alignment withFont:(UIFont *)font withLineSpace:(CGFloat)lineSpace withTextlengthSpace:(NSNumber *)textlengthSpace andParagraphSpaceing:(CGFloat)paragraphSpacing;
 @end

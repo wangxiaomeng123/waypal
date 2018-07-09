@@ -10,7 +10,7 @@
 
 #ifndef MVVMTest_Config_h
 #define MVVMTest_Config_h
-#import "SVProgressHUD.h"
+//#import "SVProgressHUD.h"
 #import "DateTool.h"
 #import "RapidStorageClass.h"
 #import <SDWebImage/SDWebImageDownloader.h>
@@ -83,9 +83,12 @@ static const double kAlertViewAutoDismissSecond = 3.0;
 
 //请求网络接口
 #warning 测试的环境
-#define REQUESTPUBLICURL @"https://t.api.waypal.com/api/"
+//#define REQUESTPUBLICURL @"https://t.api.waypal.com/api/"
+//#define    OSS_BUCKETNAME @"waypal-test"
+
 #warning 正式的环境
-//#define REQUESTPUBLICURL @"https://api.waypal.com/api/"
+#define REQUESTPUBLICURL @"https://api.waypal.com/api/"
+#define  OSS_BUCKETNAME @"waypal"
 
 //客户端初始化信息
 #define CLIENTAPPSETTINGOPERATION @"client/init"
@@ -149,7 +152,9 @@ static const double kAlertViewAutoDismissSecond = 3.0;
 
 //oss
 #define OSS_ENDPOITN @"http://oss-cn-beijing.aliyuncs.com/"
-#define OSS_BUCKETNAME @"waypal-test"
+
+//#define OSS_BUCKETNAME @"waypal-test"
+
 #define OSS_ACCESS_ID @"LTAIVEC3rPRRES79"
 #define OSS_ACCESS_KEY @"vm2gBV70XfY9To5GDGJ4zzfahrDafh"
 

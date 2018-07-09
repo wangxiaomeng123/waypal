@@ -14,6 +14,7 @@ typedef void(^chooseNavCourseBlock)(NSString * nav_courseID,NSString * shelf_Ima
 @property (nonatomic,strong)NSMutableArray * shelfImagesArr;
 @property (nonatomic,strong)chooseNavCourseBlock chooseNavCourseDoingBlock;
 @property(nonatomic,strong)UIButton *selectedBtn;
+@property(nonatomic,assign) NSInteger pageNum;
 - (instancetype)initWithFrame:(CGRect)frame titileArr:(NSArray *)titleArr;
 
 @end

@@ -9,88 +9,136 @@
 #import "QuestionView.h"
 #import "AnswerQuestionResult.h"
 #import "Config.h"
+#import "enlargeButton.h"
+#import "ScaleImageView.h"
 @implementation QuestionView
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self=[super initWithFrame:frame])
     {
+        self.userInteractionEnabled=YES;
     }
     return self;
 }
 -(void)setViewData:(QuestionModel *)model
 {
     self.booktest_id =model.booktest_id;
+    //    背景
     UIImageView *imageV=[[UIImageView alloc] initWithFrame:self.frame];
     imageV.image =[UIImage imageNamed:@"question_bgView"];
+    imageV.contentMode=UIViewContentModeScaleAspectFill;
+    CGFloat leftPadding=150;
     
-    UILabel * questionLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 120, self.frame.size.width, 50)];
-    questionLabel.text =model.content;
+    // 问题label
+    UILabel * questionLabel=[[UILabel alloc] initWithFrame:CGRectMake(leftPadding, 160, self.frame.size.width-leftPadding*2, 30)];
+    questionLabel.text =[NSString stringWithFormat:@"%ld、 %@",self.tag+1,model.content];
     questionLabel.numberOfLines=0;
-    questionLabel.textAlignment=NSTextAlignmentCenter;
-    UIImageView * questionImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        [questionImageView sd_setImageWithURL:[NSURL URLWithString:model.image_path]];
-    if (questionImageView.image!=nil) {
-        CGSize  size=  questionImageView.image.size;
-        questionImageView.size=size;
-        questionImageView.frame=CGRectMake(
-                                           (self.frame.size.width-size.width*0.6)/2, 175, size.width*0.6, size.height*0.6);
+    [questionLabel setAdjustsFontSizeToFitWidth:YES];
+    questionLabel.font=[UIFont boldSystemFontOfSize:24];
+    questionLabel.textAlignment=NSTextAlignmentLeft;
+    
+    //   大图
+    CGFloat bigImageHeight=50;
+    UIImageView * questionImageView=[[UIImageView alloc] initWithFrame:CGRectMake(leftPadding+30, questionLabel.frame.origin.y+40, 0, bigImageHeight)];
+    questionImageView.layer.cornerRadius=5.0;
+    questionImageView.layer.masksToBounds=YES;
+    questionImageView.contentMode=UIViewContentModeScaleAspectFit;
+    [questionImageView sd_setImageWithURL:[NSURL URLWithString:model.image_path]];
+    if ([model.category integerValue]==2)
+    {
+        bigImageHeight=230;
+        questionLabel.frame=CGRectMake(leftPadding, 80, self.frame.size.width-leftPadding*2, 30);
+        questionImageView.frame=CGRectMake(leftPadding+30, questionLabel.frame.origin.y+40, 229, bigImageHeight);
     }
+    
     UIView *optionView=[self optionsBgViewWithQuestionModel:model];
+    optionView.userInteractionEnabled=YES;
     UIButton *voiceBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     voiceBtn.frame=CGRectMake(self.frame.size.width-153, self.frame.size.height-73, 135, 60);
+    
+    
+    
+    
     [voiceBtn setImage:[UIImage imageNamed:@"question_play"] forState:UIControlStateNormal];
     [voiceBtn addTarget:self action:@selector(playVoice) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     [self addSubview:imageV];
     [self addSubview:questionLabel];
     [self addSubview:optionView];
-    [self addSubview:voiceBtn];
+    
+    //    "category": 1, // 类型, '1' => '仅文字', '2' => '含图片', '4' => '含音频'
+    if ([model.category integerValue]==4) {
+        [self addSubview:voiceBtn];
+    }
+    optionView.frame=CGRectMake(leftPadding, bigImageHeight+questionImageView.frame.origin.y+20, self.frame.size.width-300, 100);
+    if ([model.category integerValue]==2) {
+        optionView.frame=CGRectMake(leftPadding, bigImageHeight+questionImageView.frame.origin.y+20, self.frame.size.width-300, 100);
+    };
     [self addSubview:questionImageView];
-
+    
 }
 
--(UIView *)optionsBgViewWithQuestionModel:(QuestionModel *)model{
-    
+-(UIView *)optionsBgViewWithQuestionModel:(QuestionModel *)model {
     self.selectQuestionModel=model;
-    UIView * bg=[[UIView alloc] initWithFrame:CGRectMake(0, 250, self.frame.size.width, 100)];
-    CGFloat width=150;
-    NSInteger  optionCount=   model.optionsArr.count;
-    CGFloat spacing =(659-150*optionCount)/(optionCount+1);
+    CGFloat y=250;
+    if ([model.category integerValue]==2) {
+        y=370;
+    }
+    UIView * bg=[[UIView alloc] initWithFrame: CGRectMake(80, y, self.frame.size.width, 100)];
+    bg.userInteractionEnabled =YES;
+    NSInteger  optionCount= model.optionsArr.count;
+    CGFloat width =(self.frame.size.width-300)/optionCount;
     NSString *key=[NSString stringWithFormat:@"%@",self.selectQuestionModel.booktest_id];
     NSString *selectionOptionValue=[lUSER_DEFAULT objectForKey:key];
     for (int i=0; i<model.optionsArr.count; i++)
     {
-        UIView *optionView=[[UIView alloc] initWithFrame:CGRectMake(spacing+(width+spacing)*i , 0, width, 40)];
+        UIView *optionView=[[UIView alloc] initWithFrame:CGRectMake(width*i , 0, width, 140)];
+        optionView.userInteractionEnabled=YES;
         UIButton * btn=[UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame=CGRectMake(0 , 0, 40, 40);
-        UILabel *label =[[UILabel alloc] initWithFrame:CGRectMake(50, 0, width-50, 40)];
-        label.numberOfLines=0;
-        label.text= [[model.optionsArr objectAtIndex:i] content];
-        [label setAdjustsFontSizeToFitWidth:YES];
+        btn.frame=CGRectMake(0 , 0, width, 40);
+        NSString * text= [[model.optionsArr objectAtIndex:i] content];
         btn.tag =i;
+        [btn.titleLabel setAdjustsFontSizeToFitWidth:YES];
+        btn.titleLabel.numberOfLines=0;
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitle:text forState:UIControlStateNormal];
+        btn.titleLabel.font=[UIFont boldSystemFontOfSize:18];
         [btn setImage:[UIImage imageNamed:@"register_disagree"] forState:UIControlStateNormal];
         [btn setImage:[UIImage imageNamed:@"register_agree"] forState:UIControlStateSelected];
-        if ( [[model.optionsArr objectAtIndex:i] isanswer]) {
-               self.right_option_id =[[model.optionsArr objectAtIndex:i] options_id];
+        if ( [[[model.optionsArr objectAtIndex:i] isanswer] boolValue]==YES) {
+            self.right_option_id =[[model.optionsArr objectAtIndex:i] options_id];
         }
         [btn addTarget:self action:@selector(selectOption:) forControlEvents:UIControlEventTouchUpInside];
         if (selectionOptionValue) {
-                if ([selectionOptionValue integerValue]==i)
-                {
-                      btn.selected =YES;
-                    self.selectedBtn =btn;
-                }
-           }
-        
-        UIImageView * optionImageView=[[UIImageView alloc] initWithFrame:CGRectMake(50, 50, 100,50 )];
+            if ([selectionOptionValue integerValue]==i)
+            {
+                btn.selected =YES;
+                self.selectedBtn =btn;
+            }
+        }
+        UIImageView * optionImageView=[[UIImageView alloc] initWithFrame:CGRectMake(30, 40, width-40,100)];
         QuestionOptionModel *questionModel=[model.optionsArr objectAtIndex:i];
         [optionImageView sd_setImageWithURL:[NSURL URLWithString:questionModel.image_path] ];
-        [optionView addSubview:optionImageView];
+        optionImageView.contentMode=UIViewContentModeScaleAspectFit;
+        optionImageView.layer.cornerRadius=5.0;
+        optionImageView.tag =i;
+        optionImageView.layer.masksToBounds=YES;
         [optionView addSubview:btn];
-        [optionView addSubview:label];
+        [optionView addSubview:optionImageView];
+        
         [bg addSubview:optionView];
+        
+        UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scaleImage:)];
+        optionImageView.userInteractionEnabled=YES;
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [optionImageView addGestureRecognizer:tap];
     }
     return bg;
 }
+
+
 
 -(void)selectOption:(UIButton *)optionBtn{
     if (optionBtn!= self.selectedBtn) {
@@ -100,23 +148,31 @@
     }else{
         self.selectedBtn.selected = YES;
     }
-   QuestionOptionModel *model= [self.selectQuestionModel.optionsArr objectAtIndex:optionBtn.tag ];
-   self.answer_option_id=model.options_id;
+    QuestionOptionModel *model= [self.selectQuestionModel.optionsArr objectAtIndex:optionBtn.tag ];
+    self.answer_option_id=model.options_id;
     if (self.chooseOptionDoingBlock) {
         NSDictionary*  questionInfoDict=@{@"book_test_id":[NSNumber numberWithInt:[self.selectQuestionModel.booktest_id intValue]],
-                                             @"right_option_id":[NSNumber numberWithInt:[self.right_option_id intValue]],
-                                             @"answer_option_id":[NSNumber numberWithInt:[self.answer_option_id  intValue]]};
+                                          @"right_option_id":[NSNumber numberWithInt:[self.right_option_id intValue]],
+                                          @"answer_option_id":[NSNumber numberWithInt:[self.answer_option_id  intValue]]};
         self.chooseOptionDoingBlock(questionInfoDict,self.tag);
+        DDLog(@"questionInfoDict:%@",questionInfoDict);
     }
     NSString * key =[NSString stringWithFormat:@"%@",self.selectQuestionModel.booktest_id];
     NSInteger  selectionOptionTag=optionBtn.tag;
-     [lUSER_DEFAULT setObject:[NSNumber numberWithInteger:selectionOptionTag] forKey:key];
-   
-
+    [lUSER_DEFAULT setObject:[NSNumber numberWithInteger:selectionOptionTag] forKey:key];
+    
 }
+-(void)scaleImage:(UITapGestureRecognizer *)tap{
+    UIImageView *img=(UIImageView *)tap.view;
+    ScaleImageView *alert = [[[NSBundle mainBundle] loadNibNamed:@"ScaleImageView" owner:self options:0] lastObject];
+    alert.frame=CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    alert.orginImage=img.image;
+    [alert  jk_showInWindowWithMode:JKCustomAnimationModeAlert inView:nil bgAlpha:0.2 needEffectView:YES];
+}
+
 -(void)playVoice{
     if (self.questionAudioDoingBlock) {
-        self.questionAudioDoingBlock(self.selectQuestionModel.audio_path);
+        self.questionAudioDoingBlock(self.selectQuestionModel.audio_path,self.selectQuestionModel.filname);
     }
 }
 

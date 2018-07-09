@@ -19,6 +19,8 @@
 @property(nonatomic,strong) NSString * video_id;
 @property (nonatomic,strong)NSString *booktest_id;
 @property(nonatomic,strong)NSString * image_path;
+@property(nonatomic,strong)NSString * filname;
+
 //options
 @property(nonatomic,strong) NSMutableArray *optionsArr;
 

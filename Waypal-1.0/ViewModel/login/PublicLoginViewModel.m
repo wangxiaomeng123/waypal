@@ -13,6 +13,7 @@
 #import "Config.h"
 #import "NetworkingTool.h"
 #import "UserInfoModel.h"
+
 @implementation PublicLoginViewModel
 -(void)loginWithUserName:(NSString *)userName password:(NSString *)password
 {
@@ -93,7 +94,6 @@
     NSString *token =responseData[@"output"][@"token"];
     [RapidStorageClass saveLoginToken:token];
     [RapidStorageClass saveUserID:userInfoDict[@"id"] ];
-
 }
 
 

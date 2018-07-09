@@ -19,7 +19,7 @@
 #import "UserInfoModel.h"
 #import "StarrySkyAnimate.h"
 #import "navCourseImageView.h"
-#import "BookViewController.h"
+
 #import "AdvancedBookViewController.h"
 #define SAFEAREABOTTOM_HEIGHT (SCREEN_HEIGHT == 812.f ? 34.f : 0.f)
 
@@ -85,8 +85,8 @@
 {
     if (_guide_playbackButton==nil)
     {
-    self.guide_playbackButton=[UIButton buttonWithType:UIButtonTypeCustom];
-    self.guide_playbackButton.frame=CGRectMake(0, 0, lSCREEN_WIDTH, lSCREEN_HEIGHT);
+        self.guide_playbackButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        self.guide_playbackButton.frame=CGRectMake(0, 0, lSCREEN_WIDTH, lSCREEN_HEIGHT);
     }
     return _guide_playbackButton;
 }
@@ -107,8 +107,8 @@
         [self.guide_playbackButton removeFromSuperview];
         [lUSER_DEFAULT setObject:@"firstEnterApp" forKey:key_FirsrtEnter];
     }
-     [self.guide_playbackButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"guide_guide%d",  self.guideNum]]forState:UIControlStateNormal];
-
+    [self.guide_playbackButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"guide_guide%d",  self.guideNum]]forState:UIControlStateNormal];
+    
 }
 
 -(void)requestAction
@@ -123,12 +123,12 @@
     vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [vc.view setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f]];
     vc.enterTempClassBlockDoing = ^(TempClassModel *tempModel) {
-                    self.isTempClass =YES;
-                    self.tempModel=tempModel;
-                 [self enterTempClassWithTempClass:tempModel];
+        self.isTempClass =YES;
+        self.tempModel=tempModel;
+        [self enterTempClassWithTempClass:tempModel];
     };
     [self presentViewController:vc animated:YES completion:nil];
-
+    
 }
 
 
@@ -158,7 +158,7 @@
         [weakself dismissViewControllerAnimated:NO completion:nil];
     };
     personVC.editNickNameBlock = ^(NSString *nickName, UIImage *avarImage) {
-          weakself.studentNameLabel.text=nickName;
+        weakself.studentNameLabel.text=nickName;
         weakself.student_advatarImageView.image =avarImage;
     };
     [self presentViewController:personVC animated:YES completion:nil];
@@ -183,7 +183,7 @@
         self.lesson_nothingImgView.hidden =NO;
     }else
     {
-   
+        
         self.lesson_bgImageView.image=[UIImage imageNamed:@"lesson_background"];
         self.lesson_nothingImgView.hidden =YES;
     }
@@ -194,23 +194,23 @@
     NSInteger count =self.lessonListArrary.count;
     CGFloat contentSize= self.lesson_scrollView.frame.size.width*pagesNum;
     self.totalNum=pagesNum;
-   self.lesson_scrollView.contentSize=CGSizeMake(contentSize,itemHeight);
+    self.lesson_scrollView.contentSize=CGSizeMake(contentSize,itemHeight);
     [self.lesson_scrollView removeAllSubviews];
     for (int i=0; i<count; i++) {
         LessonItemView *itemView =[[[NSBundle mainBundle] loadNibNamed:@"LessonItemView" owner:self options:0] lastObject];
-       CGFloat y= i%2==0?0:self.lesson_scrollView.frame.size.height -itemHeight;
+        CGFloat y= i%2==0?0:self.lesson_scrollView.frame.size.height -itemHeight;
         itemView.frame=CGRectMake(itemWith*i ,y, itemWith, itemHeight);
         itemView.tag =i;
-      LessonInfoModel * lessModel =self.lessonListArrary[i];
-      [itemView setDataWithLessonInfoModel:lessModel];
-      itemView.joinLiveRoomBlock = ^(NSInteger itemTag){
-       weakself.selectInfoModel=weakself.lessonListArrary[itemTag];
-      [weakself joinLiveRoomWithSelectLessonInfoModel];
-    };
-
+        LessonInfoModel * lessModel =self.lessonListArrary[i];
+        [itemView setDataWithLessonInfoModel:lessModel];
+        itemView.joinLiveRoomBlock = ^(NSInteger itemTag){
+            weakself.selectInfoModel=weakself.lessonListArrary[itemTag];
+            [weakself joinLiveRoomWithSelectLessonInfoModel];
+        };
+        
         [self.lesson_scrollView addSubview:itemView];
     }
-     [self.lesson_scrollView setContentOffset:CGPointMake(self.lesson_scrollView.frame.size.width*self.currentPage,0) animated:YES];
+    [self.lesson_scrollView setContentOffset:CGPointMake(self.lesson_scrollView.frame.size.width*self.currentPage,0) animated:YES];
     
 }
 #pragma mark 选择的select 调用的接口
@@ -223,11 +223,11 @@
         [weakself joinLiveRoom];
     } WithErrorBlock:^(id errorCode)
      {
-    [[LAlertViewCustom sharedInstance] alertViewTitle:nil content:[NSString stringWithFormat:@"%@",errorCode] leftButtonTitle:nil rightButtonTitle:nil autoDismiss:YES rightButtonTapDoing:nil leftButtonTapORDismissDoing:nil];
+         [[LAlertViewCustom sharedInstance] alertViewTitle:nil content:[NSString stringWithFormat:@"%@",errorCode] leftButtonTitle:nil rightButtonTitle:nil autoDismiss:YES rightButtonTapDoing:nil leftButtonTapORDismissDoing:nil];
          
-    } WithFailureBlock:^{
-        [LoadingView tipViewWithTipString:@"网络请求失败"];
-    }];
+     } WithFailureBlock:^{
+         [LoadingView tipViewWithTipString:@"网络请求失败"];
+     }];
 }
 
 #pragma mark 预约的课时进入直播间
@@ -264,7 +264,7 @@
 #pragma mark 离开教室
 - (void)roomWillLeave:(WCRLeaveRoomReason)statusCode
 {
-        [self hanlerLeaveLiveRoomWithStatusCode:statusCode];
+    [self hanlerLeaveLiveRoomWithStatusCode:statusCode];
 }
 
 -(void)hanlerLeaveLiveRoomWithStatusCode:(WCRLeaveRoomReason)statusCode
@@ -276,8 +276,8 @@
     
     if (statusCode==WCRLeaveRoomReasonAfterClass)
     {
-    //         如果课程已经结束 则需要刷新历史记录
-         self.isReshHistory=YES;
+        //         如果课程已经结束 则需要刷新历史记录
+        self.isReshHistory=YES;
         self.prevButton.hidden =NO;
         [[LAlertViewCustom sharedInstance] alertViewTitle:@"提示" content:@"课程已经结束，请离开教室？" leftButtonTitle:@"取消" rightButtonTitle:@"确定" autoDismiss:NO rightButtonTapDoing:^{
             [weakself dismissViewControllerAnimated:YES completion:^{
@@ -291,7 +291,7 @@
             weakself.classRoom = nil;
         }];
     }
-
+    
 }
 
 #pragma mark 帮助的回调
@@ -306,13 +306,13 @@
     }
     NSDictionary *helpDict1= helpInfoArr[0];
     NSString *helpID= helpDict1[@"id"];
-     NSString *text1=  helpDict1[@"text1"];
+    NSString *text1=  helpDict1[@"text1"];
     NSDictionary *helpDict2= helpInfoArr[1];
     NSString * helpText=helpDict2[@"text1"];
     if (helpText.length==0) {
         helpText=text1;
     }
-
+    
     NSString * schude_id =self.isTempClass?self.tempModel.schedule_id:self.selectInfoModel.schedule_id;
     [self.lessonVM scheduleHelpsWithSchedule_id:schude_id errorCode:helpID errorMsg:helpText];
     
@@ -352,7 +352,7 @@
     if (self.currentPage<self.totalNum-1) {
         self.currentPage++;
     }
-        [self.lesson_scrollView setContentOffset:CGPointMake(self.lesson_scrollView.frame.size.width*self.currentPage,0) animated:YES];
+    [self.lesson_scrollView setContentOffset:CGPointMake(self.lesson_scrollView.frame.size.width*self.currentPage,0) animated:YES];
 }
 
 #pragma mark 执行滚动的时候
@@ -365,8 +365,8 @@
 }
 -(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
-   self. lastContentOffset = scrollView.contentOffset.x;//判断上下滑动时
-
+    self. lastContentOffset = scrollView.contentOffset.x;//判断上下滑动时
+    
 }
 
 
@@ -378,7 +378,7 @@
     self.currentPage=index;
     //判断左右滑动时
     if (scrollView.contentOffset.x < self.lastContentOffset ){
-
+        
     } else if (scrollView. contentOffset.x >self. lastContentOffset ){
         //向左
         if (self.currentPage==0)
@@ -390,9 +390,9 @@
         }
         DDLog(@"右滑");
     }
-
-        self.prevButton.hidden =[self hiddenPrevButton];
-        self.nextButton .hidden =[self hiddenNextButton];
+    
+    self.prevButton.hidden =[self hiddenPrevButton];
+    self.nextButton .hidden =[self hiddenNextButton];
     
 }
 
@@ -401,7 +401,7 @@
     if (self.lessonListArrary.count==0) {
         [self lessonListRequestWithType:3];
     }
-
+    
     
 }
 
@@ -415,7 +415,7 @@
     } WithErrorBlock:^(id errorCode) {
         [LoadingView tipViewWithTipString:errorCode];
     } WithFailureBlock:^{
-         [LoadingView tipViewWithTipString:@"网络请求失败"];
+        [LoadingView tipViewWithTipString:@"网络请求失败"];
     }];
 }
 
@@ -424,10 +424,10 @@
         case 1:
             [self handlerCurrentLessonListWithListArr:dataArr];
             break;
-            case 2:
+        case 2:
             [self handlerHistoryLessonListWithListArr:dataArr];
             break;
-            case 3:
+        case 3:
             [self handlerNotCurrentLessonAndLoadMoreHistoryLesson:dataArr];
             break;
         default:
@@ -444,10 +444,10 @@
             break;
         case 2:// 请求历史列表
             fromTime =[[self.lessonListArrary firstObject] from_time];
-        break;
+            break;
         case 3://请求当前日期的历史列表
             fromTime =[DateTool currentDateString];
-        break;
+            break;
         default:
             break;
     }
@@ -471,15 +471,15 @@
     NSUInteger  location=  self.lessonListArrary.count;
     NSRange range=NSMakeRange(location, self.currentLesson.count);
     [self.lessonListArrary insertObjects: self.currentLesson atIndexes:[NSIndexSet indexSetWithIndexesInRange:range]];
+    
+    if (self.lessonListArrary.count==0)
+    {
+        [self lessonListRequestWithType:3];
         
-        if (self.lessonListArrary.count==0)
-        {
-            [self lessonListRequestWithType:3];
-            
-        }else{
-            self.prevButton.hidden =NO;
-        }
-  
+    }else{
+        self.prevButton.hidden =NO;
+    }
+    
     
     
     [self configScrollView];
@@ -533,24 +533,24 @@
     
     if (self.lessonListArrary.count==0)
     {
-         return  YES;
+        return  YES;
     }
     else
     {
-            if (self.currentPage ==0)
+        if (self.currentPage ==0)
+        {
+            if (self.isNotHistory==YES)
             {
-                        if (self.isNotHistory==YES)
-                        {
-                             return YES;
-                        }else{
-                            return  NO;
-                        }
-                
+                return YES;
+            }else{
+                return  NO;
             }
-            else{
-                return NO;
-            }
-
+            
+        }
+        else{
+            return NO;
+        }
+        
     }
     return YES;
     
@@ -562,16 +562,16 @@
     }
     else
     {
-            if (self.currentPage !=self.totalNum-1)
-            {
-                return NO;
-            }
-            else
-            {
-                return YES;
-            }
+        if (self.currentPage !=self.totalNum-1)
+        {
+            return NO;
+        }
+        else
+        {
+            return YES;
+        }
     }
-        return  YES;
+    return  YES;
 }
 
 

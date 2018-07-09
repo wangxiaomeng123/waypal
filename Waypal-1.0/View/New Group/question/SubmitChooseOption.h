@@ -11,9 +11,9 @@
 typedef void(^readAgainBlock)(void);
 @interface SubmitChooseOption : UIView
 @property(nonatomic,strong)NSDictionary * dataDict;
-@property (weak, nonatomic) IBOutlet UILabel *totalQuestionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *rightcountLabel;
-@property (weak, nonatomic) IBOutlet UILabel *rightratioLabel;
+@property (strong, nonatomic)  UILabel *totalQuestionLabel;
+@property (strong, nonatomic)  UILabel *rightcountLabel;
+@property (strong, nonatomic)  UILabel *rightratioLabel;
 @property(nonatomic,strong) readAgainBlock readAgainDoingBlock;
 -(void)setDataWithDict:(NSDictionary *)dataDict;
 

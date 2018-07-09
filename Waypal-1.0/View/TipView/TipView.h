@@ -13,5 +13,4 @@ typedef void(^okBlock)(void);
 @interface TipView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *tipContentLabel;
 @property(nonatomic,strong)okBlock okDoingBlock;
--(void)showTipWithCancelBlock:(cancelBlock)cancelBlock  okBlock:(okBlock)okBlock;
 @end
