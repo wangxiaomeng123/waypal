@@ -174,7 +174,7 @@ typedef enum : NSUInteger {
 #pragma mark 前一页
 - (IBAction)prevAction:(id)sender {
     self.prevButton.enabled =NO;
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(changePreButtonStatus) object:self];
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(changePreButtonStatus) object:self];
     [self performSelector:@selector(changePreButtonStatus) withObject:self afterDelay:1.0];
     if (self.currentPage ==0) {
         return;
@@ -187,7 +187,7 @@ typedef enum : NSUInteger {
 #pragma mark 后一页
 - (IBAction)nextAction:(UIButton *)sender {
     self.nextButton.enabled =NO;
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(changeNextButtonStatus) object:self];
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(changeNextButtonStatus) object:self];
     [self performSelector:@selector(changeNextButtonStatus) withObject:self afterDelay:1.0];
     if (self.currentPage==self.bookImagesArr.count
         +self.questionArr.count)

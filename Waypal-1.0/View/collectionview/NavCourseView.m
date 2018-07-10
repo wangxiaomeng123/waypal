@@ -35,16 +35,15 @@
         bg=[[UIView alloc] initWithFrame:CGRectMake(offset+Width*i, 0, Height, Height)];
         UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame=CGRectMake(0, 0, Width, Height);
-        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake((Width-50)/2, Height/2-25, 50, 50)];
-//        [btn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",self.normalImagesArr[i]]] forState:UIControlStateNormal];
+        UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake((Width-50)/2, Height/2-40, 50, 80)];
         [btn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",self.selectedImagesArr[i]]]  forState:UIControlStateNormal];
-
+        
         btn.tag=i;
         if (i==0) {
             btn.selected=YES;
             self.selectedBtn=btn;
         }
-      
+        
         [self scaleWithView:btn];
         label.textColor=[UIColor whiteColor];
         label.textAlignment=NSTextAlignmentCenter;
@@ -52,13 +51,13 @@
         label.text=[model name_chinese];
         [label setAdjustsFontSizeToFitWidth:YES];
         label.numberOfLines=0;
-        label.font=[UIFont boldSystemFontOfSize:22.0];
+        label.font=[UIFont boldSystemFontOfSize:24.0];
         NSString * titleName= [model name_chinese];
         NSMutableString* str1=[[NSMutableString alloc]initWithString:titleName];//存在堆区，可变字符串
         NSLog(@"str1:%@",str1);
         if (str1.length>2) {
             [str1 insertString:@"\n"atIndex:2];
-
+            
         }
         label.text=[NSString stringWithFormat:@"%@",str1];
         btn.titleLabel.backgroundColor=[UIColor redColor];
@@ -80,24 +79,24 @@
     if (optionBtn!= self.selectedBtn) {
         self.selectedBtn.selected = NO;
         [self scaleWithView:self.selectedBtn];
-
+        
         optionBtn.selected = YES;
         self.selectedBtn = optionBtn;
-   
+        
     }else{
         self.selectedBtn.selected = YES;
     }
     [self scaleWithView:self.selectedBtn];
-
+    
     CourseModel *model=self.titleArr[optionBtn.tag];
     if (self.chooseNavCourseDoingBlock){
-    self.chooseNavCourseDoingBlock(model.NavCourseId,self.shelfImagesArr[optionBtn.tag]);
+        self.chooseNavCourseDoingBlock(model.NavCourseId,self.shelfImagesArr[optionBtn.tag]);
     }
 }
 -(void)scaleWithView:(UIButton *)animationView {
     animationView.transform = CGAffineTransformMake(1, 0, 0, 1, 0, 0);
     if (!animationView.selected) {
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.2 animations:^{
             animationView .transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7f, 0.7f);
         } completion:nil];
     }else{

@@ -638,7 +638,7 @@
                                     <action selector="tempClassAction:" destination="GEW-LB-PHM" eventType="touchUpInside" id="s6b-h0-cNp"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYd-rE-Xq8">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYd-rE-Xq8">
                                 <rect key="frame" x="431" y="38" width="455" height="104"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbW-YR-CpO">
