@@ -51,7 +51,7 @@
 #warning 上线记得修改
 //产品状态
 #if DEBUG
-static const BOOL kFORPRODUCTION = YES;
+static const BOOL kFORPRODUCTION = NO;
 #else
 static const BOOL kFORPRODUCTION = YES;
 #endif
@@ -83,12 +83,12 @@ static const double kAlertViewAutoDismissSecond = 3.0;
 
 //请求网络接口
 #warning 测试的环境
-//#define REQUESTPUBLICURL @"https://t.api.waypal.com/api/"
-//#define    OSS_BUCKETNAME @"waypal-test"
+#define REQUESTPUBLICURL @"https://t.api.waypal.com/api/"
+#define    OSS_BUCKETNAME @"waypal-test"
 
 #warning 正式的环境
-#define REQUESTPUBLICURL @"https://api.waypal.com/api/"
-#define  OSS_BUCKETNAME @"waypal"
+//#define REQUESTPUBLICURL @"https://api.waypal.com/api/"
+//#define  OSS_BUCKETNAME @"waypal"
 
 //客户端初始化信息
 #define CLIENTAPPSETTINGOPERATION @"client/init"
@@ -128,6 +128,8 @@ static const double kAlertViewAutoDismissSecond = 3.0;
  //泛读测验提交
 #define GREATCOURSEQUESTIONRESULT @"booktest/result"
 
+//刷新token
+#define REFRESHTOKENOPERATION @"refresh/token"
 
 
 #warning 记得修改
@@ -161,8 +163,6 @@ static const double kAlertViewAutoDismissSecond = 3.0;
 
 #pragma mark 头像路径前缀
 #define  imagePathPrefix  @""
-
-
 
 
 

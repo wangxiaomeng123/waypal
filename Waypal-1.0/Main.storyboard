@@ -542,10 +542,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yef-HF-gDG">
-                                <rect key="frame" x="29" y="56" width="174" height="56"/>
+                                <rect key="frame" x="29" y="56" width="170" height="56"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person_btn_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="ao7-U0-Frf">
-                                        <rect key="frame" x="48" y="8" width="126" height="40"/>
+                                        <rect key="frame" x="48" y="7" width="122" height="42"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lesson_adavtar.png" translatesAutoresizingMaskIntoConstraints="NO" id="XuC-4W-3YQ">
@@ -563,14 +563,14 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="studentA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67s-xQ-0Ww">
-                                        <rect key="frame" x="64" y="0.0" width="85" height="51"/>
+                                        <rect key="frame" x="64" y="0.0" width="81" height="51"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mas-ZZ-3NA">
-                                        <rect key="frame" x="0.0" y="0.0" width="174" height="56"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="56"/>
                                         <connections>
                                             <action selector="editUserInfoAction:" destination="GEW-LB-PHM" eventType="touchUpInside" id="AVu-8n-unW"/>
                                         </connections>
@@ -590,9 +590,9 @@
                                     <constraint firstItem="mas-ZZ-3NA" firstAttribute="leading" secondItem="yef-HF-gDG" secondAttribute="leading" id="MLF-tU-NyF"/>
                                     <constraint firstItem="XuC-4W-3YQ" firstAttribute="leading" secondItem="yef-HF-gDG" secondAttribute="leading" id="Qls-Dy-bEe"/>
                                     <constraint firstItem="XuC-4W-3YQ" firstAttribute="top" secondItem="yef-HF-gDG" secondAttribute="top" id="VNR-1C-1qk"/>
-                                    <constraint firstItem="ao7-U0-Frf" firstAttribute="top" secondItem="yef-HF-gDG" secondAttribute="top" constant="8" id="jjb-zv-XaV"/>
-                                    <constraint firstAttribute="width" constant="174" id="oG5-Ze-HF3"/>
-                                    <constraint firstAttribute="bottom" secondItem="ao7-U0-Frf" secondAttribute="bottom" constant="8" id="xRv-QG-Qb6"/>
+                                    <constraint firstItem="ao7-U0-Frf" firstAttribute="top" secondItem="yef-HF-gDG" secondAttribute="top" constant="7" id="jjb-zv-XaV"/>
+                                    <constraint firstAttribute="width" constant="170" id="oG5-Ze-HF3"/>
+                                    <constraint firstAttribute="bottom" secondItem="ao7-U0-Frf" secondAttribute="bottom" constant="7" id="xRv-QG-Qb6"/>
                                     <constraint firstItem="ao7-U0-Frf" firstAttribute="leading" secondItem="XuC-4W-3YQ" secondAttribute="trailing" constant="-8" id="xp9-Wz-sED"/>
                                 </constraints>
                             </view>
@@ -628,10 +628,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2x3-2g-qgs">
-                                <rect key="frame" x="921" y="52" width="75" height="58"/>
+                                <rect key="frame" x="876" y="43.5" width="120" height="93"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="OvU-iB-bhK"/>
-                                    <constraint firstAttribute="height" constant="58" id="fIo-qQ-lic"/>
+                                    <constraint firstAttribute="width" constant="120" id="OvU-iB-bhK"/>
+                                    <constraint firstAttribute="height" constant="93" id="fIo-qQ-lic"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="lesson_tempclass.png"/>
                                 <connections>
@@ -639,7 +639,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fYd-rE-Xq8">
-                                <rect key="frame" x="431" y="38" width="455" height="104"/>
+                                <rect key="frame" x="386" y="38" width="455" height="104"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbW-YR-CpO">
                                         <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
@@ -708,6 +708,7 @@
                             <constraint firstItem="EjO-h0-5sU" firstAttribute="bottom" secondItem="H4E-oj-nxH" secondAttribute="bottom" constant="87" id="PFS-2a-6xB"/>
                             <constraint firstItem="EjO-h0-5sU" firstAttribute="trailing" secondItem="2x3-2g-qgs" secondAttribute="trailing" constant="28" id="PuU-M2-MNE"/>
                             <constraint firstItem="fYd-rE-Xq8" firstAttribute="top" secondItem="EjO-h0-5sU" secondAttribute="top" constant="18" id="YX7-qI-uzw"/>
+                            <constraint firstItem="2x3-2g-qgs" firstAttribute="centerY" secondItem="fYd-rE-Xq8" secondAttribute="centerY" id="aIA-Hh-RaX"/>
                             <constraint firstItem="yef-HF-gDG" firstAttribute="leading" secondItem="EjO-h0-5sU" secondAttribute="leading" constant="29" id="iDk-d3-qLR"/>
                             <constraint firstItem="5ji-lC-oNg" firstAttribute="centerY" secondItem="tw6-ne-2HI" secondAttribute="centerY" id="jIB-C8-tCj"/>
                             <constraint firstItem="H4E-oj-nxH" firstAttribute="top" secondItem="yef-HF-gDG" secondAttribute="bottom" constant="45" id="lbe-P9-7q3"/>
@@ -716,7 +717,6 @@
                             <constraint firstItem="yef-HF-gDG" firstAttribute="top" secondItem="EjO-h0-5sU" secondAttribute="top" constant="36" id="p38-ac-wDF"/>
                             <constraint firstItem="3iy-0k-mY5" firstAttribute="top" secondItem="tw6-ne-2HI" secondAttribute="top" id="r4u-Pa-t6x"/>
                             <constraint firstItem="H4E-oj-nxH" firstAttribute="leading" secondItem="EjO-h0-5sU" secondAttribute="leading" constant="45" id="rPa-3O-fUv"/>
-                            <constraint firstItem="2x3-2g-qgs" firstAttribute="top" secondItem="EjO-h0-5sU" secondAttribute="top" constant="32" id="wE0-xt-AWi"/>
                             <constraint firstItem="3iy-0k-mY5" firstAttribute="bottom" secondItem="EjO-h0-5sU" secondAttribute="bottom" id="yRB-ZK-N56"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EjO-h0-5sU"/>
@@ -747,32 +747,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ET-lJ-smH">
-                                <rect key="frame" x="0.0" y="60" width="107" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person_btn_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="jNd-3X-0h3">
-                                        <rect key="frame" x="0.0" y="0.0" width="107" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="26O-tk-9sJ">
-                                        <rect key="frame" x="17" y="11.5" width="10" height="18"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRN-5o-q3d">
-                                        <rect key="frame" x="27" y="0.0" width="80" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="返回">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="backAction:" destination="EMd-1U-lTw" eventType="touchUpInside" id="hRM-xt-u0T"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PG7-rJ-sfq">
                                 <rect key="frame" x="377" y="524" width="270" height="217"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -961,13 +935,28 @@
                                     <action selector="sourceAndSettingChangeAction:" destination="EMd-1U-lTw" eventType="touchUpInside" id="9tM-og-axu"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRN-5o-q3d">
+                                <rect key="frame" x="-8" y="60" width="103" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="FF3-gu-UZW"/>
+                                    <constraint firstAttribute="width" constant="103" id="gpR-fU-sjG"/>
+                                </constraints>
+                                <state key="normal" image="classroom_back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backAction:" destination="EMd-1U-lTw" eventType="touchUpInside" id="hRM-xt-u0T"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="lRN-5o-q3d" firstAttribute="top" secondItem="gf7-cB-DWY" secondAttribute="top" constant="40" id="4TO-QI-GSh"/>
                             <constraint firstItem="PG7-rJ-sfq" firstAttribute="centerX" secondItem="zzb-fS-sCx" secondAttribute="centerX" id="Im7-86-lUM"/>
                             <constraint firstItem="gf7-cB-DWY" firstAttribute="bottom" secondItem="PG7-rJ-sfq" secondAttribute="bottom" constant="27" id="OuB-ne-IDw"/>
                             <constraint firstItem="xl2-yw-suo" firstAttribute="leading" secondItem="H3e-9m-XSD" secondAttribute="trailing" constant="15" id="Zi1-5z-hYU"/>
                             <constraint firstItem="gf7-cB-DWY" firstAttribute="bottom" secondItem="xl2-yw-suo" secondAttribute="bottom" constant="93" id="hLY-J9-ofZ"/>
+                            <constraint firstItem="lRN-5o-q3d" firstAttribute="leading" secondItem="gf7-cB-DWY" secondAttribute="leading" constant="-8" id="nX8-YU-3Ky"/>
                             <constraint firstItem="H3e-9m-XSD" firstAttribute="centerX" secondItem="zzb-fS-sCx" secondAttribute="centerX" id="oU5-EM-vYk"/>
                             <constraint firstItem="H3e-9m-XSD" firstAttribute="leading" secondItem="n1C-ZI-8oK" secondAttribute="trailing" constant="33" id="sCb-Yb-AvM"/>
                             <constraint firstItem="n1C-ZI-8oK" firstAttribute="top" secondItem="H3e-9m-XSD" secondAttribute="top" id="wEe-Dn-5oP"/>
@@ -1065,12 +1054,12 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ob-xA-x5Q">
-                                <rect key="frame" x="0.0" y="58" width="100" height="39"/>
+                                <rect key="frame" x="0.0" y="58" width="103" height="38"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="CV9-mH-nDf"/>
-                                    <constraint firstAttribute="height" constant="39" id="H7q-Da-GDy"/>
+                                    <constraint firstAttribute="width" constant="103" id="CV9-mH-nDf"/>
+                                    <constraint firstAttribute="height" constant="38" id="H7q-Da-GDy"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="classroom_back"/>
+                                <state key="normal" image="classroom_back"/>
                                 <connections>
                                     <action selector="backAction:" destination="zBm-M8-NkE" eventType="touchUpInside" id="Cwi-Tb-eJm"/>
                                 </connections>
@@ -1340,18 +1329,18 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67I-KN-3qO">
-                                        <rect key="frame" x="0.0" y="58" width="100" height="39"/>
+                                        <rect key="frame" x="0.0" y="58" width="103" height="38"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="k4U-E8-0Cu"/>
-                                            <constraint firstAttribute="height" constant="39" id="yWR-lf-gIn"/>
+                                            <constraint firstAttribute="width" constant="103" id="k4U-E8-0Cu"/>
+                                            <constraint firstAttribute="height" constant="38" id="yWR-lf-gIn"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="classroom_back"/>
+                                        <state key="normal" image="classroom_back"/>
                                         <connections>
                                             <action selector="backAction:" destination="AEl-hZ-p8n" eventType="touchUpInside" id="oa5-DV-148"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cW0-Hj-Qd3">
-                                        <rect key="frame" x="110" y="30" width="814" height="112"/>
+                                        <rect key="frame" x="113" y="30" width="811" height="112"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="112" id="iJF-6B-75n"/>
@@ -1417,7 +1406,7 @@
         <image name="btn_smart r_select.png" width="108" height="104"/>
         <image name="btn_super r.png" width="104" height="104"/>
         <image name="btn_super r_select.png" width="104" height="104"/>
-        <image name="classroom_back" width="102" height="40"/>
+        <image name="classroom_back" width="103" height="38"/>
         <image name="lesson_adavtar.png" width="59" height="59"/>
         <image name="lesson_btn_left.png" width="44" height="60"/>
         <image name="lesson_btn_right.png" width="45" height="60"/>
@@ -1429,7 +1418,6 @@
         <image name="password.png" width="18" height="19"/>
         <image name="person_OK.png" width="186" height="60"/>
         <image name="person_adavtar.png" width="123" height="124"/>
-        <image name="person_back.png" width="15" height="22"/>
         <image name="person_btn_back.png" width="104" height="42"/>
         <image name="person_photo.png" width="36" height="36"/>
         <image name="person_resourceNormal.png" width="130" height="94"/>

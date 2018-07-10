@@ -11,6 +11,7 @@
 #import "AppVersionViewModel.h"
 #import "uploadSingureModel.h"
 #import "AppVersionModel.h"
+#import "LLTClearCustomViewController.h"
 @implementation AppVersionViewModel
 
 
@@ -112,6 +113,37 @@
     }];
     
     
+    
+}
+
+-(void)updateToken{
+    [NetworkingTool postWithUrl:REFRESHTOKENOPERATION params:nil isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject)
+    {
+        int code= [responseObject[@"code"] intValue];
+        if (code ==REQUESTSUCCESS)
+        {
+            NSString * token=responseObject[@"output"];
+            [RapidStorageClass saveLoginToken:token];
+        }
+        else
+        {
+            [self enterLoginViewController];
+        }
+        
+        
+    } failed:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
+        [LoadingView tipViewWithTipString:@"数据请求失败"];
+        
+    }];
+}
+
+
+-(void)enterLoginViewController{
+    [RapidStorageClass deleteDictionaryDataArchiverWithKey:Key_LOGININFORMATION];
+    [RapidStorageClass deleteToken];
+        UIViewController *loginVC =lStoryboard(@"Main", @"login");
+        LLTClearCustomViewController *nav=[[LLTClearCustomViewController alloc]initWithRootViewController:loginVC];
+        [[UIApplication sharedApplication]keyWindow].rootViewController =nav;
     
 }
 

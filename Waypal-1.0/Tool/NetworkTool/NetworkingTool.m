@@ -10,7 +10,7 @@
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import "LoadingView.h"
 #import "LLTClearCustomViewController.h"
-
+#import "AppVersionViewModel.h"
 @interface NetworkingTool()
 @property (strong, nonatomic) OSSClient *client;
 @end
@@ -46,7 +46,7 @@
         }else
         {
             DDLog(@"无网络");
-        [[LAlertViewCustom sharedInstance] alertViewTitle:nil content:@"请检测网络连接" leftButtonTitle:nil rightButtonTitle:nil autoDismiss:YES rightButtonTapDoing:nil leftButtonTapORDismissDoing:nil];
+            [[LAlertViewCustom sharedInstance] alertViewTitle:nil content:@"请检测网络连接" leftButtonTitle:nil rightButtonTitle:nil autoDismiss:YES rightButtonTapDoing:nil leftButtonTapORDismissDoing:nil];
         }
     }];
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
@@ -71,7 +71,7 @@
                                                                                    @"text/javascript",
                                                                                    @"text/xml",
                                                                                    @"image/*"]];
-
+        
     });
     return instance;
 }
@@ -82,37 +82,32 @@
     
     LoadingView *loadView= [[LoadingView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadView];
-
+    
     NSString * head_token =[RapidStorageClass readToken];
+    
     NSString * token=[NSString stringWithFormat:@"Bearer %@",head_token];
     if (head_token.length>0) {
         [[NetworkingTool sharedManager].requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
     }
-      DDLog(@"[token]:%@",token);
-      NSString * requestURL =[NSString stringWithFormat:@"%@%@?offset=%ld",REQUESTPUBLICURL,url,TIMEZONEOFFSET];
+    
+    NSString * requestURL =[NSString stringWithFormat:@"%@%@?offset=%ld",REQUESTPUBLICURL,url,TIMEZONEOFFSET];
+    
+    
     [[NetworkingTool sharedManager] GET:requestURL parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DDLog(@"接口名称:[%@]-[%@]",url,responseObject);
+        DDLog(@"接口名称:[%@]-[%@]-[%@]",url,params,responseObject);
         [loadView hiddenLoadingView];
         if (success) {
             success(task,responseObject);
         }
         [RapidStorageClass saveDictionaryDataArchiver:responseObject key:requestURL];
-
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         [loadView hiddenLoadingView];
+        [loadView hiddenLoadingView];
         NSHTTPURLResponse * responses = (NSHTTPURLResponse *)task.response;
         if ( responses.statusCode==401|| responses.statusCode==400||responses.statusCode==403)
         {
-            DDLog(@"responses.statusCode:%ld",responses.statusCode);
-            
-            UIViewController *loginVC =lStoryboard(@"Main", @"login");
-            [RapidStorageClass deleteDictionaryDataArchiverWithKey:Key_LOGININFORMATION];
-//              [RapidStorageClass deleteToken];
-            LLTClearCustomViewController *nav=[[LLTClearCustomViewController alloc]initWithRootViewController:loginVC];
-            [[UIApplication sharedApplication]keyWindow].rootViewController =nav;
-            
-            
-            
+            [[NetworkingTool sharedManager]hanlderUpdateToken];
+
         }else{
             id cacheData= nil;
             if (isReadCache) {
@@ -125,10 +120,10 @@
                 failed(task,error,cacheData);
             }
         }
-    
-            
         
- 
+        
+        
+        
     }];
 }
 //post请求
@@ -138,33 +133,31 @@
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadView];
     NSString * head_token =[RapidStorageClass readToken];
     NSString * token=[NSString stringWithFormat:@"Bearer %@",head_token];
+    
     if (head_token.length>0) {
         [[NetworkingTool sharedManager].requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
     }
     NSMutableDictionary *mutableDict =[[NSMutableDictionary alloc] initWithDictionary:params];
     [mutableDict setObject:[NSNumber numberWithInteger:TIMEZONEOFFSET] forKey:@"offset"];
-     NSString * requestURL =[NSString stringWithFormat:@"%@%@",REQUESTPUBLICURL,url];
-    DDLog(@"[token]:%@",token);
+    
+    NSString * requestURL =[NSString stringWithFormat:@"%@%@",REQUESTPUBLICURL,url];
+    
+    
     [[NetworkingTool sharedManager] POST:requestURL parameters:mutableDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [loadView hiddenLoadingView];
         if (success) {
             success(task,responseObject);
         }
         DDLog(@"接口名称:[%@]-[%@]]",url,responseObject);
-       [RapidStorageClass saveDictionaryDataArchiver:responseObject key:requestURL];
+        [RapidStorageClass saveDictionaryDataArchiver:responseObject key:requestURL];
         //请求成功,保存数据
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         [loadView hiddenLoadingView];
+        [loadView hiddenLoadingView];
         DDLog(@"error:%ld-%@-%@",[error code],[error domain],[error userInfo]);
         NSHTTPURLResponse * responses = (NSHTTPURLResponse *)task.response;
         if ( responses.statusCode==401|| responses.statusCode==400||responses.statusCode==403)
         {
-            UIViewController *loginVC =lStoryboard(@"Main", @"login");
-            [RapidStorageClass deleteDictionaryDataArchiverWithKey:Key_LOGININFORMATION];
-//            [RapidStorageClass deleteToken];
-            LLTClearCustomViewController *nav=[[LLTClearCustomViewController alloc]initWithRootViewController:loginVC];
-            [[UIApplication sharedApplication]keyWindow].rootViewController =nav;
-            
+            [[NetworkingTool sharedManager]hanlderUpdateToken];
         }else{
             id cacheData= nil;
             if (isReadCache) {
@@ -186,8 +179,6 @@
 
 + (void)uploadWithfileData: (NSData *)fileData name: (NSString *)name fileName: (NSString *)fileName mimeType: (NSString *)mimeType progress: (progress)progress success: (uploadSuccess)success failed: (uploadFail)failed {
     [OSSLog enableLog];//执行该方法，开启日志记录
-
-    
     id<OSSCredentialProvider> credential = [[OSSPlainTextAKSKPairCredentialProvider alloc] initWithPlainTextAccessKey:OSS_ACCESS_ID
                                                                                                             secretKey:OSS_ACCESS_KEY];
     OSSClient * client = [[OSSClient alloc] initWithEndpoint:OSS_ENDPOITN credentialProvider:credential];
@@ -195,7 +186,7 @@
     // 必填字段
     put.bucketName = OSS_BUCKETNAME;
     put.objectKey = fileName;
-     put.uploadingData =fileData; // 直接上传NSData
+    put.uploadingData =fileData; // 直接上传NSData
     // 可选字段，可不设置
     put.uploadProgress = ^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
         DDLog(@"%lld, %lld, %lld", bytesSent, totalByteSent, totalBytesExpectedToSend);
@@ -210,19 +201,21 @@
             if (success) {
                 success( fileName);
             }
-    
+            
         } else {
-            NSLog(@"upload object failed, error: %@" , task.error);
+            DDLog(@"upload object failed, error: %@" , task.error);
             
         }
         return nil;
     }];
-
+    
 }
 
--(void)enterLoginViewController{
-    UIViewController  * rootController=[[UIApplication sharedApplication] keyWindow].rootViewController;
-      rootController=lStoryboard(@"Domain", @"login");
+
+#pragma mark 更新token
+-(void)hanlderUpdateToken{
+    AppVersionViewModel *model=[[AppVersionViewModel alloc] init];
+    [model updateToken];
 }
 
 

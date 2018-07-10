@@ -16,4 +16,7 @@
  上传头像，获取相关OSS 配置信息
  */
 -(void)initUploadSingureRequest;
+-(void)updateToken;
+
+
 @end
