@@ -22,10 +22,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="385" height="386"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avG-QA-KC3">
-                            <rect key="frame" x="247" y="268" width="140" height="118"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" backgroundImage="lesson_playback.png"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avG-QA-KC3">
+                            <rect key="frame" x="198" y="261" width="120" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="Qwv-0M-qCd"/>
+                                <constraint firstAttribute="width" constant="120" id="d6E-M9-YQg"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="lesson_attclass.png"/>
                             <connections>
                                 <action selector="touchStatusButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="J9t-LU-thp"/>
                             </connections>
@@ -80,17 +83,42 @@
                             <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6r7-xL-uQx">
+                            <rect key="frame" x="188" y="261" width="10" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="10" id="8nG-v5-zkw"/>
+                                <constraint firstAttribute="height" constant="50" id="GSN-mO-6s1"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQW-Gp-YnN">
+                            <rect key="frame" x="58" y="261" width="120" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="0Mr-lN-qQE"/>
+                                <constraint firstAttribute="width" constant="120" id="Vyl-En-kEP"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="preview.png"/>
+                            <connections>
+                                <action selector="reviewClassWaresAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="28m-tU-8bX"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="avG-QA-KC3" firstAttribute="top" secondItem="dnp-0e-m3t" secondAttribute="bottom" constant="10" id="2Kx-0t-CXR"/>
                         <constraint firstItem="4ww-n0-ac8" firstAttribute="centerX" secondItem="Um7-22-zwV" secondAttribute="centerX" id="2Va-Hg-dD5"/>
+                        <constraint firstItem="6r7-xL-uQx" firstAttribute="leading" secondItem="wQW-Gp-YnN" secondAttribute="trailing" constant="10" id="2x0-9o-Dsl"/>
                         <constraint firstItem="fX4-p8-cvQ" firstAttribute="top" secondItem="Um7-22-zwV" secondAttribute="top" constant="53" id="4lb-pc-8Mv"/>
                         <constraint firstItem="fX4-p8-cvQ" firstAttribute="leading" secondItem="Um7-22-zwV" secondAttribute="leading" constant="108" id="7tS-0c-7qG"/>
                         <constraint firstAttribute="width" constant="386" id="NeQ-xa-JAM"/>
                         <constraint firstItem="dnp-0e-m3t" firstAttribute="leading" secondItem="Um7-22-zwV" secondAttribute="leading" constant="74" id="XXd-Hu-aet"/>
                         <constraint firstItem="Erl-9x-J9K" firstAttribute="leading" secondItem="Um7-22-zwV" secondAttribute="leading" constant="67" id="Zr4-uz-mTr"/>
+                        <constraint firstItem="avG-QA-KC3" firstAttribute="leading" secondItem="6r7-xL-uQx" secondAttribute="trailing" id="a1a-ou-OQI"/>
+                        <constraint firstItem="6r7-xL-uQx" firstAttribute="centerX" secondItem="Um7-22-zwV" secondAttribute="centerX" id="ba5-IN-z1H"/>
+                        <constraint firstItem="6r7-xL-uQx" firstAttribute="top" secondItem="dnp-0e-m3t" secondAttribute="bottom" constant="10" id="ex2-5y-b6F"/>
                         <constraint firstItem="yd1-tc-XCf" firstAttribute="leading" secondItem="Um7-22-zwV" secondAttribute="leading" constant="74" id="hbF-Cw-VZY"/>
                         <constraint firstItem="dnp-0e-m3t" firstAttribute="top" secondItem="yd1-tc-XCf" secondAttribute="bottom" constant="2" id="nr0-1o-ZC0"/>
+                        <constraint firstItem="wQW-Gp-YnN" firstAttribute="top" secondItem="dnp-0e-m3t" secondAttribute="bottom" constant="10" id="oUE-O0-7eC"/>
                         <constraint firstItem="Erl-9x-J9K" firstAttribute="top" secondItem="fX4-p8-cvQ" secondAttribute="bottom" constant="64" id="pol-cA-IeE"/>
                         <constraint firstItem="dnp-0e-m3t" firstAttribute="centerX" secondItem="Um7-22-zwV" secondAttribute="centerX" id="wi7-vt-R0Q"/>
                         <constraint firstItem="4ww-n0-ac8" firstAttribute="top" secondItem="fX4-p8-cvQ" secondAttribute="bottom" constant="13" id="xHp-oD-ZgN"/>
@@ -107,6 +135,7 @@
             <connections>
                 <outlet property="bgImageView" destination="yov-4v-FYL" id="sI1-aq-d0O"/>
                 <outlet property="course_name" destination="dnp-0e-m3t" id="imw-yH-cOb"/>
+                <outlet property="teach_classWareStatuImageView" destination="wQW-Gp-YnN" id="Nfw-5N-oAQ"/>
                 <outlet property="teach_dateLabel" destination="4ww-n0-ac8" id="vzV-Hg-hjQ"/>
                 <outlet property="teach_statusImgView" destination="avG-QA-KC3" id="jM6-6Y-YoN"/>
                 <outlet property="teach_timeLabel" destination="fX4-p8-cvQ" id="bvn-0H-hFP"/>
@@ -118,7 +147,8 @@
         </view>
     </objects>
     <resources>
+        <image name="lesson_attclass.png" width="120" height="46"/>
         <image name="lesson_planet.png" width="204" height="203"/>
-        <image name="lesson_playback.png" width="150" height="119"/>
+        <image name="preview.png" width="120" height="46"/>
     </resources>
 </document>

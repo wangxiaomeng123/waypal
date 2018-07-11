@@ -13,7 +13,14 @@
 
 
 @implementation LessonItemView
+#pragma mark 预习或者复习
+- (IBAction)reviewClassWaresAction:(id)sender {
+    if (self.reviewClassWaresBlock) {
+        self.reviewClassWaresBlock(self.tag);
+    }
+}
 
+#pragma mark 进入教室
 - (IBAction)touchStatusButtonAction:(id)sender {
     UIButton * btn =(UIButton *)sender;
     [[animationTool shareInstance] shakeToShow:btn];
@@ -46,17 +53,19 @@
     [self.teacher_avatarImgView sd_setImageWithURL:[NSURL URLWithString:lessonInfoModel.teacher_portrait] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"] options:SDWebImageAllowInvalidSSLCertificates];
    
     
-    
+//
     if (lessonInfoModel.status ==6) {
         self.bgImageView.image=[UIImage imageNamed:@"lesson_playbackBgView@2x"];
-        [self.teach_statusImgView setBackgroundImage:[UIImage imageNamed:@"lesson_playback@2x"] forState:UIControlStateNormal];
+        [self.teach_statusImgView setBackgroundImage:[UIImage imageNamed:@"lesson_playback"] forState:UIControlStateNormal];
         self.teacher_nameLabel.textColor=[UIColor colorWithHexString:@"#11748F"];
         self.teach_dateLabel.textColor =[UIColor colorWithHexString:@"#11748F"];
+        [self.teach_classWareStatuImageView setImage:[UIImage imageNamed:@"review"] forState:UIControlStateNormal];
     }
     else
     {
         self.bgImageView.image=[UIImage imageNamed:@"lesson_planet"];
-        [self.teach_statusImgView setBackgroundImage:[UIImage imageNamed:@"lesson_attclass@2x"] forState:UIControlStateNormal];
+        [self.teach_statusImgView setBackgroundImage:[UIImage imageNamed:@"lesson_attclass"] forState:UIControlStateNormal];
+      [self.teach_classWareStatuImageView setImage:[UIImage imageNamed:@"preview"] forState:UIControlStateNormal];
     }
     self.lessInfoModel =lessonInfoModel;
     

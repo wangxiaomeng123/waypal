@@ -175,7 +175,7 @@
         if ([responseObject[@"code"] intValue]==REQUESTSUCCESS) {
                 self.returnBlock(responseObject[@"output"]);
         }else{
-                 self.returnBlock(responseObject[@"tip"]);
+                 self.errorBlock(responseObject[@"tip"]);
         }
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 self.failureBlock();
@@ -218,6 +218,22 @@
 }
 
 
-
+-(void)classwaresWithLessonID:(NSString *)lesson_id sessionID:(NSString *)session_id{
+    
+    NSDictionary * param=@{@"lesson_id":@"18",@"session_id":@"1"};
+    [NetworkingTool getWithUrl:PREVIEWCLASSWARES params:param isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSInteger code =[responseObject[@"code"]integerValue];
+        if (code==REQUESTSUCCESS) {
+          NSArray * slidesArr=responseObject[@"output"][@"slides"];
+            self.returnBlock(slidesArr);
+        }else{
+            self.errorBlock(responseObject[@"tip"]);
+        }
+        
+    } failed:^(NSURLSessionDataTask *task, NSError *error, id responseObject) {
+        self.failureBlock();
+        
+    }];
+}
 
 @end

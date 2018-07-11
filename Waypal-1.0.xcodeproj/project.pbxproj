@@ -22,10 +22,11 @@
 		E70F1F7120F5D0E10012A1FC /* preview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F6920F5D0E00012A1FC /* preview@2x.png */; };
 		E70F1F7320F5D0E10012A1FC /* review.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F6B20F5D0E00012A1FC /* review.png */; };
 		E70F1F7520F5D0E10012A1FC /* review@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F6D20F5D0E10012A1FC /* review@2x.png */; };
-		E70F1F8620F5E8BD0012A1FC /* lesson_attclass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F8220F5E8BD0012A1FC /* lesson_attclass@2x.png */; };
-		E70F1F8720F5E8BD0012A1FC /* lesson_playback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F8320F5E8BD0012A1FC /* lesson_playback@2x.png */; };
-		E70F1F8820F5E8BD0012A1FC /* lesson_attclass.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F8420F5E8BD0012A1FC /* lesson_attclass.png */; };
-		E70F1F8920F5E8BD0012A1FC /* lesson_playback.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F8520F5E8BD0012A1FC /* lesson_playback.png */; };
+		E70F1F9720F611C20012A1FC /* lesson_playback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F9320F611C10012A1FC /* lesson_playback@2x.png */; };
+		E70F1F9920F611C20012A1FC /* lesson_playback.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F9520F611C20012A1FC /* lesson_playback.png */; };
+		E70F1F9C20F612800012A1FC /* lesson_attclass.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F9A20F6127F0012A1FC /* lesson_attclass.png */; };
+		E70F1F9D20F612800012A1FC /* lesson_attclass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F9B20F612800012A1FC /* lesson_attclass@2x.png */; };
+		E70F1FA020F616650012A1FC /* ReViewClassWaresController.m in Sources */ = {isa = PBXBuildFile; fileRef = E70F1F9F20F616650012A1FC /* ReViewClassWaresController.m */; };
 		E70F659A20EDFDC900E8D2F2 /* book_bgImage.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F659820EDFDC800E8D2F2 /* book_bgImage.png */; };
 		E70F659B20EDFDC900E8D2F2 /* book_bgImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F659920EDFDC900E8D2F2 /* book_bgImage@2x.png */; };
 		E70F65A020EDFDFB00E8D2F2 /* tip_OK@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F659C20EDFDFB00E8D2F2 /* tip_OK@2x.png */; };
@@ -339,10 +340,12 @@
 		E70F1F6920F5D0E00012A1FC /* preview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview@2x.png"; sourceTree = "<group>"; };
 		E70F1F6B20F5D0E00012A1FC /* review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = review.png; sourceTree = "<group>"; };
 		E70F1F6D20F5D0E10012A1FC /* review@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "review@2x.png"; sourceTree = "<group>"; };
-		E70F1F8220F5E8BD0012A1FC /* lesson_attclass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lesson_attclass@2x.png"; sourceTree = "<group>"; };
-		E70F1F8320F5E8BD0012A1FC /* lesson_playback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lesson_playback@2x.png"; sourceTree = "<group>"; };
-		E70F1F8420F5E8BD0012A1FC /* lesson_attclass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lesson_attclass.png; sourceTree = "<group>"; };
-		E70F1F8520F5E8BD0012A1FC /* lesson_playback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lesson_playback.png; sourceTree = "<group>"; };
+		E70F1F9320F611C10012A1FC /* lesson_playback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lesson_playback@2x.png"; sourceTree = "<group>"; };
+		E70F1F9520F611C20012A1FC /* lesson_playback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lesson_playback.png; sourceTree = "<group>"; };
+		E70F1F9A20F6127F0012A1FC /* lesson_attclass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lesson_attclass.png; sourceTree = "<group>"; };
+		E70F1F9B20F612800012A1FC /* lesson_attclass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lesson_attclass@2x.png"; sourceTree = "<group>"; };
+		E70F1F9E20F616650012A1FC /* ReViewClassWaresController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReViewClassWaresController.h; sourceTree = "<group>"; };
+		E70F1F9F20F616650012A1FC /* ReViewClassWaresController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReViewClassWaresController.m; sourceTree = "<group>"; };
 		E70F659820EDFDC800E8D2F2 /* book_bgImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book_bgImage.png; sourceTree = "<group>"; };
 		E70F659920EDFDC900E8D2F2 /* book_bgImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book_bgImage@2x.png"; sourceTree = "<group>"; };
 		E70F659C20EDFDFB00E8D2F2 /* tip_OK@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip_OK@2x.png"; sourceTree = "<group>"; };
@@ -918,10 +921,10 @@
 		E7895B5B20AFC32300F19491 /* lesson */ = {
 			isa = PBXGroup;
 			children = (
-				E70F1F8420F5E8BD0012A1FC /* lesson_attclass.png */,
-				E70F1F8220F5E8BD0012A1FC /* lesson_attclass@2x.png */,
-				E70F1F8520F5E8BD0012A1FC /* lesson_playback.png */,
-				E70F1F8320F5E8BD0012A1FC /* lesson_playback@2x.png */,
+				E70F1F9A20F6127F0012A1FC /* lesson_attclass.png */,
+				E70F1F9B20F612800012A1FC /* lesson_attclass@2x.png */,
+				E70F1F9520F611C20012A1FC /* lesson_playback.png */,
+				E70F1F9320F611C10012A1FC /* lesson_playback@2x.png */,
 				E70F1F6820F5D0DF0012A1FC /* preview.png */,
 				E70F1F6920F5D0E00012A1FC /* preview@2x.png */,
 				E70F1F6B20F5D0E00012A1FC /* review.png */,
@@ -1208,6 +1211,8 @@
 				E7F37E2E20E221920092F59F /* AdvancedBookViewController.m */,
 				E7FE016B20D1155300A3BF98 /* BookDetailViewController.h */,
 				E7FE016C20D1155300A3BF98 /* BookDetailViewController.m */,
+				E70F1F9E20F616650012A1FC /* ReViewClassWaresController.h */,
+				E70F1F9F20F616650012A1FC /* ReViewClassWaresController.m */,
 			);
 			path = lesson;
 			sourceTree = "<group>";
@@ -1712,7 +1717,7 @@
 				E742D4AB20F3776D00976286 /* book_lock@3x.png in Resources */,
 				E70F9D2920EA04EF00ED2200 /* btn_prep p.png in Resources */,
 				E7895C9720B0025B00F19491 /* person_btn_back@2x.png in Resources */,
-				E70F1F8820F5E8BD0012A1FC /* lesson_attclass.png in Resources */,
+				E70F1F9C20F612800012A1FC /* lesson_attclass.png in Resources */,
 				E7895C9520B0025B00F19491 /* person_back.png in Resources */,
 				E7FE00F020C9274400A3BF98 /* personal_background.png in Resources */,
 				E706953A20BFE0A000D27167 /* logo@2x.png in Resources */,
@@ -1770,7 +1775,6 @@
 				E75C848120C0F02D00E81025 /* guide_guide2.png in Resources */,
 				E70F9D3020EA04EF00ED2200 /* btn_prep p@2x.png in Resources */,
 				E7FE00E220C90E9900A3BF98 /* verification_code@2x.png in Resources */,
-				E70F1F8720F5E8BD0012A1FC /* lesson_playback@2x.png in Resources */,
 				E7895C9E20B013CC00F19491 /* temp_btn_close@2x.png in Resources */,
 				E7FE00EF20C9274400A3BF98 /* text_background@2x.png in Resources */,
 				E70F659B20EDFDC900E8D2F2 /* book_bgImage@2x.png in Resources */,
@@ -1806,6 +1810,7 @@
 				E7895CE320B313EB00F19491 /* gloal_loading@3x.png in Resources */,
 				E7F75D3720EA326700352734 /* bookDetail_book_background.png in Resources */,
 				E712A04C20EB2D5E00F1FC46 /* bookDetail__voice_play.png in Resources */,
+				E70F1F9D20F612800012A1FC /* lesson_attclass@2x.png in Resources */,
 				E7FE00CB20C8E10800A3BF98 /* register_disagree.png in Resources */,
 				E7FE00F120C9274400A3BF98 /* text_background.png in Resources */,
 				E7DE884020DA250000A7F5D8 /* Login box.png in Resources */,
@@ -1816,13 +1821,12 @@
 				E70F65A020EDFDFB00E8D2F2 /* tip_OK@2x.png in Resources */,
 				E70F9D0F20E9D1CD00ED2200 /* book_shelfGreen.png in Resources */,
 				E71875C520E4E4F3000D45B7 /* tip_bgImage.png in Resources */,
-				E70F1F8920F5E8BD0012A1FC /* lesson_playback.png in Resources */,
+				E70F1F9920F611C20012A1FC /* lesson_playback.png in Resources */,
 				E7895C9220B0025B00F19491 /* person_mine_background@2x.png in Resources */,
 				E7FE00EE20C9274400A3BF98 /* person_photo@2x.png in Resources */,
 				E70F9D1020E9D1CE00ED2200 /* book_shelfGreen@2x.png in Resources */,
 				E70F9D2F20EA04EF00ED2200 /* btn_super r_select@2x.png in Resources */,
 				E7FE00CE20C8E10800A3BF98 /* register_agree.png in Resources */,
-				E70F1F8620F5E8BD0012A1FC /* lesson_attclass@2x.png in Resources */,
 				E70F9D3A20EA05C900ED2200 /* book_shelfYellow.png in Resources */,
 				E7DE884420DA28C000A7F5D8 /* person_loginOutBG.png in Resources */,
 				E712A07020ECAC9C00F1FC46 /* blue_normal.png in Resources */,
@@ -1843,6 +1847,7 @@
 				E70F9D3F20EA0C5F00ED2200 /* question_play.png in Resources */,
 				E712A07220ECAC9C00F1FC46 /* blue_normal@2x.png in Resources */,
 				E712A07920ECAC9C00F1FC46 /* green_normal@2x.png in Resources */,
+				E70F1F9720F611C20012A1FC /* lesson_playback@2x.png in Resources */,
 				E7141F9220C153CB001E6AA4 /* DazStarOutline.png in Resources */,
 				E7FE010020C9335100A3BF98 /* person_settingSelected@2x.png in Resources */,
 				E70F1F7120F5D0E10012A1FC /* preview@2x.png in Resources */,
@@ -1946,6 +1951,7 @@
 				E741B92D20C7792D00D38FFC /* CCutRangeView.m in Sources */,
 				E765476220B7F1D400AA850B /* UIColor+Extension.m in Sources */,
 				E7895BE320AFC69F00F19491 /* NetworkingTool.m in Sources */,
+				E70F1FA020F616650012A1FC /* ReViewClassWaresController.m in Sources */,
 				E7895BF220AFC6DA00F19491 /* WCRClassroomSkin.m in Sources */,
 				E765474F20B7A69F00AA850B /* LLTClearCustomViewController.m in Sources */,
 				E7DE896720DCEB9100A7F5D8 /* QuestionView.m in Sources */,

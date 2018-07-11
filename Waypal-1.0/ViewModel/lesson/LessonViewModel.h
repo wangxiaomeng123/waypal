@@ -61,6 +61,15 @@
  @param optionArr 答题内容
  */
 -(void)submitGreatCoursesQuestionWithBookId:(NSString *)bookId  questionOptionArr:(NSArray *)optionArr;
+//lesson_id=18&session_id=1
+
+/**
+ <#Description#>
+
+ @param lesson_id <#lesson_id description#>
+ @param session_id <#session_id description#>
+ */
+-(void)classwaresWithLessonID:(NSString *)lesson_id sessionID:(NSString *)session_id;
 
 
 @end

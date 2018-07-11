@@ -19,7 +19,7 @@
 #import "UserInfoModel.h"
 #import "StarrySkyAnimate.h"
 #import "navCourseImageView.h"
-
+#import "ReViewClassWaresController.h"
 #import "AdvancedBookViewController.h"
 #define SAFEAREABOTTOM_HEIGHT (SCREEN_HEIGHT == 812.f ? 34.f : 0.f)
 
@@ -208,7 +208,11 @@
             weakself.selectInfoModel=weakself.lessonListArrary[itemTag];
             [weakself joinLiveRoomWithSelectLessonInfoModel];
         };
-        
+        itemView.reviewClassWaresBlock = ^(NSInteger itemTag){
+            weakself.selectInfoModel=weakself.lessonListArrary[itemTag];
+            [weakself enterpreOrReviewClassWaresViewControllerWithSelectModel:weakself.selectInfoModel];
+            
+        };
         [self.lesson_scrollView addSubview:itemView];
     }
     [self.lesson_scrollView setContentOffset:CGPointMake(self.lesson_scrollView.frame.size.width*self.currentPage,0) animated:YES];
@@ -323,7 +327,7 @@
     } WithErrorBlock:^(id errorCode) {
         [LoadingView tipViewWithTipString:errorCode];
     } WithFailureBlock:^{
-        [LoadingView tipViewWithTipString:@"网络请求失败"];
+        [LoadingView tipViewWithTipString:@"数据请求失败"];
     }];
 }
 
@@ -417,7 +421,7 @@
     } WithErrorBlock:^(id errorCode) {
         [LoadingView tipViewWithTipString:errorCode];
     } WithFailureBlock:^{
-        [LoadingView tipViewWithTipString:@"网络请求失败"];
+        [LoadingView tipViewWithTipString:@"数据请求失败"];
     }];
 }
 
@@ -589,13 +593,17 @@
     } WithFailureBlock:^{
         
     }];
-    
-    
-    
+  
     
 }
 
 
+-(void)enterpreOrReviewClassWaresViewControllerWithSelectModel:(LessonInfoModel*)model{
+    ReViewClassWaresController *classWaresVC=lStoryboard(@"Main", @"classwares");
+    classWaresVC.lessonInfoModel=model;
+    [self presentViewController:classWaresVC animated:YES completion:nil];
+    
+}
 
 
 @end
