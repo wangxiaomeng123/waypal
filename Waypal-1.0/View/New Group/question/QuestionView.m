@@ -67,14 +67,21 @@
     [self addSubview:questionLabel];
     [self addSubview:optionView];
     
-    //    "category": 1, // 类型, '1' => '仅文字', '2' => '含图片', '4' => '含音频'
+    //    "category": 1, // 类型, '1' => '仅文字', '2' => '含图片', '4' => '含音频' '5' => '含图片和音频'
     if ([model.category integerValue]==4) {
         [self addSubview:voiceBtn];
     }
     optionView.frame=CGRectMake(leftPadding, bigImageHeight+questionImageView.frame.origin.y+20, self.frame.size.width-300, 100);
+    
     if ([model.category integerValue]==2) {
         optionView.frame=CGRectMake(leftPadding, bigImageHeight+questionImageView.frame.origin.y+20, self.frame.size.width-300, 100);
     };
+    if ([model.category integerValue]==5)
+    {
+        [self addSubview:voiceBtn];
+    }
+    
+    
     [self addSubview:questionImageView];
     
 }

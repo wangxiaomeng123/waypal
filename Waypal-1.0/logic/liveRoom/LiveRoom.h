@@ -23,7 +23,7 @@ typedef void(^QuitLiveRoomCallbackBlock)(WCRLeaveRoomReason statusCode );
 @property(nonatomic,strong) LessonInfoModel *selectInfoModel;
 @property(nonatomic,strong) liveRoomModel *liveroomModel;
 @property (nonatomic, strong) WCRClassRoom* classRoom;
-@property (nonatomic,strong) TempClassModel *tempModel;
+//@property (nonatomic,strong) TempClassModel *tempModel;
 
 
 @property (nonatomic,strong) enterLiveRoomSuccessCallbackBlock  enterCallbackBlock;
@@ -33,6 +33,6 @@ typedef void(^QuitLiveRoomCallbackBlock)(WCRLeaveRoomReason statusCode );
 ;
 -(WCRClassJoinInfo *)configLiveRoomInfo;
 
--(WCRClassJoinInfo *)configTempLiveRoomInfo;
+-(WCRClassJoinInfo *)configTempLiveRoomInfoWithTempModel: (TempClassModel *)tempModel;
 
 @end

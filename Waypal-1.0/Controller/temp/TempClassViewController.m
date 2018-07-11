@@ -53,7 +53,7 @@
 
 #pragma mark 请求进入临时直播间的数据
 -(void)requestEnterTempClassData{
-        WeakSelf(self);
+    WeakSelf(self);
     TempClassModel * model=[[TempClassModel alloc] init];
     [self.lessViewModel enterTempClassRoomWithRoomPassword:self.tempCodeStr];
     [self.lessViewModel setBlockWithReturnBlock:^(id returnValue) {
@@ -62,7 +62,7 @@
             weakself.tempModel =model;
         if (weakself.enterTempClassBlockDoing)
         {
-            weakself.enterTempClassBlockDoing(weakself.tempModel);
+        weakself.enterTempClassBlockDoing(weakself.tempModel);
         }
         [weakself dismissViewControllerAnimated:YES completion:nil];
         

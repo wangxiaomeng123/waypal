@@ -140,8 +140,9 @@
     tempRoom.selectInfoModel=self.selectInfoModel;
     self.selectInfoModel.schedule_id=tempModel.schedule_id;
     tempRoom.liveroomModel=self.liveroomModel;
-    tempRoom.tempModel =tempModel;
-    WCRClassJoinInfo *joinInfo= [tempRoom configTempLiveRoomInfo];
+//    tempRoom.tempModel =tempModel;
+    WCRClassJoinInfo *joinInfo= [tempRoom configTempLiveRoomInfoWithTempModel:tempModel];
+    DDLog(@"临时课堂：%@",joinInfo);
     self.classRoom = [[WCRClassRoom alloc] init];
     self.classRoom.delegate = self;
     [self.classRoom joinRoom: joinInfo];
@@ -276,7 +277,7 @@
     
     if (statusCode==WCRLeaveRoomReasonAfterClass)
     {
-        //         如果课程已经结束 则需要刷新历史记录
+        // 如果课程已经结束 则需要刷新历史记录
         self.isReshHistory=YES;
         self.prevButton.hidden =NO;
         [[LAlertViewCustom sharedInstance] alertViewTitle:@"提示" content:@"课程已经结束，请离开教室？" leftButtonTitle:@"取消" rightButtonTitle:@"确定" autoDismiss:NO rightButtonTapDoing:^{
@@ -285,7 +286,8 @@
             }];
         } leftButtonTapORDismissDoing:nil];
     }
-    else{
+    else
+    {
         self.isReshHistory=NO;
         [weakself dismissViewControllerAnimated:YES completion:^{
             weakself.classRoom = nil;

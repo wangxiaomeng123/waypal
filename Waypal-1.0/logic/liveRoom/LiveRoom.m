@@ -81,7 +81,7 @@
 
 
 
--(WCRClassJoinInfo *)configTempLiveRoomInfo{
+-(WCRClassJoinInfo *)configTempLiveRoomInfoWithTempModel: (TempClassModel *)tempModel{
     NSString * token =[RapidStorageClass readToken];
     NSDictionary *userInfoDict=[RapidStorageClass readDictionaryDataArchiverWithKey:@"userInfo"];
     NSDictionary *userInfo=userInfoDict[@"output"][@"user"];
@@ -98,30 +98,30 @@
     joinInfo.mobileNumber = [NSString stringWithFormat:@"%@",student_mobile];
     joinInfo.userAvatar =[NSString stringWithFormat:@"%@",student_avatar];
     
-    joinInfo.teacherID =[NSString stringWithFormat:@"%@",self.tempModel.teacher_id] ;
-    joinInfo.teacherName = [NSString stringWithFormat:@"%@",self.tempModel.teacher_name];
-    joinInfo.teacherAvatar = [NSString stringWithFormat:@"%@",self.tempModel.teacher_avatar];
+    joinInfo.teacherID =[NSString stringWithFormat:@"%@",tempModel.teacher_id] ;
+    joinInfo.teacherName = [NSString stringWithFormat:@"%@",tempModel.teacher_name];
+    joinInfo.teacherAvatar = [NSString stringWithFormat:@"%@",tempModel.teacher_avatar];
     
     
     
     
-    joinInfo.classID = [NSString stringWithFormat:@"%@",self.tempModel.schedule_id];
+    joinInfo.classID = [NSString stringWithFormat:@"%@",tempModel.schedule_id];
     joinInfo.actionReplayMode =YES;
     joinInfo.classTitle = @"Waypal";
     joinInfo.userToken = [NSString stringWithFormat:@"%@",token];
-    joinInfo.institutionID = [NSString  stringWithFormat:@"%@",self.tempModel.institutionId];
-    NSString * defaultDocOnClassWaiting=  [NSString stringWithFormat:@"%@&total=%@",self.tempModel.lesson_slide_url,self.liveroomModel.slide_count];
+    joinInfo.institutionID = [NSString  stringWithFormat:@"%@",tempModel.institutionId];
+    NSString * defaultDocOnClassWaiting=  [NSString stringWithFormat:@"%@&total=%@",tempModel.lesson_slide_url,tempModel.slide_count];
     
     joinInfo.defaultDocOnClassWaiting =defaultDocOnClassWaiting;
     joinInfo.lessonType = WCRLessonTypeOneToOne;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
-    joinInfo.schedualStartTime = [dateFormatter dateFromString:self.tempModel.startTime];
-    joinInfo.schedualEndTime = [dateFormatter dateFromString:self.tempModel.endTime];
+    joinInfo.schedualStartTime = [dateFormatter dateFromString:tempModel.startTime];
+    joinInfo.schedualEndTime = [dateFormatter dateFromString:tempModel.endTime];
     
     //实际开始和结束时间
-    joinInfo.actualStartTime=[dateFormatter dateFromString:self.tempModel.startTime];
-    joinInfo.actualEndTime =  [dateFormatter dateFromString:self.tempModel.endTime];
+    joinInfo.actualStartTime=[dateFormatter dateFromString:tempModel.startTime];
+    joinInfo.actualEndTime =  [dateFormatter dateFromString:tempModel.endTime];
     joinInfo.skinConfig = [WCRClassroomSkin defaultConfig];
     if (kFORPRODUCTION) {
         joinInfo.env =WCREnvironmentOnline;
