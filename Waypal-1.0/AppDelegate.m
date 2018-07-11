@@ -23,7 +23,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
- 
+    [self setBackGroudPlay];
     [self setupBugly];
     AppVersionViewModel *appSetting = [[AppVersionViewModel alloc] init];
     [appSetting initAppSetting];
@@ -49,6 +49,14 @@
 }
 
 
+// 设置后台播放
+- (void)setBackGroudPlay {
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+
+    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [audioSession setActive:YES error:nil];
+    
+}
 - (void)setupBugly {
     // Get the default config
     BuglyConfig * config = [[BuglyConfig alloc] init];
@@ -111,6 +119,10 @@
 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    UIBackgroundTaskIdentifier taskID = [application beginBackgroundTaskWithExpirationHandler:^{
+        [application endBackgroundTask:taskID];
+    }];
+
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
