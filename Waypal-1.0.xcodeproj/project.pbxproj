@@ -22,10 +22,10 @@
 		E70F1F7120F5D0E10012A1FC /* preview@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F6920F5D0E00012A1FC /* preview@2x.png */; };
 		E70F1F7320F5D0E10012A1FC /* review.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F6B20F5D0E00012A1FC /* review.png */; };
 		E70F1F7520F5D0E10012A1FC /* review@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F6D20F5D0E10012A1FC /* review@2x.png */; };
-		E70F1F7B20F5D16C0012A1FC /* lesson_attclass.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F7720F5D16B0012A1FC /* lesson_attclass.png */; };
-		E70F1F7C20F5D16C0012A1FC /* lesson_attclass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F7820F5D16B0012A1FC /* lesson_attclass@2x.png */; };
-		E70F1F8020F5D19B0012A1FC /* lesson_playback.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F7E20F5D19A0012A1FC /* lesson_playback.png */; };
-		E70F1F8120F5D19B0012A1FC /* lesson_playback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F7F20F5D19B0012A1FC /* lesson_playback@2x.png */; };
+		E70F1F8620F5E8BD0012A1FC /* lesson_attclass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F8220F5E8BD0012A1FC /* lesson_attclass@2x.png */; };
+		E70F1F8720F5E8BD0012A1FC /* lesson_playback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F8320F5E8BD0012A1FC /* lesson_playback@2x.png */; };
+		E70F1F8820F5E8BD0012A1FC /* lesson_attclass.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F8420F5E8BD0012A1FC /* lesson_attclass.png */; };
+		E70F1F8920F5E8BD0012A1FC /* lesson_playback.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1F8520F5E8BD0012A1FC /* lesson_playback.png */; };
 		E70F659A20EDFDC900E8D2F2 /* book_bgImage.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F659820EDFDC800E8D2F2 /* book_bgImage.png */; };
 		E70F659B20EDFDC900E8D2F2 /* book_bgImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F659920EDFDC900E8D2F2 /* book_bgImage@2x.png */; };
 		E70F65A020EDFDFB00E8D2F2 /* tip_OK@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F659C20EDFDFB00E8D2F2 /* tip_OK@2x.png */; };
@@ -339,10 +339,10 @@
 		E70F1F6920F5D0E00012A1FC /* preview@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "preview@2x.png"; sourceTree = "<group>"; };
 		E70F1F6B20F5D0E00012A1FC /* review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = review.png; sourceTree = "<group>"; };
 		E70F1F6D20F5D0E10012A1FC /* review@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "review@2x.png"; sourceTree = "<group>"; };
-		E70F1F7720F5D16B0012A1FC /* lesson_attclass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lesson_attclass.png; sourceTree = "<group>"; };
-		E70F1F7820F5D16B0012A1FC /* lesson_attclass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lesson_attclass@2x.png"; sourceTree = "<group>"; };
-		E70F1F7E20F5D19A0012A1FC /* lesson_playback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lesson_playback.png; sourceTree = "<group>"; };
-		E70F1F7F20F5D19B0012A1FC /* lesson_playback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lesson_playback@2x.png"; sourceTree = "<group>"; };
+		E70F1F8220F5E8BD0012A1FC /* lesson_attclass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lesson_attclass@2x.png"; sourceTree = "<group>"; };
+		E70F1F8320F5E8BD0012A1FC /* lesson_playback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lesson_playback@2x.png"; sourceTree = "<group>"; };
+		E70F1F8420F5E8BD0012A1FC /* lesson_attclass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lesson_attclass.png; sourceTree = "<group>"; };
+		E70F1F8520F5E8BD0012A1FC /* lesson_playback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lesson_playback.png; sourceTree = "<group>"; };
 		E70F659820EDFDC800E8D2F2 /* book_bgImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book_bgImage.png; sourceTree = "<group>"; };
 		E70F659920EDFDC900E8D2F2 /* book_bgImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book_bgImage@2x.png"; sourceTree = "<group>"; };
 		E70F659C20EDFDFB00E8D2F2 /* tip_OK@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tip_OK@2x.png"; sourceTree = "<group>"; };
@@ -918,10 +918,10 @@
 		E7895B5B20AFC32300F19491 /* lesson */ = {
 			isa = PBXGroup;
 			children = (
-				E70F1F7720F5D16B0012A1FC /* lesson_attclass.png */,
-				E70F1F7820F5D16B0012A1FC /* lesson_attclass@2x.png */,
-				E70F1F7E20F5D19A0012A1FC /* lesson_playback.png */,
-				E70F1F7F20F5D19B0012A1FC /* lesson_playback@2x.png */,
+				E70F1F8420F5E8BD0012A1FC /* lesson_attclass.png */,
+				E70F1F8220F5E8BD0012A1FC /* lesson_attclass@2x.png */,
+				E70F1F8520F5E8BD0012A1FC /* lesson_playback.png */,
+				E70F1F8320F5E8BD0012A1FC /* lesson_playback@2x.png */,
 				E70F1F6820F5D0DF0012A1FC /* preview.png */,
 				E70F1F6920F5D0E00012A1FC /* preview@2x.png */,
 				E70F1F6B20F5D0E00012A1FC /* review.png */,
@@ -1712,6 +1712,7 @@
 				E742D4AB20F3776D00976286 /* book_lock@3x.png in Resources */,
 				E70F9D2920EA04EF00ED2200 /* btn_prep p.png in Resources */,
 				E7895C9720B0025B00F19491 /* person_btn_back@2x.png in Resources */,
+				E70F1F8820F5E8BD0012A1FC /* lesson_attclass.png in Resources */,
 				E7895C9520B0025B00F19491 /* person_back.png in Resources */,
 				E7FE00F020C9274400A3BF98 /* personal_background.png in Resources */,
 				E706953A20BFE0A000D27167 /* logo@2x.png in Resources */,
@@ -1742,7 +1743,6 @@
 				E7895B8220AFC34C00F19491 /* lesson_btn_left.png in Resources */,
 				E70F9D0C20E9D1CD00ED2200 /* book_shelfBlue@2x.png in Resources */,
 				E7895CCC20B26BBA00F19491 /* person_updateBG@2x.png in Resources */,
-				E70F1F7B20F5D16C0012A1FC /* lesson_attclass.png in Resources */,
 				E712A07520ECAC9C00F1FC46 /* yellow_normal.png in Resources */,
 				E7A570A920E2434400FB48D2 /* book_readed@2x.png in Resources */,
 				E7DE88A720DA650500A7F5D8 /* bookDetail__title.png in Resources */,
@@ -1770,6 +1770,7 @@
 				E75C848120C0F02D00E81025 /* guide_guide2.png in Resources */,
 				E70F9D3020EA04EF00ED2200 /* btn_prep p@2x.png in Resources */,
 				E7FE00E220C90E9900A3BF98 /* verification_code@2x.png in Resources */,
+				E70F1F8720F5E8BD0012A1FC /* lesson_playback@2x.png in Resources */,
 				E7895C9E20B013CC00F19491 /* temp_btn_close@2x.png in Resources */,
 				E7FE00EF20C9274400A3BF98 /* text_background@2x.png in Resources */,
 				E70F659B20EDFDC900E8D2F2 /* book_bgImage@2x.png in Resources */,
@@ -1814,17 +1815,17 @@
 				E7FE00C720C8E10800A3BF98 /* register_phone@2x.png in Resources */,
 				E70F65A020EDFDFB00E8D2F2 /* tip_OK@2x.png in Resources */,
 				E70F9D0F20E9D1CD00ED2200 /* book_shelfGreen.png in Resources */,
-				E70F1F7C20F5D16C0012A1FC /* lesson_attclass@2x.png in Resources */,
 				E71875C520E4E4F3000D45B7 /* tip_bgImage.png in Resources */,
+				E70F1F8920F5E8BD0012A1FC /* lesson_playback.png in Resources */,
 				E7895C9220B0025B00F19491 /* person_mine_background@2x.png in Resources */,
 				E7FE00EE20C9274400A3BF98 /* person_photo@2x.png in Resources */,
 				E70F9D1020E9D1CE00ED2200 /* book_shelfGreen@2x.png in Resources */,
 				E70F9D2F20EA04EF00ED2200 /* btn_super r_select@2x.png in Resources */,
 				E7FE00CE20C8E10800A3BF98 /* register_agree.png in Resources */,
+				E70F1F8620F5E8BD0012A1FC /* lesson_attclass@2x.png in Resources */,
 				E70F9D3A20EA05C900ED2200 /* book_shelfYellow.png in Resources */,
 				E7DE884420DA28C000A7F5D8 /* person_loginOutBG.png in Resources */,
 				E712A07020ECAC9C00F1FC46 /* blue_normal.png in Resources */,
-				E70F1F8020F5D19B0012A1FC /* lesson_playback.png in Resources */,
 				E70F1F7020F5D0E10012A1FC /* preview.png in Resources */,
 				E70621C820C66A32002AE7A6 /* password@2x.png in Resources */,
 				E75C847E20C0F02D00E81025 /* guide_guide1.png in Resources */,
@@ -1837,7 +1838,6 @@
 				E7FE00E020C90E9900A3BF98 /* verification_code.png in Resources */,
 				E712A04B20EB2D5E00F1FC46 /* bookDetail__voice_pause@2x.png in Resources */,
 				E7FE00FF20C9335100A3BF98 /* person_resourceNormal@2x.png in Resources */,
-				E70F1F8120F5D19B0012A1FC /* lesson_playback@2x.png in Resources */,
 				E7895C8620B0025B00F19491 /* person_adavtar@2x.png in Resources */,
 				E70F9D3820EA05C900ED2200 /* book_shelfYellow@2x.png in Resources */,
 				E70F9D3F20EA0C5F00ED2200 /* question_play.png in Resources */,
