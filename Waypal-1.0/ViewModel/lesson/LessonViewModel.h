@@ -63,13 +63,14 @@
 -(void)submitGreatCoursesQuestionWithBookId:(NSString *)bookId  questionOptionArr:(NSArray *)optionArr;
 //lesson_id=18&session_id=1
 
-/**
- <#Description#>
 
- @param lesson_id <#lesson_id description#>
- @param session_id <#session_id description#>
+/**
+ 预习课件列表
+
+ @param schedule_id <#schedule_id description#>
  */
--(void)classwaresWithLessonID:(NSString *)lesson_id sessionID:(NSString *)session_id;
+-(void)classwaresWithScheduleID:(NSString *)schedule_id;
+
 
 
 @end

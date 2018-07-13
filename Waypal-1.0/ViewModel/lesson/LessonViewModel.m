@@ -218,14 +218,22 @@
 }
 
 
--(void)classwaresWithLessonID:(NSString *)lesson_id sessionID:(NSString *)session_id{
-    
-    NSDictionary * param=@{@"lesson_id":@"18",@"session_id":@"1"};
-    [NetworkingTool getWithUrl:PREVIEWCLASSWARES params:param isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
+-(void)classwaresWithScheduleID:(NSString *)schedule_id
+{
+    NSString * URL=[NSString stringWithFormat:@"%@%@",PREVIEWCLASSWARES,schedule_id];
+    [NetworkingTool getWithUrl:URL params:nil isReadCache:NO success:^(NSURLSessionDataTask *task, id responseObject) {
+        
         NSInteger code =[responseObject[@"code"]integerValue];
+        
         if (code==REQUESTSUCCESS) {
-          NSArray * slidesArr=responseObject[@"output"][@"slides"];
-            self.returnBlock(slidesArr);
+            if ([LInspectionClass isBlankString:responseObject[@"output"][@"slides"]])
+            {
+                self.returnBlock(@[]);
+            }else{
+                NSArray * slidesArr=responseObject[@"output"][@"slides"];
+                self.returnBlock(slidesArr);
+            }
+            
         }else{
             self.errorBlock(responseObject[@"tip"]);
         }

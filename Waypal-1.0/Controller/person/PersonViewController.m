@@ -180,16 +180,18 @@
     {
         NSString *contentString = versionDict[@"message"];
         [[LAlertViewCustom sharedInstance] alertViewTitle:@"有新版本喽" content:contentString leftButtonTitle:@"取消" rightButtonTitle:@"前往更新" autoDismiss:NO rightButtonTapDoing:^{
+       
+//itms-apps://itunes.apple.com/cn/app/waypal/id1390222146?mt=8
+            NSString * appStoreURL=versionDict[@"download_url"];
             if (@available(iOS 10.0, *)) {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:versionDict[@"download_url"]] options:@{} completionHandler:nil];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appStoreURL] options:@{} completionHandler:nil];
             } else {
-                [[UIApplication sharedApplication]openURL:versionDict[@"download_url"]];
+                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:appStoreURL]];
             }
-            
         } leftButtonTapORDismissDoing:nil];
     }
     else{
-        [[LAlertViewCustom sharedInstance] alertViewTitle:@"版本信息" content:[NSString stringWithFormat:@"当前为%@版本",currentVersion] leftButtonTitle:nil rightButtonTitle:@"好" autoDismiss:NO rightButtonTapDoing:nil  leftButtonTapORDismissDoing:nil];
+        [[LAlertViewCustom sharedInstance] alertViewTitle:@"版本信息" content:[NSString stringWithFormat:@"当前最新版本"] leftButtonTitle:nil rightButtonTitle:@"好" autoDismiss:NO rightButtonTapDoing:nil  leftButtonTapORDismissDoing:nil];
         
     }
 }

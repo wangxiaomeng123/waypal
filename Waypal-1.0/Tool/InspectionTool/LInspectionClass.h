@@ -281,5 +281,12 @@
  */
 +(NSAttributedString *)setButtonFont:(int ) font  textColor:(int  )colorHEX   lineColor:(int )lineColorHEX  text:(NSString *)textStr;
 
+/**
+ 判断字符长是否为空
+
+ @param string 字符串
+ @return return value description
+ */
++ (BOOL) isBlankString:(NSString *)string;
 
 @end

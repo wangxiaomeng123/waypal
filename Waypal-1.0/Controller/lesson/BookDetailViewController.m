@@ -143,7 +143,7 @@ typedef enum : NSUInteger {
     if ([self.audioPlay isPlaying]) {
         [self pause];
     }
-    [self starTimer];
+//    [self starTimer];
     [self.audioPlay play];
     [self.play_voiceButton setImage:[UIImage imageNamed:@"bookDetail__voice_play"] forState:UIControlStateNormal];
 }

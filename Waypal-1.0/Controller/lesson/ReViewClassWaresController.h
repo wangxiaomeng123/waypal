@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "LessonInfoModel.h"
 @interface ReViewClassWaresController : UIViewController
+@property(nonatomic,assign)BOOL isReview;//是复习
 @property(nonatomic,strong) LessonInfoModel * lessonInfoModel;
 @end

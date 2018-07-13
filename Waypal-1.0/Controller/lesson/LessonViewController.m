@@ -53,6 +53,10 @@
 
 @property(nonatomic,assign)BOOL isTempClass;
 @property (nonatomic,strong)TempClassModel *tempModel;
+
+@property (nonatomic,strong)NSMutableArray * currentClassArr;//保存当前可以上课的数组
+@property(nonatomic,strong) NSTimer *refreshTimer;
+
 @end
 
 @implementation LessonViewController
@@ -62,6 +66,7 @@
     self.guideNum=1;
     self.lessonListArrary=[NSMutableArray array];
     self.navCourseArr=[NSMutableArray array];
+    self.currentClassArr=[NSMutableArray array];
     self.lessonVM =[[LessonViewModel alloc] init];
     [self ConfigUserInfo];
     [self loadGuideView];
@@ -78,6 +83,7 @@
     {
         self.lesson_nothingImgView.hidden=YES;
     }
+    [self starTimer];
     [self requestAction];
 }
 
@@ -102,7 +108,7 @@
 -(void)nextActionWithButton:(UIButton *)button
 {
     self.guideNum++;
-    if ( self.guideNum==4)
+    if ( self.guideNum==5)
     {
         [self.guide_playbackButton removeFromSuperview];
         [lUSER_DEFAULT setObject:@"firstEnterApp" forKey:key_FirsrtEnter];
@@ -174,7 +180,6 @@
     [self.student_advatarImageView sd_setImageWithURL:[NSURL URLWithString:advatar_url] placeholderImage:[UIImage imageNamed:@"lesson_adavtar"]options:SDWebImageAllowInvalidSSLCertificates];
 }
 
-
 -(void)configScrollView
 {
     WeakSelf(self);
@@ -208,9 +213,9 @@
             weakself.selectInfoModel=weakself.lessonListArrary[itemTag];
             [weakself joinLiveRoomWithSelectLessonInfoModel];
         };
-        itemView.reviewClassWaresBlock = ^(NSInteger itemTag){
+        itemView.reviewClassWaresBlock = ^(NSInteger itemTag,BOOL isReview){
             weakself.selectInfoModel=weakself.lessonListArrary[itemTag];
-            [weakself enterpreOrReviewClassWaresViewControllerWithSelectModel:weakself.selectInfoModel];
+            [weakself enterpreOrReviewClassWaresViewControllerWithSelectModel:weakself.selectInfoModel isRevieOrPre:isReview];
             
         };
         [self.lesson_scrollView addSubview:itemView];
@@ -228,7 +233,7 @@
         [weakself joinLiveRoom];
     } WithErrorBlock:^(id errorCode)
      {
-         [[LAlertViewCustom sharedInstance] alertViewTitle:nil content:[NSString stringWithFormat:@"%@",errorCode] leftButtonTitle:nil rightButtonTitle:nil autoDismiss:YES rightButtonTapDoing:nil leftButtonTapORDismissDoing:nil];
+       [LoadingView tipViewWithTipString:errorCode];
          
      } WithFailureBlock:^{
          [LoadingView tipViewWithTipString:@"网络请求失败"];
@@ -417,6 +422,7 @@
     [self.lessonVM getLessonSchedulesListWithFromTime:fromTime];
     [self.lessonVM setBlockWithReturnBlock:^(id returnValue){
         NSArray * returnArr=(NSArray *)returnValue;
+        [weakself.currentClassArr addObjectsFromArray:returnArr];
         [weakself handlerLessonDataWithType:resq_type dataArr:returnArr];
     } WithErrorBlock:^(id errorCode) {
         [LoadingView tipViewWithTipString:errorCode];
@@ -466,8 +472,7 @@
     [self.lesson_scrollView removeAllSubviews];
     if (self.isReshHistory)
     {
-        [self.lessonListArrary removeAllObjects];
-        
+     [self.lessonListArrary removeAllObjects];
     }
     else
     {
@@ -598,12 +603,46 @@
 }
 
 
--(void)enterpreOrReviewClassWaresViewControllerWithSelectModel:(LessonInfoModel*)model{
+-(void)enterpreOrReviewClassWaresViewControllerWithSelectModel:(LessonInfoModel*)model  isRevieOrPre:(BOOL)isreviewOrPre{
     ReViewClassWaresController *classWaresVC=lStoryboard(@"Main", @"classwares");
     classWaresVC.lessonInfoModel=model;
+    classWaresVC.isReview =isreviewOrPre;
     [self presentViewController:classWaresVC animated:YES completion:nil];
     
 }
+
+- (IBAction)refreshLessonListAction:(id)sender {
+    [self requestAction];
+}
+-(NSTimer *)refreshTimer{
+    if (_refreshTimer==nil) {
+    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(startRefreshStatus) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.refreshTimer forMode:UITrackingRunLoopMode];
+    }
+    return _refreshTimer;
+}
+-(void)starTimer{
+    
+    [ self.refreshTimer setFireDate:[NSDate distantPast]];
+}
+-(void)stopTimer{
+    [self.refreshTimer setFireDate:[NSDate distantFuture]];
+    
+}
+
+-(void)startRefreshStatus{
+    [self.lesson_scrollView removeAllSubviews];
+    [self configScrollView];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self stopTimer];
+    self.refreshTimer= nil;
+}
+
+
 
 
 @end

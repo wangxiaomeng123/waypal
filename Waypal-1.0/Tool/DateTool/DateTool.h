@@ -14,5 +14,9 @@
 +(NSString*)weekdayStringFromDate:(NSDate*)inputDate;
 
 +(NSString *)currentDateString;
-
+//分钟计算
++ (int)dateTimeDifferenceWithStartTime:(NSString *)startTime endTime:(NSString *)endTime;
++ (void)countDownWithTime:(int)time
+           countDownBlock:(void (^)(int timeLeft))countDownBlock
+                 endBlock:(void (^)(void))endBlock;
 @end

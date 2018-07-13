@@ -15,15 +15,21 @@
 @implementation LessonItemView
 #pragma mark 预习或者复习
 - (IBAction)reviewClassWaresAction:(id)sender {
-    if (self.reviewClassWaresBlock) {
-        self.reviewClassWaresBlock(self.tag);
+    if (self.isCanPreView) {
+        if (self.reviewClassWaresBlock)
+        {
+         self.reviewClassWaresBlock(self.tag,self.isReview);
+        }
+    }else{
+        [LoadingView tipViewWithTipString:@"课前1小时可以开始预习哦！"];
     }
+   
 }
 
 #pragma mark 进入教室
 - (IBAction)touchStatusButtonAction:(id)sender {
     UIButton * btn =(UIButton *)sender;
-    [[animationTool shareInstance] shakeToShow:btn];
+//    [[animationTool shareInstance] shakeToShow:btn];
     if (self.joinLiveRoomBlock) {
         self.joinLiveRoomBlock(self.tag);
     }
@@ -43,6 +49,8 @@
     
     NSString  *to_time=[lessonInfoModel.to_time substringWithRange:NSMakeRange(10,lessonInfoModel.to_time.length- 13)];
     
+     int mintue= [DateTool dateTimeDifferenceWithStartTime:[DateTool currentDateString] endTime:lessonInfoModel.from_time];
+    
     //    上课时间
     self.teach_timeLabel.text =[NSString stringWithFormat:@"%@ %@-%@",teach_date,from_time,to_time];
     //    老师名称
@@ -55,6 +63,8 @@
     
 //
     if (lessonInfoModel.status ==6) {
+        self.isReview=YES;
+        self.isCanPreView=YES;
         self.bgImageView.image=[UIImage imageNamed:@"lesson_playbackBgView@2x"];
         [self.teach_statusImgView setBackgroundImage:[UIImage imageNamed:@"lesson_playback"] forState:UIControlStateNormal];
         self.teacher_nameLabel.textColor=[UIColor colorWithHexString:@"#11748F"];
@@ -63,14 +73,48 @@
     }
     else
     {
+        self.isReview =NO;
+      // 预习
         self.bgImageView.image=[UIImage imageNamed:@"lesson_planet"];
         [self.teach_statusImgView setBackgroundImage:[UIImage imageNamed:@"lesson_attclass"] forState:UIControlStateNormal];
       [self.teach_classWareStatuImageView setImage:[UIImage imageNamed:@"preview"] forState:UIControlStateNormal];
+        CGFloat orgin_previewX=self.teach_classWareStatuImageView.origin.x;
+         CGFloat orgin_clasX=self.teach_statusImgView.origin.x;
+        
+        // 60分外无上课 预习置灰 点击可提示
+        if (mintue>60)
+        {
+            self.isCanPreView=NO; self.teach_classWareStatuImageView.transform=CGAffineTransformMakeTranslation(orgin_previewX+20,0);
+            [self.teach_classWareStatuImageView setImage:[UIImage imageNamed:@"preview_gray"] forState:UIControlStateNormal];
+           self.teach_statusImgView.hidden=YES;
+            
+        }
+//        可以预习 无上课
+        else if (mintue>30&&mintue<60)
+        {
+            self.teach_classWareStatuImageView.enabled=YES;
+            self.teach_statusImgView.hidden=YES;
+     self.teach_classWareStatuImageView.transform=CGAffineTransformMakeTranslation(orgin_previewX+20,0);
+            self.isCanPreView=YES;
+        }
+//        预习上课均有
+        else if (mintue<=30&&mintue>0)
+        {
+            self.isCanPreView=YES;
+            self.teach_classWareStatuImageView.enabled=YES;
+            self.teach_statusImgView.hidden=NO;
+        }
+//        无预习 只有上课
+        else if (mintue<=0)
+        {
+        self.isCanPreView=NO;
+        self.teach_classWareStatuImageView.hidden=YES;
+        self.teach_statusImgView.enabled=YES;
+        self.teach_statusImgView.transform= CGAffineTransformMakeTranslation(-65,0);
+        }
     }
     self.lessInfoModel =lessonInfoModel;
-    
 }
-
 
 
 @end
