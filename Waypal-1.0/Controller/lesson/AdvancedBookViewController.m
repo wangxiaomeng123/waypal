@@ -166,12 +166,12 @@
         alert.frame=CGRectMake(0, 0, 372, 270);
         alert.okDoingBlock = ^{
             [self enterBookDetailVCWithBookModel:bookModel indexRow:indexPath.row];
-            //            [self.bookCollectionView reloadData];
+                        [self.bookCollectionView reloadData];
         };
         [alert  jk_showInWindowWithMode:JKCustomAnimationModeAlert inView:nil bgAlpha:0.2 needEffectView:YES];
     }else{
         [self enterBookDetailVCWithBookModel:bookModel indexRow:indexPath.row];
-        //        [self.bookCollectionView reloadData];
+                [self.bookCollectionView reloadData];
         
     }
     
@@ -237,13 +237,18 @@
         BookDetailViewController * bookDetail =lStoryboard(@"Main", @"bookDetail");
         bookDetail.detailModel=(bookDetailModel *)returnValue;
         bookDetail.bookModel=bookModel;
-        [self presentViewController:bookDetail animated:YES completion:nil];
         BookModel *bookModel= self.advanceStageArrary[indexPath];
         bookModel.is_readed =@"1";
         if (self.advanceStageArrary.count!=0)
         {
             [self.advanceStageArrary replaceObjectAtIndex:indexPath withObject:bookModel];
         }
+        [self.bookCollectionView reloadData];
+
+        [self presentViewController:bookDetail animated:YES completion:nil];
+
+        
+        
     } WithErrorBlock:^(id errorCode) {
         [LoadingView tipViewWithTipString:errorCode];
     } WithFailureBlock:^{

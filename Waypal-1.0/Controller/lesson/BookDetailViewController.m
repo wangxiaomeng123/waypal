@@ -80,7 +80,7 @@ typedef enum : NSUInteger {
         
         self.audioPlay = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
         if (type==bookPageType) {
-            self.audioPlay.currentTime=[self.audioModel.st doubleValue];
+         self.audioPlay.currentTime=[self.audioModel.st doubleValue];
         }else{
             self.audioPlay.currentTime=0.0;
         }
@@ -90,12 +90,14 @@ typedef enum : NSUInteger {
         }
         else
         {
-            if (type==bookPageType) {
+            if (type==bookPageType)
+            {
                 [self play];
             }
             else
             {
-                if ([self.audioPlay isPlaying]) {
+                if ([self.audioPlay isPlaying])
+                {
                     [self.audioPlay pause];
                 }
                 [self.audioPlay play];
@@ -143,7 +145,7 @@ typedef enum : NSUInteger {
     if ([self.audioPlay isPlaying]) {
         [self pause];
     }
-//    [self starTimer];
+    [self starTimer];
     [self.audioPlay play];
     [self.play_voiceButton setImage:[UIImage imageNamed:@"bookDetail__voice_play"] forState:UIControlStateNormal];
 }

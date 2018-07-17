@@ -107,7 +107,8 @@
         NSString * text= [[model.optionsArr objectAtIndex:i] content];
         btn.tag =i;
         [btn.titleLabel setAdjustsFontSizeToFitWidth:YES];
-        btn.titleLabel.numberOfLines=0;
+        
+//        btn.titleLabel.numberOfLines=0;
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btn setTitle:text forState:UIControlStateNormal];
         btn.titleLabel.font=[UIFont boldSystemFontOfSize:18];
@@ -136,11 +137,11 @@
         
         [bg addSubview:optionView];
         
-        UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scaleImage:)];
-        optionImageView.userInteractionEnabled=YES;
-        tap.numberOfTapsRequired = 1;
-        tap.numberOfTouchesRequired = 1;
-        [optionImageView addGestureRecognizer:tap];
+//        UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scaleImage:)];
+//        optionImageView.userInteractionEnabled=YES;
+//        tap.numberOfTapsRequired = 1;
+//        tap.numberOfTouchesRequired = 1;
+//        [optionImageView addGestureRecognizer:tap];
     }
     return bg;
 }

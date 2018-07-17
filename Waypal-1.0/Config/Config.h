@@ -51,7 +51,7 @@
 #warning 上线记得修改
 //产品状态
 #if DEBUG
-static const BOOL kFORPRODUCTION = YES;
+static const BOOL kFORPRODUCTION = NO;
 #else
 static const BOOL kFORPRODUCTION = YES;
 #endif

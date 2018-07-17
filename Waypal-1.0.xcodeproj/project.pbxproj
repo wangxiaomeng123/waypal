@@ -26,6 +26,9 @@
 		E70C7BBF20F8BE130032182C /* guide_guide1.png in Resources */ = {isa = PBXBuildFile; fileRef = E70C7BB720F8BE0D0032182C /* guide_guide1.png */; };
 		E70C7BC020F8BE130032182C /* guide_guide4.png in Resources */ = {isa = PBXBuildFile; fileRef = E70C7BB820F8BE0F0032182C /* guide_guide4.png */; };
 		E70C7BC120F8BE130032182C /* guide_guide1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70C7BB920F8BE110032182C /* guide_guide1@2x.png */; };
+		E70CDA5A20FC34E900D63C88 /* WeClassRoomSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E70CDA5920FC34E900D63C88 /* WeClassRoomSDK.framework */; };
+		E70CDA5B20FC34F300D63C88 /* WeClassRoomSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E70CDA5920FC34E900D63C88 /* WeClassRoomSDK.framework */; };
+		E70CDA5C20FC34F300D63C88 /* WeClassRoomSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E70CDA5920FC34E900D63C88 /* WeClassRoomSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E70F1FA020F616650012A1FC /* ReViewClassWaresController.m in Sources */ = {isa = PBXBuildFile; fileRef = E70F1F9F20F616650012A1FC /* ReViewClassWaresController.m */; };
 		E70F1FA920F6F3AB0012A1FC /* review.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1FA120F6F39F0012A1FC /* review.png */; };
 		E70F1FAA20F6F3AB0012A1FC /* lesson_attclass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E70F1FA220F6F3A20012A1FC /* lesson_attclass@2x.png */; };
@@ -232,8 +235,6 @@
 		E7FD765D20F3729E004510A4 /* SocketIO.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7FD765520F37293004510A4 /* SocketIO.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7FD765E20F3729E004510A4 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7FD765020F3728F004510A4 /* Starscream.framework */; };
 		E7FD765F20F3729E004510A4 /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7FD765020F3728F004510A4 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E7FD766020F3729E004510A4 /* WeClassRoomSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7FD765120F37290004510A4 /* WeClassRoomSDK.framework */; };
-		E7FD766120F3729E004510A4 /* WeClassRoomSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7FD765120F37290004510A4 /* WeClassRoomSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7FD766220F3729E004510A4 /* ZegoAVKit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7FD765420F37292004510A4 /* ZegoAVKit2.framework */; };
 		E7FD766320F3729E004510A4 /* ZegoAVKit2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E7FD765420F37292004510A4 /* ZegoAVKit2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7FD766420F3729E004510A4 /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7FD765320F37292004510A4 /* ZipArchive.framework */; };
@@ -317,11 +318,11 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E7FD764D20F3716A004510A4 /* MBProgressHUD.framework in Embed Frameworks */,
-				E7FD766120F3729E004510A4 /* WeClassRoomSDK.framework in Embed Frameworks */,
 				E7FD765F20F3729E004510A4 /* Starscream.framework in Embed Frameworks */,
 				E7FD766520F3729E004510A4 /* ZipArchive.framework in Embed Frameworks */,
 				E7FD765D20F3729E004510A4 /* SocketIO.framework in Embed Frameworks */,
 				E7FD766320F3729E004510A4 /* ZegoAVKit2.framework in Embed Frameworks */,
+				E70CDA5C20FC34F300D63C88 /* WeClassRoomSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +357,7 @@
 		E70C7BB720F8BE0D0032182C /* guide_guide1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide_guide1.png; sourceTree = "<group>"; };
 		E70C7BB820F8BE0F0032182C /* guide_guide4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide_guide4.png; sourceTree = "<group>"; };
 		E70C7BB920F8BE110032182C /* guide_guide1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guide_guide1@2x.png"; sourceTree = "<group>"; };
+		E70CDA5920FC34E900D63C88 /* WeClassRoomSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WeClassRoomSDK.framework; sourceTree = "<group>"; };
 		E70F1F9E20F616650012A1FC /* ReViewClassWaresController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReViewClassWaresController.h; sourceTree = "<group>"; };
 		E70F1F9F20F616650012A1FC /* ReViewClassWaresController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReViewClassWaresController.m; sourceTree = "<group>"; };
 		E70F1FA120F6F39F0012A1FC /* review.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = review.png; sourceTree = "<group>"; };
@@ -615,7 +617,6 @@
 		E7F75D3620EA326700352734 /* bookDetail_book_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookDetail_book_background@2x.png"; sourceTree = "<group>"; };
 		E7FD764020F3711D004510A4 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MBProgressHUD.framework; sourceTree = "<group>"; };
 		E7FD765020F3728F004510A4 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Starscream.framework; sourceTree = "<group>"; };
-		E7FD765120F37290004510A4 /* WeClassRoomSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WeClassRoomSDK.framework; sourceTree = "<group>"; };
 		E7FD765220F37291004510A4 /* WeClassRoomSDK.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = WeClassRoomSDK.framework.dSYM; sourceTree = "<group>"; };
 		E7FD765320F37292004510A4 /* ZipArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZipArchive.framework; sourceTree = "<group>"; };
 		E7FD765420F37292004510A4 /* ZegoAVKit2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZegoAVKit2.framework; sourceTree = "<group>"; };
@@ -690,16 +691,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E70CDA5B20FC34F300D63C88 /* WeClassRoomSDK.framework in Frameworks */,
 				E7FD764C20F3716A004510A4 /* MBProgressHUD.framework in Frameworks */,
 				E7FD765620F37293004510A4 /* Starscream.framework in Frameworks */,
 				E7FD766420F3729E004510A4 /* ZipArchive.framework in Frameworks */,
 				E7FD765E20F3729E004510A4 /* Starscream.framework in Frameworks */,
 				E7FD765920F37293004510A4 /* ZipArchive.framework in Frameworks */,
+				E70CDA5A20FC34E900D63C88 /* WeClassRoomSDK.framework in Frameworks */,
 				E7FD765A20F37293004510A4 /* ZegoAVKit2.framework in Frameworks */,
 				E712A05020EB6F2A00F1FC46 /* AVFoundation.framework in Frameworks */,
 				E7FD765C20F3729E004510A4 /* SocketIO.framework in Frameworks */,
 				18588407B5F15622CFF48E63 /* Pods_Waypal_1_0.framework in Frameworks */,
-				E7FD766020F3729E004510A4 /* WeClassRoomSDK.framework in Frameworks */,
 				E7FD766220F3729E004510A4 /* ZegoAVKit2.framework in Frameworks */,
 				E7FD765B20F37293004510A4 /* SocketIO.framework in Frameworks */,
 			);
@@ -1452,9 +1454,9 @@
 		E7FD763A20F3711D004510A4 /* LiveRoom */ = {
 			isa = PBXGroup;
 			children = (
+				E70CDA5920FC34E900D63C88 /* WeClassRoomSDK.framework */,
 				E7FD765520F37293004510A4 /* SocketIO.framework */,
 				E7FD765020F3728F004510A4 /* Starscream.framework */,
-				E7FD765120F37290004510A4 /* WeClassRoomSDK.framework */,
 				E7FD765220F37291004510A4 /* WeClassRoomSDK.framework.dSYM */,
 				E7FD765420F37292004510A4 /* ZegoAVKit2.framework */,
 				E7FD765320F37292004510A4 /* ZipArchive.framework */,

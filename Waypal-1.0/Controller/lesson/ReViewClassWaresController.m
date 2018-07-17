@@ -24,6 +24,8 @@
     [super viewDidLoad];
     self.imagesArrary =[NSMutableArray array];
     self.currentPage =0;
+    self.countDownTimeLabel.layer.cornerRadius=4;
+    self.countDownTimeLabel.layer.masksToBounds =YES;
 
     LessonViewModel * model=[[LessonViewModel alloc] init];
     NSString * schedule_id=[NSString stringWithFormat:@"%@",self.lessonInfoModel.schedule_id];
@@ -44,7 +46,11 @@
         self.timerTipBgView.hidden=YES;
         [self countDownTimeAction];
     }
+    
   
+    
+    
+    
 }
 
 - (IBAction)backAction:(id)sender {
@@ -54,6 +60,7 @@
 -(void)scrollViewWithImages:(NSMutableArray *)imagesArr{
     
     if (imagesArr.count==0) {
+        [LoadingView tipViewWithTipString:@"暂无内容"];
         return;
     }
     self.imagesArrary =imagesArr;
@@ -66,10 +73,7 @@
     for (int i=0; i<imagesArr.count; i++) {
         NSString *imagePath= imagesArr[i][@"path"];
         UIImageView *imgV=[[UIImageView alloc] initWithFrame:CGRectMake(width*i, 0, width, height)];
-        imgV.layer.cornerRadius =5;
-        imgV.layer.masksToBounds =YES;
         [imgV sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:[UIImage imageNamed:@""]];
-        //        imgV.contentMode =UIViewContentModeScaleAspectFit;
         [self.scrollView addSubview:imgV];
     }
 }
@@ -111,22 +115,27 @@
 -(void)countDownTimeAction
 {
     NSString *currentTime=[DateTool currentDateString];
-    int mintue=[DateTool dateTimeDifferenceWithStartTime:currentTime endTime:self.lessonInfoModel.from_time];
+    int second=[DateTool dateTimeDifferenceWithStartTime:currentTime endTime:self.lessonInfoModel.from_time];
+    
+    [DateTool countDownWithTime:second countDownBlock:^(int timeLeft) {
+        DDLog(@"距离上课倒计时:[%d]秒",timeLeft);
 
-    [DateTool countDownWithTime:mintue countDownBlock:^(int timeLeft) {
-        
-        DDLog(@"距离上课时间:%d",mintue);
-
-        if (timeLeft==3)
+        if (timeLeft<180)
         {
         self.timerTipBgView.hidden=NO;
-        [[LAlertViewCustom sharedInstance] alertViewTitle:@"提示" content:@"还有3分钟上课啦，请进入教室哦！" leftButtonTitle:@"知道了" rightButtonTitle:nil autoDismiss:NO rightButtonTapDoing:nil leftButtonTapORDismissDoing:nil];
+            self.countDownTimeLabel.text=[NSString stringWithFormat:@"%d",(int)ceil(timeLeft/60)+1];
+        }else if (timeLeft==180)
+        {
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                [[LAlertViewCustom sharedInstance] alertViewTitle:@"提示" content:@"还有3分钟上课啦，请进入教室哦！" leftButtonTitle:@"知道了" rightButtonTitle:nil autoDismiss:NO rightButtonTapDoing:nil leftButtonTapORDismissDoing:nil];
+            });
+         
         }
-        else if (timeLeft ==0){
-            self.timerTipBgView.hidden =YES;
-        }
-       self.countDownTimeLabel.text=[NSString stringWithFormat:@"%d",timeLeft];
+     
+        
     } endBlock:^{
+         self.timerTipBgView.hidden =YES;
     }];
 }
 

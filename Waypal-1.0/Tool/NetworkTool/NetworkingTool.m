@@ -84,8 +84,8 @@
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadView];
     
     NSString * head_token =[RapidStorageClass readToken];
-    
     NSString * token=[NSString stringWithFormat:@"Bearer %@",head_token];
+    
     if (head_token.length>0) {
         [[NetworkingTool sharedManager].requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
     }
@@ -94,7 +94,7 @@
     
     
     [[NetworkingTool sharedManager] GET:requestURL parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        DDLog(@"接口名称:[%@]-[%@]-[%@]",url,params,responseObject);
+        DDLog(@"接口名称:[%@]-[%@]-[%@]-token:[%@]",url,params,responseObject,token);
         [loadView hiddenLoadingView];
         if (success) {
             success(task,responseObject);
@@ -107,7 +107,7 @@
         if ( responses.statusCode==401|| responses.statusCode==400||responses.statusCode==403)
         {
             [[NetworkingTool sharedManager]hanlderUpdateToken];
-
+            
         }else{
             id cacheData= nil;
             if (isReadCache) {
@@ -133,7 +133,7 @@
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadView];
     NSString * head_token =[RapidStorageClass readToken];
     NSString * token=[NSString stringWithFormat:@"Bearer %@",head_token];
-    
+  
     if (head_token.length>0) {
         [[NetworkingTool sharedManager].requestSerializer setValue:token forHTTPHeaderField:@"Authorization"];
     }

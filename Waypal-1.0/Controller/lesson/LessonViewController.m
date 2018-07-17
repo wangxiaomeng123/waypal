@@ -39,9 +39,9 @@
 @property (nonatomic,assign) BOOL isJoining; //防重进机制
 @property (nonatomic,assign) NSInteger totalNum;//总页数
 @property (nonatomic,assign)  NSInteger totalPages;
-@property (nonatomic,strong)UIButton * guide_playbackButton;//回访
+@property (nonatomic,strong)UIButton * guide_playbackButton;//回放
 @property (nonatomic,strong)UIButton * guide_inClassButton;//上课
-@property (weak, nonatomic) IBOutlet UIImageView *lesson_bgImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *lesson_bgImageView;//背景
 @property (nonatomic,assign)BOOL isNotHistory;//是否还有历史课堂
 @property (nonatomic,strong) NSMutableArray * lessonListArrary;//课程列表
 @property (nonatomic,strong) NSArray * currentLesson;//当前可以上课的
@@ -114,7 +114,6 @@
         [lUSER_DEFAULT setObject:@"firstEnterApp" forKey:key_FirsrtEnter];
     }
     [self.guide_playbackButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"guide_guide%d",  self.guideNum]]forState:UIControlStateNormal];
-    
 }
 
 -(void)requestAction
@@ -148,7 +147,6 @@
     tempRoom.liveroomModel=self.liveroomModel;
 //    tempRoom.tempModel =tempModel;
     WCRClassJoinInfo *joinInfo= [tempRoom configTempLiveRoomInfoWithTempModel:tempModel];
-    DDLog(@"临时课堂：%@",joinInfo);
     self.classRoom = [[WCRClassRoom alloc] init];
     self.classRoom.delegate = self;
     [self.classRoom joinRoom: joinInfo];
@@ -189,7 +187,6 @@
         self.lesson_nothingImgView.hidden =NO;
     }else
     {
-        
         self.lesson_bgImageView.image=[UIImage imageNamed:@"lesson_background"];
         self.lesson_nothingImgView.hidden =YES;
     }
@@ -489,6 +486,8 @@
         
     }else{
         self.prevButton.hidden =NO;
+        self.isNotHistory=NO;
+
     }
     
     
@@ -612,11 +611,12 @@
 }
 
 - (IBAction)refreshLessonListAction:(id)sender {
+    self.isReshHistory=YES;
     [self requestAction];
 }
 -(NSTimer *)refreshTimer{
     if (_refreshTimer==nil) {
-    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:60.0 target:self selector:@selector(startRefreshStatus) userInfo:nil repeats:YES];
+    self.refreshTimer = [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(startRefreshStatus) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.refreshTimer forMode:UITrackingRunLoopMode];
     }
     return _refreshTimer;

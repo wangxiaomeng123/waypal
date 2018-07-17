@@ -4,13 +4,66 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
+            filePath = "Waypal-1.0/Controller/lesson/ReViewClassWaresController.m"
+            timestampString = "553517455.932689"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ReViewClassWaresController viewDidLoad]"
+                  moduleName = "Waypal-1.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Controller/lesson/ReViewClassWaresController.m"
+                  timestampString = "553517456.553412"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "696">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[ReViewClassWaresController viewDidLoad]_block_invoke"
+                  moduleName = "Waypal-1.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Controller/lesson/ReViewClassWaresController.m"
+                  timestampString = "553517456.556303"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "Waypal-1.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/Controller/lesson/ReViewClassWaresController.m"
+                  timestampString = "553517456.559101"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -19,14 +72,77 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Waypal-1.0/logic/liveRoom/LiveRoom.m"
-            timestampString = "553175533.698541"
+            filePath = "Waypal-1.0/ViewModel/lesson/LessonViewModel.m"
+            timestampString = "553517509.49976"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "-configTempLiveRoomInfoWithTempModel:"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "-classwaresWithScheduleID:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Waypal-1.0/ViewModel/lesson/LessonViewModel.m"
+            timestampString = "553517539.326489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
+            landmarkName = "-classwaresWithScheduleID:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[LessonViewModel classwaresWithScheduleID:]"
+                  moduleName = "Waypal-1.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/ViewModel/lesson/LessonViewModel.m"
+                  timestampString = "553517539.546299"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "224"
+                  endingLineNumber = "224"
+                  offsetFromSymbolStart = "164">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__44-[LessonViewModel classwaresWithScheduleID:]_block_invoke"
+                  moduleName = "Waypal-1.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/ViewModel/lesson/LessonViewModel.m"
+                  timestampString = "553517539.548519"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.224"
+                  moduleName = "Waypal-1.0"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/waypal/Desktop/all/Waypal-1.0/Waypal-1.0/ViewModel/lesson/LessonViewModel.m"
+                  timestampString = "553517539.5506769"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "224"
+                  endingLineNumber = "224"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

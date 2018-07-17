@@ -28,7 +28,7 @@
 
 #pragma mark 进入教室
 - (IBAction)touchStatusButtonAction:(id)sender {
-    UIButton * btn =(UIButton *)sender;
+//    UIButton * btn =(UIButton *)sender;
 //    [[animationTool shareInstance] shakeToShow:btn];
     if (self.joinLiveRoomBlock) {
         self.joinLiveRoomBlock(self.tag);
@@ -49,7 +49,8 @@
     
     NSString  *to_time=[lessonInfoModel.to_time substringWithRange:NSMakeRange(10,lessonInfoModel.to_time.length- 13)];
     
-     int mintue= [DateTool dateTimeDifferenceWithStartTime:[DateTool currentDateString] endTime:lessonInfoModel.from_time];
+     int second= [DateTool dateTimeDifferenceWithStartTime:[DateTool currentDateString] endTime:lessonInfoModel.from_time];
+      int mintue=(int)ceil(second/60);
     
     //    上课时间
     self.teach_timeLabel.text =[NSString stringWithFormat:@"%@ %@-%@",teach_date,from_time,to_time];
