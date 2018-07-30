@@ -1,0 +1,6 @@
+framework module WeClassRoomSDK {
+  umbrella header "WeClassRoomSDK.h"
+
+  export *
+  module * { export * }
+}

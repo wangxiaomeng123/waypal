@@ -1,0 +1,15 @@
+//
+//  AdvancedBookViewController.h
+//  Waypal-1.0
+//
+//  Created by waypal on 2018/6/26.
+//  Copyright © 2018年 waypal. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+typedef void(^dissMissBlock)(void);
+
+@interface AdvancedBookViewController : UIViewController
+@property(nonatomic,strong)NSArray * navCourseArr;
+
+@end
